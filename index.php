@@ -43,9 +43,8 @@ require_once ("config.php");
 
 <ul>
     <li><img src="img/JB.png" alt=""/></li>
-    <li><a href="#home" class="smoothScroll">Home</a></li>
+    <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#contact" class="smoothScroll">Contact</a></li>
     <li><a href="#about" class="smoothScroll">About</a></li>
 </ul>
 
