@@ -41,16 +41,12 @@ require_once("config.php");
 
 <body>
 <ul>
-    <li><img src="img/JB.png" alt=""/></li>
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#contact" class="smoothScroll">Contact</a></li>
-    <li><img onclick="changeEng()" src="img/eng.png" style="cursor: pointer; margin:12px 0 0 800px; height:20px;">
-    </li>
-    <li><img onclick="changeInd()" src="img/ina.jpg"
-             style="cursor: pointer; margin:7px 0 0 850px; margin-top:-40px; height:30px;"></li>
+    <li><a href="#" class="smoothScroll">About</a></li>
 </ul>
 
+<!-- Main source -->
 <div id="container" class="bounceInDown animated">
     <div class="child-1">
         <img src="img/1.jpg">
@@ -100,38 +96,28 @@ require_once("config.php");
 </div>
 
 <!-- ========== FOOTER SECTION ========== -->
-<section style="margin-top:75px" id="contact" name="contact"></section>
-<div id="f">
+<section id="contact" name="contact"></section>
+<div id="f" style="background-color:#333">
     <div class="container">
         <div class="row">
-            <h3><b>CONTACT US</b></h3>
-            <br>
-            <div class="col-lg-4">
+            <div class="col-sm-12">
+                <h3 class="text-center"><b>CONTACT US</b></h3>
+            </div>
+            <div class="col-sm-6">
                 <h3><b>Send Us A Message:</b></h3>
-                <h3 class="text-foot">justbatik@gmail.com</h3>
+                <h3 class="text-foot">turanwash@gmail.com</h3>
                 <br>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-sm-6">
                 <h3><b>Call Us:</b></h3>
-                <h3 class="text-foot">+62 8123 2996 876</h3>
-                <br>
-            </div>
-
-            <div class="col-lg-4">
-                <h3><b>We Are Social</b></h3>
-                <p>
-                    <a href="index.php#"><i class="icon-facebook"></i></a>
-                    <a href="index.php#"><i class="icon-twitter"></i></a>
-                    <a href="index.php#"><i class="icon-envelope"></i></a>
-                </p>
+                <h3 class="text-foot">+6281234567890</h3>
                 <br>
             </div>
         </div>
     </div>
 </div><!-- /container -->
 </div><!-- /f -->
-<!-- dialog box -->
 
 
 <!-- script of dialog -->
