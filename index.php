@@ -74,8 +74,10 @@ require_once ("config.php");
 <!-- ========== WHITE SECTION ========== -->
 <div id="w">
     <div class="container">
-        <div class="row text-center">
+        <div class="row">
+            <div class="col-sm-12">
                 <h4><strong>WE WORK HARD TO PROVIDE YOU WITH VARIOUS HIGH QUALITY ITEMS</strong></h4>
+            </div>
         </div>
     </div><!-- /container -->
 </div><!-- /w -->
@@ -85,9 +87,9 @@ require_once ("config.php");
 <div id="f" style="background-color:#333">
     <div class="container">
         <div class="row">
-            <h3 class="text-center"><b>CONTACT US</b></h3>
-            <br>
-            <br>
+            <div class="col-sm-12">
+                <h3 class="text-center"><b>CONTACT US</b></h3>
+            </div>
             <div class="col-sm-4">
                 <h3><b>Send Us A Message:</b></h3>
                 <h3 class="text-foot">turanwash@gmail.com</h3>
