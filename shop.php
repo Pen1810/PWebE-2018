@@ -53,45 +53,76 @@ require_once("config.php");
         <div id="info">
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
-        
-        <p id="p_pertama">Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
+
+        <p style="margin-top:170px">BrainWasgin Black Type R</p>
     </div>
     <div class="child-1">
         <img src="img/2.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
+
+        <p style="margin-top:170px">BrainWashgin Black SE</p>
     </div>
     <div class="child-1">
         <img src="img/3.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
+
+        <p style="margin-top:170px">BrainWashgin Blue</p>
     </div>
     <div class="child-1">
         <img src="img/4.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
+
+        <p style="margin-top:170px">BrainWashgin Green</p>
     </div>
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
+
+        <p style="margin-top:170px">Rinso BrainWash Standard</p>
+    </div>
+
+    <div class="child-1">
+        <img src="img/5.jpg">
+        <div>
+            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+        </div>
+
+        <p style="margin-top:170px">Rinso BrainWash EXTRA</p>
+    </div>
+
+    <div class="child-1">
+        <img src="img/5.jpg">
+        <div>
+            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+        </div>
+
+        <p style="margin-top:170px">Rinso BrainWash BLACK EDITION</p>
+    </div>
+
+    <div class="child-1">
+        <img src="img/5.jpg">
+        <div>
+            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+        </div>
+
+        <p style="margin-top:170px">BrainWashgin Syrup</p>
+    </div>
+
+    <div class="child-1">
+        <img src="img/5.jpg">
+        <div>
+            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+        </div>
+
+        <p style="margin-top:170px">BODREX Antibemper</p>
     </div>
 </div>
 
