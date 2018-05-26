@@ -101,16 +101,6 @@ require_once ("config.php");
                 <h3 class="text-foot">+62 8123 456 789</h3>
                 <br>
             </div>
-
-            <div class="col-sm-4">
-                <h3><b>We Are Social</b></h3>
-                <p>
-                    <a href="index.php#"><i class="icon-facebook"></i></a>
-                    <a href="index.php#"><i class="icon-twitter"></i></a>
-                    <a href="index.php#"><i class="icon-envelope"></i></a>
-                </p>
-                <br>
-            </div>
         </div>
     </div>
 </div><!-- /container -->
