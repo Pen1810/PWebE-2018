@@ -97,42 +97,6 @@ require_once("config.php");
         <p>Available Stock : 1</p>
         <p style="margin-top:170px">Size : (2 x 2)m</p>
     </div>
-    <div class="child-1">
-        <img src="img/6.png">
-        <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
-        </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
-    </div>
-    <div class="child-1">
-        <img src="img/7.jpg">
-        <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
-        </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
-    </div>
-    <div class="child-1">
-        <img src="img/8.jpg">
-        <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
-        </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
-    </div>
-    <div class="child-1">
-        <img src="img/9.jpg">
-        <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
-        </div>
-        
-        <p>Available Stock : 1</p>
-        <p style="margin-top:170px">Size : (2 x 2)m</p>
-    </div>
 </div>
 
 <!-- ========== FOOTER SECTION ========== -->

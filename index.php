@@ -92,13 +92,13 @@ require_once ("config.php");
             <br>
             <div class="col-lg-4">
                 <h3><b>Send Us A Message:</b></h3>
-                <h3 class="text-foot">justshop@gmail.com</h3>
+                <h3 class="text-foot">turanwash@gmail.com</h3>
                 <br>
             </div>
 
             <div class="col-lg-4">
                 <h3><b>Call Us:</b></h3>
-                <h3 class="text-foot">+62 8123 2996 876</h3>
+                <h3 class="text-foot">+62 8123 456 789</h3>
                 <br>
             </div>
 
