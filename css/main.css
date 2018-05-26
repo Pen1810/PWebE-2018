@@ -1,4 +1,9 @@
- #design-con {
+.upright
+{
+   float: right;
+}
+
+#design-con {
    position: relative;
    border: 2px solid red;
    width: 680px;
