@@ -75,10 +75,10 @@ require_once ("config.php");
 <div id="w">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <center>
                 <h3>WE <strong>WORK HARD</strong> TO DELIVER A <strong>HIGH QUALITY SERVICE</strong>. OUR AIM IS YOUR
                     COMPLETE <strong>SATISFACTION</strong>.</h3>
-            </div>
+            </center>
         </div>
     </div><!-- /container -->
 </div><!-- /w -->
