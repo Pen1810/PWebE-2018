@@ -46,11 +46,7 @@ require_once ("config.php");
     <li><a href="#home" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
     <li><a href="#contact" class="smoothScroll">Contact</a></li>
-    <li><img onclick="changeEng()" src="img/eng.png"
-             style="cursor: pointer; margin:12px 0 0 750px; height:20px; "></li>
-    <li><img onclick="changeInd()" src="img/ina.jpg"
-             style="cursor: pointer; margin:7px 0 0 800px; margin-top:-40px; height:30px; "></li>
-    <li style="float:right; margin-top:-30px;"><a href="#about" class="smoothScroll">About</a></li>
+    <li><a href="#about" class="smoothScroll">About</a></li>
 </ul>
 
 <!-- ========== HEADER SECTION ========== -->
@@ -90,15 +86,15 @@ require_once ("config.php");
             <div class="col-sm-12">
                 <h3 class="text-center"><b>CONTACT US</b></h3>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h3><b>Send Us A Message:</b></h3>
                 <h3 class="text-foot">turanwash@gmail.com</h3>
                 <br>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h3><b>Call Us:</b></h3>
-                <h3 class="text-foot">+62 8123 456 789</h3>
+                <h3 class="text-foot">+6281234567890</h3>
                 <br>
             </div>
         </div>
