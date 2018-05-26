@@ -90,19 +90,19 @@ require_once ("config.php");
         <div class="row">
             <h3><b>CONTACT US</b></h3>
             <br>
-            <div class="col-lg-4">
+            <div class="col-sm-4">
                 <h3><b>Send Us A Message:</b></h3>
                 <h3 class="text-foot">turanwash@gmail.com</h3>
                 <br>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-sm-4">
                 <h3><b>Call Us:</b></h3>
                 <h3 class="text-foot">+62 8123 456 789</h3>
                 <br>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-sm-4">
                 <h3><b>We Are Social</b></h3>
                 <p>
                     <a href="index.php#"><i class="icon-facebook"></i></a>
