@@ -76,8 +76,7 @@ require_once ("config.php");
     <div class="container">
         <div class="row">
             <center>
-                <h3>WE <strong>WORK HARD</strong> TO DELIVER A <strong>HIGH QUALITY SERVICE</strong>. OUR AIM IS YOUR
-                    COMPLETE <strong>SATISFACTION</strong>.</h3>
+                <h4><strong>WE WORK HARD TO PROVIDE YOU WITH VARIOUS HIGH QUALITY ITEMS..</strong></h4>
             </center>
         </div>
     </div><!-- /container -->
@@ -88,7 +87,7 @@ require_once ("config.php");
 <div id="f" style="background-color:#333">
     <div class="container">
         <div class="row">
-            <h3><b>CONTACT US</b></h3>
+            <h3><b><center>CONTACT US</center></b></h3>
             <br>
             <div class="col-sm-4">
                 <h3><b>Send Us A Message:</b></h3>
