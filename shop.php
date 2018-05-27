@@ -114,7 +114,7 @@ require_once("config.php");
             <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
         </div>
 
-        <p style="margin-top:170px">Paramex Anti ZONK</p>
+        <p style="margin-top:170px">Oskadon ANTI PASRAH</p>
     </div>
 
     <div class="child-1">
