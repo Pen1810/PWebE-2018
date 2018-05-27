@@ -8,10 +8,8 @@ require_once ("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/JB.png">
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-    <link rel="shortcut icon" type4="image/x-icon" href="JB.png"/>
     <title>Sample Shopping</title>
 
     <!-- Bootstrap core CSS -->
@@ -46,7 +44,7 @@ require_once ("config.php");
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
     <li><a href="#about" class="smoothScroll">About</a></li>
-    <li><a href="signup.html" class="smoothScroll upright">Signup</a></li>
+    <li><a href="signup.php" class="smoothScroll upright">Sign Up</a></li>
 </ul>
 
 <!-- ========== HEADER SECTION ========== -->
