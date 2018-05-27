@@ -1,6 +1,24 @@
 <?php
 require_once ("config.php");
 
+$username = $password = "";
+
+if (isset($_POST['signup'])){
+    $sql = "SELECT username FROM anggota WHERE username=?";
+    if ($stmt = mysqli_prepare($usrconn, $sql)){
+        mysqli_stmt_bind_param($stmt, "s", $param_username);
+        $param_username = trim($_POST["username"]);
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_store_result($stmt);
+            if (mysqli_stmt_num_rows($stmt) == 1) {
+                $username_err = "This username is already taken.";
+            }
+            else {
+                $username = trim($_POST["username"]);
+            }
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,7 +99,7 @@ require_once ("config.php");
     </div>
     <div class="row">
         <div class="col-sm-8">
-            <form name="signup" action="signup.php" onchange="validateInput()" method="post">
+            <form name="signup" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onchange="validateInput()" method="post">
                 <div>
                     <label for="nameInput">Nama Lengkap:</label>
                     <input type="text" name="name" id="nameInput" class="form-control">

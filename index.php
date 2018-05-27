@@ -23,7 +23,7 @@ require_once ("config.php");
 
     <script src="js/jquery.min.js"></script>
     <script src="js/Chart.js"></script>
-    <script src="js/modernizr.custom.js"></script>
+    <!--script src="js/modernizr.custom.js"></script-->
 
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet'
@@ -48,13 +48,12 @@ require_once ("config.php");
 </ul>
 
 <!-- ========== HEADER SECTION ========== -->
-<section id="home" name="home"></section>
+<section id="home"></section>
 <div id="headerwrap">
     <div class="container bounceInDown animated">
         <br>
         <h1>Sample Shopping</h1>
-        <h2>Welcome to The Shop
-            <h2>
+        <h2>Welcome to The Shop</h2>
                 <div class="row">
                     <br>
                     <br>
