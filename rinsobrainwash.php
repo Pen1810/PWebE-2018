@@ -65,6 +65,8 @@ require_once("config.php");
             <br>
             <br>
             <br>
+            <br>
+            <br>
             <h3>Informasi produk</h3>
             <br>
             <div class="col-sm-1"></div>
