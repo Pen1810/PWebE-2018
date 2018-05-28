@@ -27,7 +27,7 @@ if (isset($_POST['signup'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign Up</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- link href="css/signup.css" rel="stylesheet" type="text/css"-->
+    <link href="css/signup.css" rel="stylesheet" type="text/css">
     <script>
         let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
         let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
@@ -93,41 +93,41 @@ if (isset($_POST['signup'])){
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 text-center">
-            <h2>Sign-up to forum</h2>
+        <div class="col-sm-12 text-center main-title">
+            <h2>Sign-up to Sample Shopping</h2>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <form name="signup" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onchange="validateInput()" method="post">
                 <div>
-                    <label for="nameInput">Nama Lengkap:</label>
+                    <label for="nameInput"><strong>Nama Lengkap:</strong></label>
                     <input type="text" name="name" id="nameInput" class="form-control">
                 </div>
                 <div>
-                    <label for="usernameInput">Username:</label>
+                    <label for="usernameInput"><strong>Username:</strong></label>
                     <input type="text" name="username" id="usernameInput" class="form-control">
                 </div>
                 <div>
-                    <label for="emailInput">Alamat Email:</label>
+                    <label for="emailInput"><strong>Alamat Email:</strong></label>
                     <input type="email" name="email" id="emailInput" class="form-control">
                 </div>
                 <div>
-                    <label for="addressInput">Alamat Rumah:</label>
+                    <label for="addressInput"><strong>Alamat Rumah:</strong></label>
                     <input type="text" name="address" id="addressInput" class="form-control">
                 </div>
                 <div>
-                    <label for="phoneInput">Nomor Telepon:</label>
+                    <label for="phoneInput"><strong>Nomor Telepon:</strong></label>
                     <input type="text" name="phone" id="phoneInput" class="form-control">
                 </div>
                 <div>
-                    <label for="passInput">Password:</label>
+                    <label for="passInput"><strong>Password:</strong></label>
                     <input type="password" name="pass" id="passInput" class="form-control" oninput="analyzePassword()">
                     <div id="passNotif"></div>
-                    <p>Info: The password must be 8 characters or longer.</p>
+                    <p style="font-size: 10pt">Info: Password harus memiliki panjang minimal 8 karakter.</p>
                 </div>
                 <div>
-                    <label for="rePassInput">Konfirmasi Password:</label>
+                    <label for="rePassInput"><strong>Konfirmasi Password:</strong></label>
                     <input type="password" name="repass" id="rePassInput" class="form-control"
                            onchange="checkPassword()" disabled="disabled">
                     <div id="rePassInfo"></div>
@@ -135,7 +135,7 @@ if (isset($_POST['signup'])){
                 <div>
                     <label>
                         <input type="checkbox" name="agreement" id="agreement" value="ok" onclick="setAgreed()">
-                        <span style="font-size: 9pt;">Saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
+                        <span style="font-size: 10pt;">Saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
                     </label>
                 </div>
                 <div>

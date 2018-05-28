@@ -1,130 +1,28 @@
 body {
-    background: #0a3e1f;
-    font-family: "Open Sans", Tahoma, Verdana, sans-serif;
-    padding: 0;
-    margin: 0 0 100px 0;
+    font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
 }
 
-h2 {
-    color: #fff;
-    text-align: center;
+.container {
+    max-width: 750px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border: 1px solid #cecece;
+    border-radius: 8px;
 }
 
-.content {
-    padding: 1em;
-    margin: 2em auto;
-    width: 50%;
-    background: #fff;
-    border-radius: 4px;
+.alert {
+    font-size: 10pt;
+    padding: 7px;
+    margin-top: 15px;
+}
+
+.main-title {
+    margin-top: 32px;
+    margin-bottom: 12px;
 }
 
 label {
-    font-size: 10pt;
-    color: #555;
-}
-
-input[type="text"], input[type="email"], input[type="password"], textarea {
-    padding: 8px;
-    width: 95%;
-    background: #c2ffb4;
-    border: 1px solid #555555;
-    border-radius: 3px;
-    font-size: 10pt;
-    font-family: sans-serif;
-    margin: 6px 0;
-}
-
-input:hover, textarea:hover {
-    box-shadow: 0 0 5px #39ae34
-}
-
-#weakPass {
-    background-color: #ff8d90;
-    color: #740000;
-    font-size: 8pt;
-    width: 95%;
-}
-
-#mediumPass {
-    background-color: #ffff7e;
-    color: #6a6a00;
-    font-size: 8pt;
-    width: 95%;
-}
-
-#strongPass {
-    background-color: #7eff7e;
-    color: #0a3e1f;
-    font-size: 8pt;
-    width: 95%;
-}
-
-.btnSubmit {
-    background: #3498db;
-    margin: 10px 0;
-    color: #fff;
-    border: 1px solid #0046df;
-    border-radius: 3px;
-    padding: 8px 10px;
-}
-
-.btnSubmit:hover {
-    box-shadow: 0 0 5px #555555;
-}
-
-.btnSubmit:disabled {
-    background: #bbcdff;
-    border: 1px solid #8885ff;
-}
-
-#rePassInput:disabled {
-    background: #dedede;
-}
-
-*:disabled {
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-p {
-    font-size: 9pt;
-    color: #555555;
-}
-
-footer {
-    padding: 10px 2% 10px 2%;
-    margin: 0;
-    background-color: rgb(240, 247, 212);
-    text-align: center;
-    font-size: 10pt;
-    width: 96%;
-    position: fixed;
-    bottom: 0;
-}
-
-.japanese-text {
-    font-family: "UD Digi Kyokasho N-R", "Yu Gothic UI", "Meiryo", "MS Gothic", "Arial Unicode MS", sans-serif;
-}
-
-table {
-    width: 95%;
-    padding: 0;
-    border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-tr {
-    border-bottom: 1px solid rgb(27, 52, 9);
-}
-
-td, th {
-    padding: 5px 5px 5px 5px;
-    text-align: left;
-}
-
-@media only screen and (max-width: 992px) {
-    .content {
-        width: 80%;
-    }
+    margin-top: 15px;
+    font-size: 11pt;
 }

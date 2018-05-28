@@ -76,7 +76,7 @@ require_once ("config.php");
 </div><!-- /w -->
 
 <!-- ========== FOOTER SECTION ========== -->
-<section id="contact" name="contact"></section>
+<section id="contact"></section>
 <div id="f" style="background-color:#333">
     <div class="container">
         <div class="row">
@@ -95,9 +95,9 @@ require_once ("config.php");
                 <br>
             </div>
         </div>
-    </div>
-</div><!-- /container -->
-</div><!-- /f -->
+    </div>  <!-- /container -->
+</div>      <!-- /f -->
+
 
 
 <!-- Bootstrap core JavaScript
