@@ -52,7 +52,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/1.jpg">
         <div id="info">
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">BrainWasgin Black Type R</p>
@@ -60,7 +60,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/2.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Black SE</p>
@@ -68,7 +68,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/3.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Blue</p>
@@ -76,7 +76,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/4.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Green</p>
@@ -84,7 +84,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash Standard</p>
@@ -93,7 +93,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash EXTRA</p>
@@ -102,7 +102,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash BLACK EDITION</p>
@@ -111,7 +111,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">Oskadon ANTI PASRAH</p>
@@ -120,7 +120,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/5.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Buy</button>
+            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
 
         <p style="margin-top:170px">BODREX Antibemper</p>
@@ -158,13 +158,12 @@ require_once("config.php");
     let whitebg = document.getElementById("white-background");
     let sizebox = document.getElementById("size-box");
     let dsgn = document.getElementById("design-con");
-    let buybox = document.getElementById("buy-box");
     let dlg = document.getElementById("dlgbox");
     let tblsize = document.getElementById("tablesize");
     let button = document.getElementById("buttonDsgn");
     let pertama = document.getElementsByTagName("p");
     let kedua = document.getElementsByTagName("p");
-    let buyButton = document.getElementsByTagName("button");
+    let DetailButton = document.getElementsByTagName("button");
     let availArray = [0, 2, 4, 6, 8, 10, 12, 14, 16];
     let sizeArray = [1, 3, 5, 7, 9, 11, 13, 15, 17];
     let availableStock;
@@ -177,68 +176,14 @@ require_once("config.php");
         tblsize.style.top = "90px";
     }
 
-    function changeInd() {
-        footerh3[0].innerHTML = "KONTAK KAMI";
-        footerh3[1].innerHTML = "Kirim Kami Pesan";
-        footerh3[3].innerHTML = "Telepon Kami";
-        footerh3[5].innerHTML = "Kami di Sosial Media";
-
-        for (let i = 0; i < 9; i++) {
-            availableStock = Math.floor(Math.random() * (100 - 1 + 1)) + 10;
-            pertama[availArray[i]].innerHTML = "Stok yang Tersedia : " + availableStock;
-            kedua[sizeArray[i]].innerHTML = "Ukuran : (2x2)m";
-            buyButton[i].innerHTML = "Beli";
-        }
-    }
-
-    function changeEng() {
-        footerh3[0].innerHTML = "CONTACT US";
-        footerh3[1].innerHTML = "Send Us Message";
-        footerh3[3].innerHTML = "Call Us";
-        footerh3[5].innerHTML = "We Are Social";
-
-        for (let i = 0; i < 9; i++) {
-            availableStock = Math.floor(Math.random() * (100 - 1 + 1)) + 10;
-            pertama[availArray[i]].innerHTML = "Available Stock : " + availableStock;
-            kedua[sizeArray[i]].innerHTML = "Size : (2x2)m";
-            buyButton[i].innerHTML = "Buy";
-        }
-    }
-
-    function showSize() {
-        whitebg.style.display = "block";
-        sizebox.style.display = "block";
-        dsgn.style.display = "none";
-
-        sizebox.style.left = "410px";
-        sizebox.style.top = "10px";
-    }
-
     function closeButton() {
         sizebox.style.display = "none";
         whitebg.style.display = "none";
         tablesize.style.display = "none";
     }
 
-    function showBuy() {
-        let discountValue = Math.floor(Math.random() * (15 - 10 + 1)) + 10;
-        let discountTotal = discountValue / 100 * 200;
-        document.getElementById("discount").innerHTML = "Rp" + discountTotal;
-        document.getElementById("totalPayment").innerHTML = "Rp" + (200 - discountTotal);
-
-        whitebg.style.display = "block";
-        buybox.style.display = "block";
-        dlg.style.display = "none";
-        dsgn.style.display = "none";
-        sizebox.style.display = "none";
-
-        buybox.style.top = "35px";
-        buybox.style.left = "450px";
-    }
-
-    function dlgOKBuy() {
+    function dlgOKDetail() {
         whitebg.style.display = "none";
-        buybox.style.display = "none";
         dlg.style.display = "none";
     }
 
