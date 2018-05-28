@@ -37,6 +37,48 @@ require_once("config.php");
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <style>
+        table
+        {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin: auto;
+        }
+
+        td, th
+        {
+            border: 1px solid grey;
+            text-align: left;
+            padding: 8px;
+            margin: auto;
+        }
+
+        tr:nth-child(odd)
+        {
+            background-color: #797D7F;
+        }
+        img
+        {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .Price
+        {
+            max-width: 100%;
+            max-height: 100%;
+            width:500px;
+            height:auto;
+            border:5px solid grey;
+            text-align: center;
+            margin: auto;
+        }
+        h2,h3
+        {
+            text-align:center;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,7 +109,7 @@ require_once("config.php");
             <br>
             <br>
             <br>
-            <h3> Informasi produk</h3>
+            <h3>Informasi produk</h3>
             <br>
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
