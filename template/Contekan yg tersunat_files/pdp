@@ -1,0 +1,491 @@
+var vocabularyPdp;vocabularyPdp=new Object();vocabularyPdp.id={'CHANGE_PROMO':'Ubah Promo','DETAIL_PROMO_PRODUCT':'Promo Produk','ADD_PROMO_PRODUCT':'Tambah Promo Produk','EDIT_PROMO_PRODUCT':'Ubah Promo Produk','DETAIL_PROMO_SHOP':'Promo Toko','ADD_PROMO_SHOP':'Tambah Promo Toko','EDIT_PROMO_SHOP':'Ubah Promo Toko','MANAGE_PROMO':'Lihat detail promo Anda di halaman ','TOPADS_SETTING':'Pengaturan TopAds','PER_CLICK':'Per Klik','GROUP_NAME':'Nama Grup','MAX_COST':'Biaya Maks','MAX_COST_TOOLTIP':'Biaya maksimum yang Anda bayarkan untuk setiap klik.','DAILY_BUDGET':'Anggaran harian','DAILY_BUDGET_TOOLTIP':'Jumlah anggaran yang Anda sediakan untuk promosi ini. Iklan akan segera berhenti tampil setelah kredit melewati batas anggaran.','START':'Mulai','START_TOOLTIP':'Jadwal dimulainya promo Anda. Promo dapat berjalan terus-menerus atau terbatas sesuai jangka waktu yang ditentukan.','END':'Selesai','END_TOOLTIP':'Jadwal berakhirnya promo Anda. Promo dapat berjalan terus-menerus atau terbatas sesuai jangka waktu yang ditentukan.','PROMO_PRODUCT_SUCCESS':'Promo TopAds berhasil ','PROMO_SHOP_SUCCESS':'Promo Toko berhasil ','ADDED':'ditambahkan.','CHANGED':'diubah.','CHOOSE_GROUP':'Pilih Grup','PRODUCT':'Produk','SHOP':"Toko","WARNING_MOVE_GROUP_CHANGING_1":"Produk akan dimasukkan ke grup promo baru.","WARNING_MOVE_GROUP_CHANGING_2":"Produk akan dimasukkan ke grup promo yang sudah ada.","WARNING_MOVE_GROUP_CHANGING_3":"Pengaturan dilakukan per promo.","COST":"Biaya","TOPADS_EXPLANATION":"Fitur TopAds memungkinkan toko dan produk Anda dilihat oleh lebih banyak pembeli di Tokopedia.","LEARN_MORE":"Pelajari lebih lanjut",'ADD_PRODUCT_TO_GROUP':'Tambahkan produk ke grup promo yang telah Anda buat',"NEW_GROUP":"Grup Baru","EXISTING_GROUP":"Grup yang ada","NO_GROUP":"Tanpa Grup","COST_EXPLANATION":"Tentukan biaya promo yang Anda inginkan","CANCEL":"Batal","SAVE":"Simpan","PER_DAY":"Per Hari","NOT_LIMITED":"Tidak Dibatasi","UNLIMITED":"Tidak Dibatasi","BUDGET":"Anggaran","TOPADS_CREDIT":"Kredit TopAds","ADD_CREDIT":"Tambah Kredit","ACTIVE":"Aktif","INACTIVE":"Tidak Aktif","MAX_COST_AMOUNT_VALUE":"Biaya maksimum Rp ","MIN_COST_AMOUNT":"Biaya harus diisi.","MULTIPLE_COST":"Biaya harus kelipatan Rp 50.","MAX_CHAR_GROUP_NAME":'Maksimum karakter: 70.',"EMPTY_BUDGET":"Anggaran harus diisi.","OVER_BUDGET":"Kredit TopAds harus lebih besar dari Anggaran. Silahkan tambah kredit TopAds terlebih dahulu.","MINIMUM_BUDGET":"Biaya per hari minimal 10x biaya maks per klik.","EMPTY_GROUP_NAME":"Nama grup tidak boleh kosong.","EXIST_GROUP_NAME":"Nama grup sudah ada.","NOT_CHOSEN_GROUP_NAME":"Grup harus dipilih.","GROUP_NAME_NOT_VALID":"Nama grup tidak valid.","GROUP":"Grup","PROMO_GROUP":"Grup Promo","LOADING":"Memuat","APPLY":"Terapkan","INFO_SUGGESTED_PROMO":"Rekomendasi biaya ","TOOLTIP_SUGGESTED_BID":"Rekomendasi ini membantu promo Anda bersaing dengan promo serupa.","NOT_YET_ACTIVE":"belum aktif","MESSAGE_SMALL_DEPOSIT_BID_PRICE_CREATE":"Promo TopAds berhasil ditambahkan, namun","MESSAGE_SMALL_DEPOSIT_BID_PRICE_EDIT":"Promo TopAds berhasil diubah, namun","MESSAGE_ACTIVE_PROMO_CREDIT":"Tambah kredit TopAds sekarang untuk mengaktifkan promo Anda.","ADD_TOPADS_CREDIT":"Tambah Kredit TopAds","NOT_DELIVERED":"Tidak Tampil","WARNING":"Perhatian!","WARNING_BID_TOO_LOW_1":"Biaya maks promo Anda","WARNING_BID_TOO_LOW_2":"sehingga peluang promo untuk tampil sangat jarang. Promo harus sering tampil untuk meningkatkan penjualan.","TOO_LOW":"terlalu rendah","INCREASE_MAX_COST_1":"Tingkatkan","INCREASE_MAX_COST_2":"per klik promo untuk memaksimalkan jumlah tampil:","COST_RECOMMENDATION":"Rekomendasi Biaya","NOT_PERFORM":"Promo yang tidak berjalan dengan baik berpeluang dinonaktifkan secara otomatis.",'lang':'id',}
+vocabularyPdp.en={'CHANGE_PROMO':'Edit Promo','DETAIL_PROMO_PRODUCT':'Product Promo','ADD_PROMO_PRODUCT':'Add Product Promo','EDIT_PROMO_PRODUCT':'Edit Product Promo','DETAIL_PROMO_SHOP':'Shop Promo','ADD_PROMO_SHOP':'Add Shop Promo','EDIT_PROMO_SHOP':'Edit Shop Promo','MANAGE_PROMO':'Check your promo detail in ','TOPADS_SETTING':'TopAds Page','PER_CLICK':'Per Click','GROUP_NAME':'Group Name','MAX_COST':'Maximum Cost','MAX_COST_TOOLTIP':'Maximum cost you pay for each click.','DAILY_BUDGET':'Daily Budget','DAILY_BUDGET_TOOLTIP':'The amount of budget that you provide for this promotion. Your ads will stop after the cost meets the budget limit.','START':'Start','START_TOOLTIP':'Starting date of your promo. It can run continuously or limited to a specified time.','END':'End','END_TOOLTIP':'Ending date of your promo. It can run continuously or limited to a specified time.','PROMO_PRODUCT_SUCCESS':'TopAds promo successfully ','PROMO_SHOP_SUCCESS':'Shop promo successfully  ','ADDED':'added.','CHANGED':'changed.','CHOOSE_GROUP':'Choose Group','PRODUCT':'Product','SHOP':'Shop',"WARNING_MOVE_GROUP_CHANGING_1":"Products will be put into Group Promo.","WARNING_MOVE_GROUP_CHANGING_2":"Cost and Schedule setting will follow current selected Promo Group's setting.","WARNING_MOVE_GROUP_CHANGING_3":"Arranged per promo.","COST":"Cost","TOPADS_EXPLANATION":"With TopAds, your shop and products will be seen by more people at Tokopedia.","LEARN_MORE":"Learn More",'ADD_PRODUCT_TO_GROUP':'Add product to the group you made',"NEW_GROUP":"New Group","EXISTING_GROUP":"Existing Group","NO_GROUP":"No Group","COST_EXPLANATION":"Choose the promo price","CANCEL":"Cancel","SAVE":"Save","PER_DAY":"Per Day","NOT_LIMITED":"No Limited","UNLIMITED":"Continuous","BUDGET":"Budget","TOPADS_CREDIT":"TopAds Credits","ADD_CREDIT":"Add Credit","ACTIVE":"Active","INACTIVE":"Inactive","MAX_COST_AMOUNT_VALUE":"Maximum Bid is Rp ","MIN_COST_AMOUNT":"Cost must be filled.","MULTIPLE_COST":"Bid must be in multiples of Rp 50.","MAX_CHAR_GROUP_NAME":'Maximum characters: 70.',"EMPTY_BUDGET":"Budget must be filled.","OVER_BUDGET":"TopAds balance must be higher than budget. Please add TopAds balance first.","MINIMUM_BUDGET":"Minimum Budget is 10 times bigger than Max Bid.","EMPTY_GROUP_NAME":"Group Name must be filled.","EXIST_GROUP_NAME":"Group name already exist.","NOT_CHOSEN_GROUP_NAME":"Group must be chosen.","GROUP_NAME_NOT_VALID":"Group name is invalid.","GROUP":"Group","PROMO_GROUP":"Promo Grup","LOADING":"Loading","APPLY":"Apply","INFO_SUGGESTED_PROMO":"Recommended cost of ","TOOLTIP_SUGGESTED_BID":"This recommendation will help you to compete with similar promos.","NOT_YET_ACTIVE":"not yet active","MESSAGE_SMALL_DEPOSIT_BID_PRICE_CREATE":"TopAds Promo was successfully added, but","MESSAGE_SMALL_DEPOSIT_BID_PRICE_EDIT":"TopAds Promo was successfully edited, but","MESSAGE_ACTIVE_PROMO_CREDIT":"Add TopAds Balance now to activate your promo.","ADD_TOPADS_CREDIT":"Add TopAds Balance","NOT_DELIVERED":"Not Delivered","WARNING":"Attention!","WARNING_BID_TOO_LOW_1":"Your maximum cost is","WARNING_BID_TOO_LOW_2":"so the chance of showing up is very rare. Promo needs to show up often to increase sales.","TOO_LOW":"too low","INCREASE_MAX_COST_1":"Increase your","INCREASE_MAX_COST_2":"per click to maximize the number of showing:","COST_RECOMMENDATION":"Cost Recommendation","NOT_PERFORM":"Unwell-performed promo will be inactivated automatically.",'lang':'en'}
+var pdp_ad_id;var pdp_item_id;var source_page;var pdp_ad_type;var pdp_activity;var pdp_groups;var pdp_group_id;var pdp_group_name;var credits_pdp;var pdp_dep_id;var suggestionBidButton='0';var minimumBidPrice=0;var suggestedBidPrice=0;var ta_manage_ad_css_loaded=false;function load_topads_manage_css(source){if(!ta_manage_ad_css_loaded){ta_manage_ad_css_loaded=true;var host_ta=product_ads_ajax_go||"https://ta.tokopedia.com";var style=document.createElement('link');style.rel='stylesheet';style.type='text/css';style.href=host_ta+"/plugin/css/manage-ad/pdp";if(source=="manage_product"){style.href=host_ta+"/plugin/css/manage-ad/manage-product";}
+document.getElementsByTagName('head')[0].appendChild(style);}}
+function init_topads_dialog(item_id,ad_id,ad_type,source,item_name,item_image,dep_id){load_topads_manage_css(source);pdp_ad_id=ad_id;pdp_item_id=item_id;pdp_dep_id=dep_id||0;if(ad_type==1){pdp_ad_type=1;var adType="PRODUCT";}else{pdp_ad_type=2;var adType="SHOP";}
+if(pdp_ad_id>0){pdp_activity="CHANGED";}else{pdp_activity="ADDED";}
+if($(".ngdialog-overlay").length==0){var previewDialog='';previewDialog+='<div class="ta-plug-create preview-promo-dialog hide">'+
+'<h3 align="center">'+vocabularyPdp[lang.lang]["DETAIL_PROMO_"+adType]+'</h3>'+
+'<p align="center">'+vocabularyPdp[lang.lang]["MANAGE_PROMO"]+' <a id="topads-manage-dashboard" href="'+product_ads_ajax_go+'/v2/manage">'+vocabularyPdp[lang.lang]["TOPADS_SETTING"]+' &raquo;</a></p>'+
+'<div id="pdp-alert-success" class="ta-alert ta-alert_success text-center hide">'+
+vocabularyPdp[lang.lang]["PROMO_"+adType+"_SUCCESS"]+'<span id="pdp-alert-success-activity">'+vocabularyPdp[lang.lang][pdp_activity]+'</span>'+
+'</div>'+
+'<div class="ta-ticker hide" id="pdp-alert-no-saldo">'+
+'<div>'+
+'<div>'+vocabularyPdp[lang.lang]["MESSAGE_SMALL_DEPOSIT_BID_PRICE_CREATE"]+
+' <span class="font-semi-bold">'+vocabularyPdp[lang.lang]["NOT_YET_ACTIVE"]+'</span>. '+
+vocabularyPdp[lang.lang]["MESSAGE_ACTIVE_PROMO_CREDIT"]+
+' <a href="'+product_ads_ajax_go+'/v2/manage?topup_credit=true" class="ta-bold" target="_blank">'+
+vocabularyPdp[lang.lang]["ADD_TOPADS_CREDIT"]+
+' <i class="icon-chevron-right-alt"></i>'+
+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="ta-alert ta-alert_error text-center hide">'+
+'</div>'+
+'<div class="ta-after-promote-product">'+
+'<div>'+
+'<div class="ta-toggle">'+
+'<span>'+
+'<div class="relative">'+
+'<div class="button-wrap button-active">'+
+'<div id="button-bg" class="button-bg">'+
+'<div class="switch button-out on">'+
+'ON'+
+'</div>'+
+'<div class="switch button-in">'+
+'OFF'+
+'</div>'+
+'<div class="button-switch">'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'</div>'+
+'</div>'+
+'<div class="ta-product ta-product_ontoggle">'+
+'<div class="ta-product-img">'+
+'<img id="ad-image" src="" width="50" alt="">'+
+'</div>'+
+'<div class="ta-product-name">'+
+'<span id="ad-title"></span>'+
+'<div class="ta-promo-stat"><i class="stat-on mr-5"></i><span id="promo-status"></span></div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<table class="promo-detail-table">';if(ad_type==1){previewDialog+=''+
+'<tr>'+
+'<td width="60%">'+
+vocabularyPdp[lang.lang]["GROUP_NAME"]+' '+
+'</td>'+
+'<td width="40%" class="group-name">'+
+'<a id="group_url" href=""></a>'+
+'</td>'+
+'</tr>';}
+previewDialog+=''+
+'<tr>'+
+'<td width="60%">'+
+vocabularyPdp[lang.lang]["MAX_COST"]+' <i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["MAX_COST_TOOLTIP"]+'"></i>'+
+'</td>'+
+'<td width="40%">'+
+'Rp <span name="price_bid" class="price-bid"></span>'+
+'<div><div class="ta-small">'+vocabularyPdp[lang.lang]["PER_CLICK"]+'</div></div>'+
+'</td>'+
+'</tr>'+
+'<tr>'+
+'<td width="60%">'+
+vocabularyPdp[lang.lang]["DAILY_BUDGET"]+' <i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["DAILY_BUDGET_TOOLTIP"]+'"></i>'+
+'</td>'+
+'<td width="40%">'+
+'<span name="price_daily" class="price-daily"></span>'+
+'</td>'+
+'<tr>'+
+'<td>'+
+vocabularyPdp[lang.lang]["START"]+' <i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["START_TOOLTIP"]+'"></i>'+
+'</td>'+
+'<td class="ad-start">'+
+'<span class="start-date"></span>'+
+'<div class="ta-small"><span class="start-time"></span></div>'+
+'</td>'+
+'</tr>'+
+'<tr>'+
+'<td>'+
+vocabularyPdp[lang.lang]["END"]+' <i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["END_TOOLTIP"]+'"></i>'+
+'</td>'+
+'<td class="ad-end">'+
+'<span class="end-date"></span>'+
+'<div class="ta-small"><span class="end-time"></span></div>'+
+'</td>'+
+'</tr>'+
+'</tr>'+
+'</table>'+
+'<div class="ta-foot text-center">'+
+'<button class="ta-btn-ghost" id="edit-promo">'+vocabularyPdp[lang.lang]["CHANGE_PROMO"]+'</button>&nbsp;&nbsp;'+
+'</div>'+
+'</div>';var editDialog='';editDialog+=''+
+'<div class="ta-plug-create edit-promo-dialog hide">'+
+'<div class="ta-header">'+
+'<h3 class="ta-title edit-header" align="center">'+vocabularyPdp[lang.lang]["EDIT_PROMO_"+adType]+'</h3>'+
+'<div class="add-header hide">'+
+'<h3 class="ta-title" align="center">'+vocabularyPdp[lang.lang]["ADD_PROMO_"+adType]+'</h3>'+
+'<p align="center">'+vocabularyPdp[lang.lang]["TOPADS_EXPLANATION"]+' <a href="/iklan?medium=desktop&source='+source+'" target="_blank">'+vocabularyPdp[lang.lang]["LEARN_MORE"]+' &raquo;</a></p>'+
+'</div>'+
+'</div>'+
+'<div class="ta-alert ta-alert_error text-center hide">'+
+'</div>'+
+'<hr>'+
+'<div class="ta-form">'+
+'<div class="ta-left">'+
+'<div class="ta-bold">'+vocabularyPdp[lang.lang][adType]+'</div>'+
+'</div>'+
+'<div class="ta-right">'+
+'<div class="ta-product">'+
+'<div class="ta-product-img">'+
+'<img id="ad-image-edit" src="" width="50" alt="">'+
+'</div>'+
+'<div class="ta-product-name" id="ad-title-edit"></div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>';if(ad_type==1){editDialog+=''+
+'<hr>'+
+'<div>'+
+'<div class="ta-bold ta-title-section">'+
+vocabularyPdp[lang.lang]["PROMO_GROUP"]+
+'</div>'+
+'<div class="ta-muted">'+
+vocabularyPdp[lang.lang]["ADD_PRODUCT_TO_GROUP"]+
+'</div>'+
+'</div>'+
+'<div class="ta-form-section">'+
+'<div class="ta-left">'+
+'<label for="">'+vocabularyPdp[lang.lang]["CHOOSE_GROUP"]+'</label>'+
+'</div>'+
+'<div class="ta-right">'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio-new-grup" value="2" name="choose_group" checked>'+
+'<label for="radio-new-grup">'+
+vocabularyPdp[lang.lang]["NEW_GROUP"]+
+'</label>'+
+'<div class="below-radio">'+
+'<div class="ta-muted ta-muted_radio">'+vocabularyPdp[lang.lang]["WARNING_MOVE_GROUP_CHANGING_1"]+'</div>'+
+'<input type="text" class="full-width new-grup" id="group-name__input">'+
+'<label class="text-error" style="display: none;"></label>'+
+'</div>'+
+'</div>'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio-existing-grup" value="1" name="choose_group">'+
+'<label for="radio-existing-grup">'+
+vocabularyPdp[lang.lang]["EXISTING_GROUP"]+
+'</label>'+
+'<div class="below-radio">'+
+'<div class="ta-muted ta-muted_radio">'+vocabularyPdp[lang.lang]["WARNING_MOVE_GROUP_CHANGING_2"]+'</div>'+
+'<select name="" id="choose_group" class="ta-select2 ta-select2_full ta-select-grup">'+
+'<option></option>'+
+'</select>'+
+'<label class="text-error" style="display: none;"></label>'+
+'</div>'+
+'</div>'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio-tanpa-grup" value="0" name="choose_group">'+
+'<label for="radio-tanpa-grup">'+
+vocabularyPdp[lang.lang]["NO_GROUP"]+
+'</label>'+
+'<div class="below-radio">'+
+'<div class="ta-muted ta-muted_radio">'+vocabularyPdp[lang.lang]["WARNING_MOVE_GROUP_CHANGING_3"]+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>';}
+editDialog+=''+
+'<hr>'+
+'<div id="ta-form-cost-schedule-setup">'+
+'<div>'+
+'<div class="ta-bold ta-title-section">'+
+vocabularyPdp[lang.lang]["COST"]+
+'</div>'+
+'<div class="ta-muted">'+
+vocabularyPdp[lang.lang]["COST_EXPLANATION"]+
+'</div>'+
+'</div>'+
+'<div class="ta-form-section">'+
+'<div class="ta-form-list">'+
+'<div class="ta-left">'+
+'<label for="">'+vocabularyPdp[lang.lang]["TOPADS_CREDIT"]+'</label>'+
+'</div>'+
+'<div class="ta-right">'+
+'<span id="credit-stat-dialog" class="ta-bold"></span> <a href="'+product_ads_ajax_go+'/v2/manage?topup_credit=true" target="_blank">- '+vocabularyPdp[lang.lang]["ADD_CREDIT"]+'</a>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<div class="ta-form-list">'+
+'<div class="ta-left">'+
+'<label for="">'+vocabularyPdp[lang.lang]["MAX_COST"]+'&nbsp;&nbsp;<i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["MAX_COST_TOOLTIP"]+'"></i>'+
+'</label>'+
+'</div>'+
+'<div class="ta-right">'+
+'<span class="ta-bold">Rp</span><input name="price_bid" type="text" class="ta-bid small-input" id="price_bid" value="">'+vocabularyPdp[lang.lang]["PER_CLICK"]+
+'<label class="text-error" style="display: none;"></label>'+
+'<div class="ta-small ta-muted suggestion-bid">'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<div class="ta-form-list">'+
+'<div class="ta-left">'+
+'<label for="">'+vocabularyPdp[lang.lang]["BUDGET"]+'&nbsp;&nbsp;<i class="icon-info-alt info-tooltip va-middle" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["DAILY_BUDGET_TOOLTIP"]+'"></i>'+
+'</label>'+
+'</div>'+
+'<div class="ta-right">'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio4" name="ad_budget" value="0" checked>'+
+'<label for="radio4">'+
+vocabularyPdp[lang.lang]["NOT_LIMITED"]+
+'</label>'+
+'</div>'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio5" name="ad_budget" value="1">'+
+'<label for="radio5">'+
+vocabularyPdp[lang.lang]["PER_DAY"]+
+'</label>'+
+'<div class="below-radio below-radio_martop" id="price_daily_dialog" style="display: none">'+
+'<div class="va-middle"><span>Rp</span><input name="price_daily" id="price_daily" type="text" class="per-hari small-input"><label class="text-error" style="display: none;"></label></div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<hr>'+
+'</div>'+
+'<div class="ta-foot text-center">'+
+'<button class="ta-btn-ghost close-dialog">'+vocabularyPdp[lang.lang]["CANCEL"]+'</button>&nbsp;&nbsp;'+
+'<button class="ta-btn-action" id="save-promo">'+vocabularyPdp[lang.lang]["SAVE"]+'</button>'+
+'<button class="ta-btn-action hide loading-button" id="loading-button" disabled="true" style="">'+
+vocabularyPdp[lang.lang]["LOADING"]+'... <img src="https://ecs7.tokopedia.net/img/toppay/waiting.gif" alt="" width="18">'+
+'</button>'+
+'</div>'+
+'</div>'+
+'</div>';var warningDialog="";warningDialog=""+
+'<div class="ta-plug-create hide warning-dialog">'+
+'<div class="ta-header">'+
+'<h3 class="ta-title" align="center" style="font-weight: 600">'+vocabularyPdp[lang.lang]["WARNING"]+'</h3>'+
+'<p align="center">'+vocabularyPdp[lang.lang]["WARNING_BID_TOO_LOW_1"]+' <strong>'+vocabularyPdp[lang.lang]["TOO_LOW"]+'</strong>, '+vocabularyPdp[lang.lang]["WARNING_BID_TOO_LOW_2"]+'</p>'+
+'</div>'+
+'<hr>'+
+'<div class="ta-form">'+
+'<div class="ta-form-section">'+
+'<div class="ta-form-list">'+
+'<div class="">'+
+'<p>'+
+'<label>'+vocabularyPdp[lang.lang]["INCREASE_MAX_COST_1"]+' <strong>'+vocabularyPdp[lang.lang]["MAX_COST"]+'</strong> '+vocabularyPdp[lang.lang]["INCREASE_MAX_COST_2"]+'</label>'+
+'</p>'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio1" name="radio-bid" value="3" checked>'+
+'<label for="radio1">'+
+'Rp <span id="suggested-price-bid"></span> <span>('+vocabularyPdp[lang.lang]["COST_RECOMMENDATION"]+')</span>'+
+'</label>'+
+'</div>'+
+'<div class="radio-grup-list">'+
+'<input type="radio" id="radio3" name="radio-bid" value="1">'+
+'<label for="radio3">'+
+'<span>Rp</span>&nbsp;&nbsp;<input type="text" id="warning-price-bid" value="" class="ta-warning-bid-suggestion-input small-input">'+
+'<label class="text-error" style="display: none;"></label>'+
+'</label>'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'<div class="ta-muted">'+
+vocabularyPdp[lang.lang]["NOT_PERFORM"]+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>'+
+'<hr>'+
+'<div class="ta-foot text-center">'+
+'<button id="save-promo-warning" class="ta-btn-action ta-btn-action-warning">'+vocabularyPdp[lang.lang]["SAVE"]+'</button>'+
+'<button class="ta-btn-action hide loading-button" id="loading-button" disabled="true" style="">'+
+vocabularyPdp[lang.lang]["LOADING"]+'... <img src="https://ecs7.tokopedia.net/img/toppay/waiting.gif" alt="" width="18">'+
+'</button>'+
+'</div>'+
+'</div>'+
+'</div>';var dialog=''+
+'<div class="ta-plug-dialog ngdialog-overlay" id="promote-modal" style="display:none;">'+
+'<div class="unf-modal unf-modal-inactive unf-modal--close-grey unf-modal__promote" style="z-index: 100002; display: block;">'+
+'<div class="unf-modal__inner">'+
+'<a id="close-dialog" class="unf-modal__close ta-plug-dialog "></a>'+
+'<div class="unf-modal__content p-0 ta-plug-dialog">'+
+'<div class="pt-20" id="dialog-content">'+
+previewDialog+
+editDialog+
+warningDialog+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';$(dialog).appendTo('body');loadAllJs(source,item_name,item_image,dep_id);}
+if(source.indexOf('gmstat')>-1){showDialogTopAds(source,item_name,item_image,dep_id);}
+init_typehead_pdp();}
+function showDialogTopAds(source,item_name,item_image,dep_id){if($('#promote-modal').css('display')=='none'){modalPromptPdp();}
+init_credit_pdp();init_typehead_pdp();init_js();$('.ta-warning-bid-suggestion-input, #radio3, label[for=radio3]').on('click',function(e){$("#radio3").prop("checked",true);focusInput();})
+$(".text-error").css("display","none");$(".input-error").removeClass("input-error");source_page=source;if(pdp_ad_id>0){is_create=false;init_form_edit_pdp(pdp_ad_id);show_preview_dialog();pdp_activity="CHANGED";}else{is_create=true;$('#ad-image-edit').attr('src',item_image);$('#ad-title-edit').html(item_name);$('.add-header').removeClass('hide');$('.edit-header').addClass('hide');show_edit_dialog(true);pdp_activity="ADDED";}}
+function modalPromptPdp(){$('body').css('overflow','hidden');$("#promote-modal").toggle();if($(".unf-modal__promote").css("display")=="none"){$(".unf-modal__promote").toggle();}}
+function modalFailPdp(){$('body').css('overflow','auto');$("#promote-modal").toggle();}
+function show_edit_dialog(isNew){if(isNew){resetForm();}
+if(pdp_ad_type==1){init_suggestion_bid();}
+$('.ta-alert_error').addClass('hide');if(pdp_group_id!="0"){$('#choose_group').select2({placeholder:tokopedia.loc("SEARCH_GROUP_PROMO"),width:'100%'});}
+$('.edit-promo-dialog').removeClass('hide');$('.warning-dialog').addClass('hide');$('.preview-promo-dialog').addClass('hide');$('[name="price_bid"], [name="price_daily"]').priceFormat({prefix:'',thousandsSeparator:',',centsSeparator:'',centsLimit:''});}
+function resetForm(){$("#radio-new-grup").prop("checked",true).trigger("change");$("#radio4").prop("checked",true).trigger("change");if($('#group-name__input').length>0){document.getElementById("group-name__input").value="";}
+if($('#price_bid').length>0){document.getElementById("price_bid").value="";}
+if($('#price_daily').length>0){document.getElementById("price_daily").value="5000";}
+if(!pdp_group_id){if($("#choose_group").data('select2')){$("#choose_group").select2("val","");}}
+$(".input-error").removeClass("input-error");$(".text-error").css("display","none");$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');}
+function show_preview_dialog(){$('.ta-alert_success').addClass('hide');$('.ta-alert_error').addClass('hide');$('.edit-promo-dialog').addClass('hide');$('.preview-promo-dialog').removeClass('hide');$('.warning-dialog').addClass('hide');}
+function show_warning_dialog(bidPrice,warningBidPrice){$('.ta-alert_success').addClass('hide');$('.ta-alert_error').addClass('hide');$('.edit-promo-dialog').addClass('hide');$('.loading-button').addClass('hide');$('.preview-promo-dialog').addClass('hide');$('.warning-dialog').removeClass('hide');$('#warning-price-bid').val(bidPrice);$('#suggested-price-bid').text(warningBidPrice);}
+function loadAllJs(source,item_name,item_image,dep_id){var eventAction=getEventAction(source);document.getElementById("topads-manage-dashboard").addEventListener("click",function(){window.dataLayer=window.dataLayer||[];dataLayer.push({"event":"eventTopAdsNewUsage","eventCategory":"TopAds - Source Dashboard","eventAction":eventAction,"eventLabel":"TopAds Button",});});$('.info-tooltip').tooltip();$('#promo-topads').off('click',function(){source="dialog_promo_pdp";showDialogTopAds(source,item_name,item_image,dep_id);});$('#promo-topads').on('click',function(){source="dialog_promo_pdp";showDialogTopAds(source,item_name,item_image,dep_id);});$("#topads").click(function(){source="dialog_promo_shop";showDialogTopAds(source,item_name,item_image,dep_id);});$('#edit-promo').on('click',function(){$('#pdp-alert-success-activity').html(vocabularyPdp[lang.lang]["CHANGED"]);show_edit_dialog(false);$('.add-header').addClass('hide');$('.edit-header').removeClass('hide');});$('#close-dialog').on('click',function(){if(pdp_ad_id>0){resetForm();init_form_edit_pdp(pdp_ad_id);}
+modalFailPdp();});$('.close-dialog').on('click',function(){if(pdp_ad_id>0){resetForm();init_form_edit_pdp(pdp_ad_id);show_preview_dialog();}else{modalFailPdp();}});$("#price_bid").keyup(function(e){if(isPriceBidValidPdp($(this))){isPriceBidDailyValidPdp($(this),$("#price_daily"));}
+suggestionBidButton='0';});$("#warning-price-bid").keyup(function(e){if(isPriceBidValidPdp($(this))){if($('input:radio[name="ad_budget"]:checked').val()==1){isPriceBidDailyValidPdp($(this),$("#price_daily"),true);}}
+suggestionBidButton='0';});$("#price_daily").keyup(function(e){isPriceBidDailyValidPdp($("#price_bid"),$(this));});$("#group-name__input").keyup(function(e){isGroupNameValidPdp();});$('#save-promo').on('click',function(){$('#save-promo').addClass('hide');$('.loading-button').removeClass('hide');handle_edit_ad(false);});$('#save-promo-warning').on('click',function(){if(isPriceBidValidPdp($("#warning-price-bid"))){if($('input:radio[name="ad_budget"]:checked').val()==1){if(!isPriceBidDailyValidPdp($("#warning-price-bid"),$("#price_daily"),true)){return false;}}
+$('#save-promo-warning').addClass('hide');$('.loading-button').removeClass('hide');handle_edit_ad(true);}});$('input[name="choose_group"]').on('change',function(){$("#group-name__input").removeClass("input-error");$(".text-error").css("display","none");if($(this).val()=="2"){$(this).closest('.ta-form-section').find('select.ta-select-grup').siblings('.select2').hide();$(this).closest('.radio-grup-list').find('input.new-grup').show();$("#ta-form-cost-schedule-setup").removeClass("hide");}
+else if($(this).val()=="1"){$(this).closest('.ta-form-section').find('input.new-grup').hide();$(this).closest('.radio-grup-list').find('select.ta-select-grup').siblings('.select2').show();if(pdp_groups){$('#choose_group').select2({placeholder:tokopedia.loc("SEARCH_GROUP_PROMO"),language:{"noResults":function(){return tokopedia.loc("RESULT_NOT_FOUND");}},width:'100%',data:pdp_groups,maximumInputLength:70,selectOnClose:true,dropdownParent:$('.unf-modal__content')});$('#choose_group').select2({placeholder:tokopedia.loc("SEARCH_GROUP_PROMO"),width:'100%'});}
+$("#ta-form-cost-schedule-setup").addClass("hide");}
+else if($(this).val()=="0"){$(this).closest('.ta-form-section').find('select.ta-select-grup').siblings('.select2').hide();$(this).closest('.ta-form-section').find('input.new-grup').hide();$("#ta-form-cost-schedule-setup").removeClass("hide");}});$('input[name="ad_budget"]').on('change',function(){if($(this).val()=="0"){$('#price_daily_dialog').hide();}
+else if($(this).val()=="1"){$('#price_daily_dialog').attr('style','display:block !important');}});$('.button-wrap').on('click',function(){var dt=new Object();if($(this).hasClass('button-active')){$(this).removeClass('button-active');$('#promo-status').text(vocabularyPdp[lang.lang]["INACTIVE"]);$('.ta-promo-stat').addClass('anim-on');$('.stat-on').removeClass().addClass('stat-disabled');dt.sw='off';}
+else{$(this).addClass('button-active');$('#promo-status').text(vocabularyPdp[lang.lang]["ACTIVE"]);$('.ta-promo-stat').addClass('anim-on');$('.stat-disabled').removeClass().addClass('stat-on');dt.sw='on';}
+setTimeout(function(){$('.ta-promo-stat').removeClass('anim-on');},5000);dt.id=pdp_ad_id;dt.action='event_toggle';ajax_controller_promo_pdp(dt,dt.action,'POST');});}
+function getEventAction(source){var eventAction='';switch(source){case "dialog_promo_pdp":eventAction="Click - Pdp";break;case "shop":eventAction="Click - Shop";break;case "gmstat-prod-detail":eventAction="Click - GM Stat Product Detail";break;case "gmstat-prod-summary":eventAction="Click - GM Stat Product Summary";break;case "gmstat-trans-summary":eventAction="Click - GM Stat Transaction Summary";break;case "gmstat-trans-detail":eventAction="Click - GM Stat Transaction Detail";break;case "manage_product":eventAction="Click - Manage Product";break;}
+return eventAction;}
+function check_toggle_status(ids,sw){for(var i=0;i<ids.length;i++){var tstat=$('.promo-status');var td=$('.ta-toggle');if(sw=='on'&&!$('.ta-toggle .button-out').hasClass('on')){td.find('.button-wrap').addClass('button-active');td.find('.switch').toggleClass('on');}else if(sw=='off'&&!$('.promo-toggle .button-in').hasClass('on')){td.find('.button-wrap').removeClass('button-active');td.find('.switch').toggleClass('on');}
+if(!sw){td.find('.button-wrap').toggleClass('button-active');td.find('.switch').toggleClass('on');}
+if(!tstat.find('div').hasClass('anim-on')){tstat.find('div').removeClass('anim-on');}}}
+function handle_edit_ad(fromWarning){var paramObj={};var choose_group=$('input[name=choose_group]:checked').val();paramObj.existingGroup=choose_group==1?true:false;paramObj.choose_group=choose_group;if(is_create){if(choose_group==2){paramObj.action='event_dialog_group_create';paramObj.group_name=$('#group-name__input').val();}else if(choose_group==1){paramObj.action='event_dialog_move_group';paramObj.search_group=$('#choose_group').select2('data')[0].text;}else{paramObj.action='event_dialog_ad_create';paramObj.group_id=0;}
+paramObj.shop_id=$("#shop-id").val();if(pdp_ad_type){paramObj.type=pdp_ad_type;}
+paramObj.nr=1;paramObj.source_page=source_page;}else{if(choose_group!=2){paramObj.action='event_dialog_ad_edit';if($('#choose_group').select2('data')){paramObj.search_group=$('#choose_group').select2('data')[0].text;}}else{paramObj.action='event_dialog_group_create';paramObj.group_name=$('#group-name__input').val();}}
+paramObj.ad_id=pdp_ad_id;paramObj.item_id=pdp_item_id||$("#product-id").val();;paramObj.ad_budget=$('input[name=ad_budget]:checked').val()||0;paramObj.price_bid=$('input[name=price_bid]').val();paramObj.previous_bid=0;if(fromWarning){paramObj.previous_bid=paramObj.price_bid;if($('input:radio[name="radio-bid"]:checked').val()==3){suggestionBidButton="11";paramObj.price_bid=$('#suggested-price-bid').text();}else{paramObj.price_bid=$("#warning-price-bid").val();suggestionBidButton="10";}}
+paramObj.price_daily=$('input[name=price_daily]').val();paramObj.ad_scheduled="0";paramObj.ad_start_date=$('input[name=ad_start_date]').val();paramObj.ad_start_time=$('input[name=ad_start_time]').val();paramObj.ad_end_date=$('input[name=ad_end_date]').val();paramObj.ad_end_time=$('input[name=ad_end_time]').val();var url=location.href;var uri=parseUri(url);var qs=uri.queryKey;if(qs.ssdate){paramObj.ssdate=qs.ssdate;}
+if(qs.sedate){paramObj.sedate=qs.sedate;}
+if(qs.psdate){paramObj.psdate=qs.psdate;}
+if(qs.pedate){paramObj.pedate=qs.pedate;}
+paramObj.source_page=source_page;paramObj.sw='on';ajax_controller_promo_pdp(paramObj,'event_dialog','POST',fromWarning);var adGroupAction=parseInt(paramObj.choose_group)?(paramObj.existingGroup?"grup yang ada":"grup baru"):"tanpa grup";var dailyBudget=(parseInt(paramObj.ad_budget)==1)?paramObj.price_daily:"unlimited";var bidAndBudgetStr=adGroupAction=="grup yang ada"?"":(" - "+paramObj.price_bid+" - "+dailyBudget);var eventLabel=adGroupAction+bidAndBudgetStr;taManagePushGTM("click - ubah promo",eventLabel);return false;}
+function create_ad_exist_group_pdp(data,o_qs){data.group_id=get_compared_value(groups,data.search_group);get_existing_group_pdp(data.group_id,function(result){var adGroupData=Object();adGroupData.group_id=data.group_id;adGroupData.item_id=data.item_id;adGroupData.ad_id="0";adGroupData.price_bid=result.data.price_bid.toString();adGroupData.type=data.type;adGroupData.ad_budget="0";adGroupData.price_daily="0"
+if(result.data.price_daily){adGroupData.ad_budget="1";adGroupData.price_daily=result.data.price_daily.toString();}
+adGroupData.ad_scheduled="0";if(result.data.group_end_date){adGroupData.ad_scheduled="1";adGroupData.ad_end_date=result.data.group_end_date;adGroupData.ad_end_time=result.data.group_end_time;}
+adGroupData.ad_start_date=result.data.group_start_date;adGroupData.ad_start_time=result.data.group_start_time;adGroupData.ad_sticker=result.data.sticker_id;create_ad_pdp(adGroupData);});}
+function get_existing_group_pdp(groupId,cb){if(cb===undefined){cb=function(){};}
+var path='/v2/promo/group';var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='GET';var hmacURL='/v2/promo/group';var hmacContent='group_id='.concat(groupId);var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat('?').concat(hmacContent),type:hmacMethod,dataType:"json",success:function(result){var data=(result.data.constructor===Array&&result.data.length>0)?result.data[0]:result.data;if(data){cb(result);}},error:function(XMLHttpRequest,textStatus,errorThrown){tokopedia.alert_error();},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'GET');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",ads_auth.user_id);default_submit_name=$(".dialog-content button[value=submit]").html();$(".dialog-content button[value=submit]").html(tokopedia.loc('LOADING_2'));tokopedia.process_ajax();},complete:function(){tokopedia.processAjax=0;$(".dialog-content button[value=submit]").html(default_submit_name);$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');}});});}
+function create_group_pdp(data,o_qs){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id=data.shop_id;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+var price_bid=data.price_bid;price_bid=price_bid.replace(/,/g,'');var previous_bid=data.previous_bid.toString();previous_bid=previous_bid.replace(/,/g,'');var suggestedPrice=0;if($('#suggestion-value').text()==""&&Number(previous_bid)<=0){suggestionBidButton="-1";}else{suggestedPrice=parseInt($('#suggestion-value').text());}
+var price_daily=data.price_daily;price_daily=price_daily.replace(/,/g,'');var group_sticker=(data.ad_sticker)?data.ad_sticker.toString():'0';var ad_id=(data.ad_id)?data.ad_id.toString():'0';var item_list=new Array();var item={item_id:data.item_id.toString(),ad_type:"1",ad_id:ad_id,group_id:"0"};item_list.push(item);var group_list={group_name:data.group_name,shop_id:shop_id.toString(),price_bid:Number(price_bid),previous_bid:Number(previous_bid),price_daily:Number(price_daily),group_budget:data.ad_budget,group_schedule:data.ad_schedule||data.ad_scheduled,group_start_date:data.ad_start_date,group_start_time:data.ad_start_time,group_end_date:data.ad_end_date,group_end_time:data.ad_end_time,sticker_id:group_sticker,group_total:'1',source:data.source_page,ads:item_list,suggested_bid_value:suggestedPrice,is_suggestion_bid_button:suggestionBidButton};var groupData=JSON.stringify({data:group_list});var lang=get_lang_header();var path='/v2/promo/group';var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='POST';var hmacURL='/v2/promo/group';var hmacContent='';var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL),type:hmacMethod,data:groupData,dataType:"json",success:function(result){if(result.errors){errors=[];for(i=0;i<result.errors.length;i++){errors.push(result.errors[i].detail);}
+$('.ta-alert_error').removeClass('hide');$('.ta-alert_error').text(errors);}
+if(result.data){if(result.meta){messages=[];pdp_ad_id=result.data.ads[0].ad_id;pdp_group_name=result.data.ads[0].group_name;init_form_edit_pdp(pdp_ad_id);show_preview_dialog();var noDepositAlert=false;if(result.data.is_enough_deposit===false){noDepositAlert=true;}
+if(noDepositAlert==true){$('#pdp-alert-no-saldo').removeClass('hide');}else{$('.ta-alert_success').removeClass('hide');}}
+if(source_page=="manage_product"){var data={};data.item_id=result.data.ads[0].item_id;data.ad_id=result.data.ads[0].ad_id;data.status=result.data.status_desc;updateTemplateAdManageProduct(data);}}},error:function(XMLHttpRequest,textStatus,errorThrown){tokopedia.alert_error();},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'POST');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);request.setRequestHeader("Accept-Language",lang);default_submit_name=$(".dialog-content button[value=submit]").html();$(".dialog-content button[value=submit]").html(tokopedia.loc('LOADING_2'));tokopedia.process_ajax();},complete:function(){tokopedia.processAjax=0;$(".dialog-content button[value=submit]").html(default_submit_name);$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');document.getElementById("group-name__input").value="";}});});}
+function create_ad_pdp(dt,o_qs){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id=dt.shop_id;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+var default_submit_name;var price_bid=dt.price_bid;price_bid=price_bid.replace(/,/g,'');var previous_bid="0";if(dt&&dt.previous_bid){previous_bid=dt.previous_bid.toString();previous_bid=previous_bid.replace(/,/g,'');}
+var price_daily=dt.price_daily;price_daily=price_daily.replace(/,/g,'');var ad_sticker=(dt.ad_sticker)?dt.ad_sticker.toString():'0';var suggestedPrice=0;if($('#suggestion-value').text()==""&&Number(previous_bid)<=0){suggestionBidButton="-1";}else{suggestedPrice=parseInt($('#suggestion-value').text());}
+var item_list=new Array();if(dt.item_id.constructor===Array){var length=dt.item_id.length;}
+else{var length=1;}
+for(i=0;i<length;i++){var item={shop_id:shop_id.toString(),price_bid:parseInt(price_bid),previous_bid:parseInt(previous_bid),ad_type:dt.type.toString(),ad_schedule:dt.ad_scheduled.toString(),ad_start_date:dt.ad_start_date,ad_start_time:dt.ad_start_time,ad_end_date:dt.ad_end_date,ad_end_time:dt.ad_end_time,ad_budget:dt.ad_budget.toString(),price_daily:parseInt(price_daily),sticker_id:ad_sticker,source:dt.source_page,group_id:dt.group_id.toString(),suggested_bid_value:suggestedPrice,is_suggestion_bid_button:suggestionBidButton};length==1?(item.item_id=dt.item_id.toString()):(item.item_id=dt.item_id[i].toString());item_list.push(item);}
+var data=JSON.stringify({data:item_list});var lang=get_lang_header();var path="/v2/promo";var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='POST';var hmacURL='/v2/promo';var hmacContent='';var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL),type:hmacMethod,data:data,dataType:"json",success:function(result){if(result.errors){errors=[];for(i=0;i<result.errors.length;i++){errors.push(result.errors[i].detail);}
+$('.ta-alert_error').removeClass('hide');$('.ta-alert_error').text(errors);}
+if(result.data){if(result.meta){pdp_ad_id=result.data[0].ad_id;init_form_edit_pdp(pdp_ad_id);show_preview_dialog();var noDepositAlert=false;for(i=0;i<result.data.length;i++){if(result.data[i].is_enough_deposit===false){noDepositAlert=true;}
+if(source_page=="manage_product"){var data={};data.item_id=result.data[i].item_id;data.ad_id=result.data[i].ad_id;data.status=result.data[i].status_desc;updateTemplateAdManageProduct(data);}}
+if(noDepositAlert===true){$('#pdp-alert-no-saldo').removeClass('hide');}else{$('.ta-alert_success').removeClass('hide');}}}},error:function(XMLHttpRequest,textStatus,errorThrown){tokopedia.alert_error();},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'POST');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);request.setRequestHeader("Accept-Language",lang);default_submit_name=$(".dialog-content button[value=submit]").html();$(".dialog-content button[value=submit]").html(tokopedia.loc('LOADING_2'));tokopedia.process_ajax();},complete:function(){tokopedia.processAjax=0;$(".dialog-content button[value=submit]").html(default_submit_name);$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');}});});}
+function edit_ad_pdp(dt,o_qs){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+var default_submit_name;var price_bid=dt.price_bid;price_bid=price_bid.replace(/,/g,'');var previous_bid="0";if(dt&&dt.previous_bid){previous_bid=dt.previous_bid.toString();previous_bid=previous_bid.replace(/,/g,'');}
+var price_daily=dt.price_daily;price_daily=price_daily.replace(/,/g,'');var ad_sticker=(dt.ad_sticker)?dt.ad_sticker.toString():'0';var suggestedPrice=0;if($('#suggestion-value').text()==""&&Number(previous_bid)<=0){suggestionBidButton="-1";}else{suggestedPrice=parseInt($('#suggestion-value').text());}
+var ad_group='0';if(dt.choose_group==1){group_id=get_compared_value(groups,dt.search_group);ad_group=group_id.toString();}
+var item_list=new Array();if(dt.ad_id.constructor===Array){var length=dt.ad_id.length;}
+else{var length=1;}
+for(i=0;i<length;i++){var item={shop_id:shop_id.toString(),price_bid:parseInt(price_bid),previous_bid:parseInt(previous_bid),ad_schedule:dt.ad_scheduled.toString(),ad_start_date:dt.ad_start_date,ad_start_time:dt.ad_start_time,ad_end_date:dt.ad_end_date,ad_end_time:dt.ad_end_time,ad_budget:dt.ad_budget.toString(),price_daily:parseInt(price_daily),sticker_id:ad_sticker,toggle:dt.sw.toString(),source:dt.source_page,group_id:ad_group,suggested_bid_value:suggestedPrice,is_suggestion_bid_button:suggestionBidButton};length==1?(item.ad_id=dt.ad_id.toString()):(item.ad_id=dt.ad_id[i].toString());item_list.push(item);}
+var data=JSON.stringify({data:item_list});var lang=get_lang_header();var path="/v2/promo";var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='PATCH';var hmacURL='/v2/promo';var hmacContent='';var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat("?").concat(hmacContent),type:hmacMethod,data:data,dataType:"json",success:function(result){is_pdp=true;if(result.errors){errors=[];for(i=0;i<result.errors.length;i++){errors.push(result.errors[i].detail);}
+$('.ta-alert_error').removeClass('hide');$('.ta-alert_error').text(errors);}
+if(result.data){if(result.meta){init_form_edit_pdp(result.data[0].ad_id);show_preview_dialog();$('.ta-alert_success').removeClass('hide');}
+if(source_page=="manage_product"){var data={};data.ad_id=result.data[0].ad_id;data.status=result.data[0].status_desc;updateTemplateAdManageProduct(data);}}},error:function(XMLHttpRequest,textStatus,errorThrown){tokopedia.alert_error();},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'PATCH');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);request.setRequestHeader("Accept-Language",lang);default_submit_name=$(".dialog-content button[value=submit]").html();$(".dialog-content button[value=submit]").html(tokopedia.loc('LOADING_2'));tokopedia.process_ajax();},complete:function(){tokopedia.processAjax=0;$(".dialog-content button[value=submit]").html(default_submit_name);$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');}});});}
+function ajax_controller_promo_pdp(dt,trigger,method_type,from_warning){if(tokopedia.processAjax==0){if(!method_type){method_type='GET';}
+var toggle_ids;var default_submit_name;var next_page_name;var btn_search_text;var State=History.getState();var url=State.url;var uri=parseUri(url);var qs=uri.query;var o_qs=$.parseQuery(qs);var page=o_qs.page;if(dt.action=='event_ad_change_status'||dt.action=='event_ad_delete'){dt.page=page;}
+if(dt.action=='event_dialog_ad_create'&&trigger=='event_dialog'){if(validateProductEditPdp()&&checkPriceBidMinimum(dt,from_warning)){create_ad_pdp(dt,o_qs);}
+return false;}
+if(dt.action=='event_dialog_group_create'&&trigger=='event_dialog'){if(validateProductEditPdp()&&checkPriceBidMinimum(dt,from_warning)){create_group_pdp(dt,o_qs);}
+return false;}
+if(dt.action=='event_dialog_move_group'&&trigger=='event_dialog'){if(validateProductEditPdp()){create_ad_exist_group_pdp(dt,o_qs);}
+return false;}
+if(dt.action=='event_dialog_ad_edit'&&trigger=='event_dialog'){if(validateProductEditPdp()&&(dt.existingGroup||checkPriceBidMinimum(dt,from_warning))){edit_ad_pdp(dt,o_qs);}
+return false;}
+if(dt.action=='event_ad_delete'){bulk_action_ad_pdp('delete',dt,o_qs);return false;}
+if(trigger=='event_toggle'){bulk_action_ad_pdp('toggle',dt,o_qs);return false;}
+return true;}}
+function focusInput(){var bidInput=$('.ta-warning-bid-suggestion-input'),strLength=bidInput.val().length*2;bidInput.focus();bidInput[0].setSelectionRange(strLength,strLength);}
+function checkPriceBidMinimum(data,from_warning){if((data.price_bid<minimumBidPrice||data.price_bid==50)&&suggestedBidPrice&&!from_warning){show_warning_dialog(data.price_bid,suggestedBidPrice);return false;}
+return true;}
+function bulk_action_ad_pdp(action,dt,o_qs){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(ads_auth.supervise==1&&typeof o_qs!='undefined'&&o_qs.shop_id>0){shop_id=o_qs.shop_id}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+var toggle;if(action=='toggle'){toggle=(dt.sw=='on')?'toggle_on':'toggle_off';}
+if(action=='delete'){toggle='delete';}
+var ad_ids=[];ad_ids.push({"ad_id":pdp_ad_id.toString()});var data=JSON.stringify({"data":{"action":toggle,"shop_id":shop_id.toString(),"ads":ad_ids}});var lang=get_lang_header();var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='PATCH';var hmacURL='/v2/promo/bulk';var hmacContent='';var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat("?").concat(hmacContent),type:'PATCH',data:data,dataType:"json",success:function(result){if(result.data){if(action=='toggle'){var ads=result.data.ads;for(var i=0;i<ads.length;i++){if(source_page=="manage_product"){var data={};data.ad_id=ads[i].ad_id;data.status=ads[i].status_desc;updateTemplateAdManageProduct(data);}
+var ad=$(".ta-promo-stat");var cstat=ads[i].status;var td=ad.find('#promo-status');if(td.length&&ads[i].status_desc){if(cstat==1){td.html(ads[i].status_desc);}
+else if(cstat==2){$('.stat-on').removeClass().addClass('stat-disabled');td.html(ads[i].status_desc);}
+else{td.html(ads[i].status_desc);}
+if(!td.hasClass('anim-on')){td.addClass('anim-on');}}
+var ad_start_date='';var ad_start_time='';var ad_end_date='';var ad_end_time='';if(ads[i].ad_start_date){ad_start_date=ads[i].ad_start_date;}
+if(ads[i].ad_start_time){ad_start_time=ads[i].ad_start_time;}
+if(ads[i].ad_end_date){ad_end_date=ads[i].ad_end_date;}
+if(ads[i].ad_end_time){ad_end_time=ads[i].ad_end_time;}
+ad.find('.promo_ad_start').html('<div>'+ad_start_date+'</div><div class="promo_l">'+ad_start_time+'</div>');ad.find('.promo_ad_end').html('<div>'+ad_end_date+'</div><div class="promo_l">'+ad_end_time+'</div>');}}
+if(action=='delete'){init_list_product(o_qs.ssdate,o_qs.sedate,o_qs.shop_id,o_qs.page,{keyword:o_qs.keyword,status:o_qs.pfstatus},o_qs.sort);}}},error:function(XMLHttpRequest,textStatus,errorThrown){},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'PATCH');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);request.setRequestHeader("Accept-Language",lang);tokopedia.process_ajax();},complete:function(){$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');tokopedia.processAjax=0;}});});}
+function get_compared_value(initObject,cmprValue){var retValue;if(cmprValue){$.each(initObject,function(key,value){if(value.groupName.toUpperCase()===cmprValue.toUpperCase()){retValue=value.groupId;}});}
+return retValue;}
+function validateProductEditPdp(){var validateValue;if($('input:radio[name="choose_group"]:checked').val()==1&&($('#choose_group').select2('data')[0].text=="")){$("#choose_group").siblings(".text-error").css("display","block");$("#choose_group").addClass("input-error");$("#choose_group").siblings(".text-error").text(vocabularyPdp[lang.lang]["NOT_CHOSEN_GROUP_NAME"]);validateValue=false;}else if(!isGroupNameValidPdp()){validateValue=false;}else if($('input:radio[name="choose_group"]:checked').val()!=1&&!isPriceBidValidPdp($("#price_bid"))){validateValue=false;}else if($('input:radio[name="choose_group"]:checked').val()!=1&&$('input:radio[name="ad_budget"]:checked').val()==1&&!isPriceBidDailyValidPdp($("#price_bid"),$("#price_daily"))){validateValue=false;}else{validateValue=true;}
+if(validateValue){return true;}else{$('#save-promo').removeClass('hide');$('#save-promo-warning').removeClass('hide');$('.loading-button').addClass('hide');return false;}}
+function isGroupNameValidPdp(){if($('input:radio[name="choose_group"]:checked').val()==2&&$("#group-name__input").val()==""){$("#group-name__input").siblings(".text-error").css("display","block");$("#group-name__input").addClass("input-error");$("#group-name__input").siblings(".text-error").text(vocabularyPdp[lang.lang]["EMPTY_GROUP_NAME"]);return false;}else if($('input:radio[name="choose_group"]:checked').val()==2&&get_compared_value(groups,$("#group-name__input").val())!==undefined){$("#group-name__input").siblings(".text-error").css("display","block");$("#group-name__input").addClass("input-error");$("#group-name__input").siblings(".text-error").text(vocabularyPdp[lang.lang]["EXIST_GROUP_NAME"]);return false;}else if($('input:radio[name="choose_group"]:checked').val()==2&&$("#group-name__input").val().match(/([^\x00-\x7F]|[{}<>])+/g,"")){$("#group-name__input").siblings(".text-error").css("display","block");$("#group-name__input").addClass("input-error");$("#group-name__input").siblings(".text-error").text(vocabularyPdp[lang.lang]["GROUP_NAME_NOT_VALID"]);return false;}else if($('input:radio[name="choose_group"]:checked').val()==2&&$("#group-name__input").val().length>70){$("#group-name__input").siblings(".text-error").css("display","block");$("#group-name__input").addClass("input-error");$("#group-name__input").siblings(".text-error").text(vocabularyPdp[lang.lang]["MAX_CHAR_GROUP_NAME"]);return false;}else{$("#group-name__input").siblings(".text-error").css("display","none");$("#group-name__input").removeClass("input-error");return true;}}
+function isPriceBidValidPdp(el){var maxCost=5000;if($(el).val().replace(/,/g,"")>maxCost){$(el).siblings(".text-error").text(vocabularyPdp[lang.lang]["MAX_COST_AMOUNT_VALUE"]+maxCost.toLocaleString());$(el).siblings(".text-error").css("display","block");$(el).addClass("input-error");return false;}else if($(el).val().replace(/,/g,"")=="0"||$(el).val().replace(/,/g,"")==""){$(el).siblings(".text-error").text(vocabularyPdp[lang.lang]["MIN_COST_AMOUNT"]);$(el).siblings(".text-error").css("display","block");$(el).addClass("input-error");return false;}
+else if($(el).val().replace(/,/g,"")%50!=0){$(el).siblings(".text-error").text(vocabularyPdp[lang.lang]["MULTIPLE_COST"]);$(el).siblings(".text-error").css("display","block");$(el).addClass("input-error");return false;}
+else{$(el).siblings(".text-error").text("");$(el).siblings(".text-error").css("display","none");$(el).removeClass("input-error");return true;}}
+function isPriceBidDailyValidPdp(pricebid,pricedaily,priceBidError){var errorInput=pricedaily;if(priceBidError){errorInput=pricebid;}
+if($(pricedaily).val().replace(/,/g,"")<$(pricebid).val().replace(/,/g,"")*10){$(errorInput).siblings(".text-error").text(vocabularyPdp[lang.lang]["MINIMUM_BUDGET"]);$(errorInput).siblings(".text-error").css("display","block");$(errorInput).addClass("input-error");return false;}else{$(errorInput).siblings(".text-error").text("");$(errorInput).siblings(".text-error").css("display","none");$(errorInput).removeClass("input-error");return true;}}
+function init_credit_pdp(shop_id){if(!shop_id){shop_id=ads_auth.shop_id;}
+var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='GET';var hmacURL='/v1.1/dashboard/deposit';var hmacContent='shop_id='+shop_id;var data=new Object();data.url=urlGo;data.path=hmacURL;data.method=hmacMethod;data.content=hmacContent;getHMACKeyPdp(data,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat("?").concat(hmacContent),type:'GET',dataType:"json",beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'GET');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",ads_auth.user_id);},success:function(result){if(result.data){$('#credit-stat span').html(result.data.amount_fmt);$('#credit-stat-dialog strong').html(result.data.amount_fmt);$('#credit-stat-dialog').text(result.data.amount_fmt);credits_pdp=result.data.amount;}}});});}
+function search_groups_pdp(dt,shopId,_cb){if(_cb===undefined){_cb=function(){};}
+var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id=shopId;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+var dashboard_search_product_url="/v1.1/dashboard/search_groups?shop_id=".concat(shop_id);var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='GET';var hmacURL='/v1.1/dashboard/search_groups';var hmacContent='shop_id='+shop_id;var hmacData=new Object();hmacData.url=urlGo;hmacData.path=hmacURL;hmacData.method=hmacMethod;hmacData.content=hmacContent;getHMACKeyPdp(hmacData,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat("?").concat(hmacContent),type:hmacMethod,dataType:"json",success:function(result){data=result.data;if(data){groups=[];for(i=0;i<data.length;i++){var group=new Object();group.groupName=data[i].group_name;group.groupId=data[i].group_id;groups.push(group);}}
+_cb(groups);},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'GET');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);},complete:function(){}});});}
+function init_typehead_pdp(shop_id){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+search_groups_pdp({},shop_id,function(result){dataFeed=new Array();dataFeed.push({id:"",text:""});for(i=0;i<result.length;i++){var item={id:result[i].groupId,text:result[i].groupName};dataFeed.push(item);}
+pdp_groups=dataFeed;$("#choose_group").html('');$('#choose_group').select2({placeholder:tokopedia.loc("SEARCH_GROUP_PROMO"),language:{"noResults":function(){return tokopedia.loc("RESULT_NOT_FOUND");}},width:'100%',data:dataFeed,maximumInputLength:70,selectOnClose:true,dropdownParent:$('.unf-modal__content')});$('input[name="choose_group"]').closest('.ta-form-section').find('select.ta-select-grup').siblings('.select2').hide();});}
+function init_suggestion_bid(dep_id){$(".suggestion-bid").html('');var depIds=[];if(!dep_id){dep_id=pdp_dep_id;}
+suggestionBidButton='0'
+if(dep_id>0){depIds.push(parseInt(dep_id));getSuggestionBidPdp(depIds,'dep_bid','detail',true,function(temp){var result=temp.data;var currPriceBid=$('#price_bid').val();if(currPriceBid==""){currPriceBid=0;}else{currPriceBid=parseInt($('#price_bid').val());}
+if(result&&result.length>0){if(result[0].median>currPriceBid){var suggestBidText=''+
+vocabularyPdp[lang.lang]["INFO_SUGGESTED_PROMO"]+' <span class="ta-suggest-bid">Rp <span id="suggestion-value">'+
+result[0].median+
+'</span></span>&nbsp;&nbsp;<i class="icon-info-alt info-tooltip" data-hover="tooltip" data-original-title="'+vocabularyPdp[lang.lang]["TOOLTIP_SUGGESTED_BID"]+'"></i>&nbsp;';if(pdp_ad_id>0){suggestBidText+='<a id="apply-suggestion-bid" class="ta-btn-ghost">'+vocabularyPdp[lang.lang]["APPLY"]+'</a>';}
+$(".suggestion-bid").html(suggestBidText);suggestionBidButton='0';$('#apply-suggestion-bid').on('click',function(){var suggest=$('#suggestion-value').text();$('#price_bid').val(suggest);suggestionBidButton='1';});$('.info-tooltip').tooltip();}else{$(".suggestion-bid").html('<span class="hide" id="suggestion-value">'+
+result[0].median+
+'</span>');}
+minimumBidPrice=temp.minimum_diff/100*result[0].median;suggestedBidPrice=result[0].median;if(pdp_ad_id<=0){$('#price_bid').val(result[0].median);}}else{$(".suggestion-bid").html('');}});}}
+function init_form_edit_pdp(ad_id){var dl=$.grep(window.dataLayer,function(element,index){return element.contactInfo;});var user_id;var shop_id;if(typeof dl!='undefined'&&dl.length>0){var contactInfo=dl[0].contactInfo;if(!user_id){user_id=contactInfo.userId;}
+if(!shop_id){shop_id=contactInfo.shopId;}}
+if(!user_id){user_id=ads_auth.user_id;}
+if(!shop_id){shop_id=ads_auth.shop_id;}
+init_credit_pdp(shop_id);var adIdString='';if(ad_id){adIdString="ad_id=".concat(ad_id);}
+init_typehead_pdp(shop_id);var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='GET';var hmacURL='/v2/promo';var hmacContent=adIdString;var data=new Object();data.url=urlGo;data.path=hmacURL;data.method=hmacMethod;data.content=hmacContent;getHMACKeyPdp(data,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat("?").concat(hmacContent),type:'GET',dataType:"json",beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",'GET');request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",user_id);},success:function(result){if(result.data){var data=(result.data.constructor===Array&&result.data.length>0)?result.data[0]:result.data;}
+if(data){is_create=false;$('#ad-image').attr('src',data.ad_image);$('#ad-image-edit').attr('src',data.ad_image);$('#ad-title').attr('href',data.item_uri);$('#ad-title').html(data.ad_title);$('#ad-title-edit').html(data.ad_title);if(data.group_id>0){$('#radio-existing-grup').attr('checked','checked');setTimeout(function(){$('#choose_group').val(data.group_id).trigger('change');},100);var group_name='';search_groups_pdp({},shop_id,function(result){groups=result;for(var i=0;i<groups.length;i++){if(groups[i].groupId==data.group_id){group_name='<a id="group_url" href="">'+groups[i].groupName+'</a>';break;}}
+if(group_name==""){group_name=pdp_group_name;}
+$('.group-name').html(group_name);var group_url=product_ads_ajax_go+'/v2/manage/product?group='+data.group_id;if($("#group_url").length>0){document.getElementById("group_url").href=group_url;$("#group_url").on("click",function(){taManagePushGTM("click - nama grup","topads dashboard");});}});$('input[name="radio-grup"]').closest('.ta-form-section').find('input.new-grup').hide();}else{$('#no_group').attr('checked','checked');$("#form-setup-schedule--edit").removeClass("hide");var group_name=vocabularyPdp[lang.lang]["NO_GROUP"];$('.group-name').html(group_name);}
+pdp_group_id=data.group_id;if(data.group_id=="0"){$('#radio-tanpa-grup').prop('checked',true);$(".edit-single-ads__container #form-setup-schedule").show();$(".edit-single-ads__container #form-setup-schedule").show();$('.ta-form-section').find('select.ta-select-grup').siblings('.select2').hide();$('.ta-form-section').find('input.new-grup').hide();$("#ta-form-cost-schedule-setup").removeClass("hide");}else{$('#radio-existing-grup').prop('checked',true);$(".edit-single-ads__container #form-setup-schedule").hide();setTimeout(function(){$('#choose_group').val(data.group_id).trigger('change');},100);$(".select2-container").css("width","100%");$("#choose_existing-group-promo .error").css("display","none");$('.ta-form-section').find('input.new-grup').hide();$('.radio-grup-list').find('select.ta-select-grup').siblings('.select2').show();if(pdp_groups){$('#choose_group').select2({placeholder:tokopedia.loc("SEARCH_GROUP_PROMO"),language:{"noResults":function(){return tokopedia.loc("RESULT_NOT_FOUND");}},width:'100%',data:pdp_groups,maximumInputLength:70,selectOnClose:true,dropdownParent:$('.unf-modal__content')});}
+$("#ta-form-cost-schedule-setup").addClass("hide");}
+$('span.price-bid').text(data.price_bid.toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."))
+$('[name="price_bid"]').val(data.price_bid);var price_daily=(data.price_daily)?data.price_daily:5000;var span_price_daily=(data.price_daily)?("Rp "+data.price_daily):vocabularyPdp[lang.lang]["NOT_LIMITED"];$('span.price-daily').text(span_price_daily.toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."));$('[name="price_daily"]').val(price_daily);$('[name="price_bid"], [name="price_daily"]').priceFormat({prefix:'',thousandsSeparator:',',centsSeparator:'',centsLimit:''});if(data.price_daily){$('#single-price-daily__checked').attr('checked','checked');$('#ad-price-daily').removeClass('hide');$('#price_daily_dialog').removeClass('hide');$('#radio5').prop('checked',true);$('#price_daily_dialog').show();}else{$('#price_daily_dialog').addClass('hide');$('#radio4').prop('checked',true);}
+$('span.start-date').text(data.ad_start_date);$('span.start-time').text(data.ad_start_time);$('#start-date').attr('value',data.ad_start_date);$('#start-time').attr('value',data.ad_start_time);$('#end-date').attr('value',data.ad_end_date);$('#end-time').attr('value',data.ad_end_time);if(data.ad_end_date&&data.ad_end_time){var date_end='<span class="end-date">'+data.ad_end_date+'</span>'+
+'<div class="ta-small"><span class="end-time">'+data.ad_end_time+'</span></div>';$('#single-manual_scheduled__checked').attr('checked','checked');$('#ad-scheduled').removeClass('hide');}else{var date_end=vocabularyPdp[lang.lang]["UNLIMITED"];var now_date=new Date();var end_date=new Date(now_date.getTime()+30*60000);var pad=function(val,len){val=String(val);len=len||2;while(val.length<len)val="0"+val;return val;};var _="get",d=end_date[_+"Date"](),D=end_date[_+"Day"](),m=end_date[_+"Month"](),y=end_date[_+"FullYear"](),H=end_date[_+"Hours"](),M=end_date[_+"Minutes"](),s=end_date[_+"Seconds"](),L=end_date[_+"Milliseconds"]();var h=H%12||12;var MM=pad(M);var TT=H<12?"AM":"PM";$('#end-date').attr('value',pad(d)+'/'+pad(m+1)+'/'+y);$('#end-time').attr('value',h+':'+MM+' '+TT);}
+$('.ad-end').html(date_end);if(data.ad_type=="1"){$('#form-setup-group').removeClass('hide');}
+var td=$('.ta-toggle');if(data["status"]=="1"){$('#status-on').attr('checked','checked');td.find('.button-wrap').addClass('button-active');td.find('.switch').toggleClass('on');$('#promo-status').text(vocabularyPdp[lang.lang]["ACTIVE"]);$('.ta-promo-stat').addClass('anim-on');$('.stat-disabled').removeClass().addClass('stat-on');}else if(data["status"]=="2"){$('#status-on').attr('checked','checked');td.find('.button-wrap').addClass('button-active');td.find('.switch').toggleClass('on');$('#promo-status').text(vocabularyPdp[lang.lang]["NOT_DELIVERED"]);$('.ta-promo-stat').addClass('anim-on');$('.stat-on').removeClass().addClass('stat-disabled');}else{td.find('.button-wrap').removeClass('button-active');td.find('.switch').toggleClass('on');$('#status-off').attr('checked','checked');$('#promo-status').text(vocabularyPdp[lang.lang]["INACTIVE"]);$('.ta-promo-stat').addClass('anim-on');$('.stat-on').removeClass().addClass('stat-disabled');}}}});});}
+function getSuggestionBidPdp(idArray,suggestionType,dataType,rounding,callback){var urlGo=product_ads_ajax_go||"https://ta.tokopedia.com";var hmacMethod='POST';var hmacURL='/v1/suggest';var hmacContent="";if(!shop_id){shop_id=ads_auth.shop_id;}
+var rawBidData=new Object();rawBidData.suggestion_type=suggestionType;rawBidData.data_type=dataType;rawBidData.shop_id=shop_id;rawBidData.ids=idArray;rawBidData.source=source_page;rawBidData.rounding=rounding;var bidData=JSON.stringify({data:rawBidData,});var data=new Object();data.url=urlGo;data.path=hmacURL;data.method=hmacMethod;data.content=hmacContent;data.version="v2";var urltest=urlGo.concat(hmacURL).concat('?').concat(hmacContent);getHMACKeyPdp(data,function(accessKey){$.ajax({url:urlGo.concat(hmacURL).concat('?').concat(hmacContent),type:hmacMethod,data:bidData,dataType:"json",success:function(result){callback(result);},beforeSend:function(request){request.setRequestHeader("Authorization",accessKey.hmac);request.setRequestHeader("Content-MD5",accessKey.content);request.setRequestHeader("X-Date",accessKey.access_date);request.setRequestHeader("X-Method",hmacMethod);request.setRequestHeader("X-Device",'desktop');request.setRequestHeader("X-Tkpd-UserId",ads_auth.user_id);request.setRequestHeader("Content-Type",accessKey.content_type);}});});}
+function getHMACKeyPdp(data,_cb){if(_cb===undefined){_cb=function(){};}
+url=data.url.concat("/v1/dashboard/hmac?device='desktop'");if(data.version=="v2"&&(data.method=="POST"||data.method=="PATCH")){content_type="application/json";}else{content_type="";}
+content=new Object();content.method=data.method;content.url=data.path;content.content=data.content;content.content_type=content_type;$.ajax({type:'GET',url:url,data:content,async:true,xhrFields:{withCredentials:true},success:function(result){_cb(result);}});}
+function taManagePushGTM(eventAction,eventLabel){var sourceMap={"dialog_promo_pdp":"PDP","dialog_promo_shop":"Shop","manage_product":"ManageProduct"}
+var source=sourceMap[source_page];window.dataLayer=window.dataLayer||[];dataLayer.push({"event":"eventTopAds"+source,"eventCategory":"ta - "+source,"eventAction":eventAction,"eventLabel":eventLabel});}

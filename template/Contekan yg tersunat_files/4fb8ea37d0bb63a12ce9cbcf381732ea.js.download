@@ -1,0 +1,33 @@
+function gtm_wish_pdp(s){var p=($("#product-name").length)?$("#product-name").attr("value"):"Error : Product's Name not found";var d=s+" - "+p;gtm_pusher('clickWishlist','PDP Wishlist Official Store','Click',d);}
+function gtm_fav_pdp(s){var d='Favorite Shop - '+s;gtm_pusher('clickFavoriteShop','PDP Favorite Official Store','Click',d);}
+function gtm_fav(s){var d='Favorite Shop - '+s;gtm_pusher('clickFavoriteShop','Homepage Favorite Official Store','Click',d);}
+function gtm_share(s,pdp){var b=(pdp)?"PDP":"Home";var d='Share - '+s;gtm_pusher('clickShare','Share Official Store '+b,'Click',d);}
+function gtm_share_social(s,n,pdp){var b=(pdp)?"PDP":"Home";var d=n+" - "+s;gtm_pusher('clickShare','Share Official Store '+b,'Click',d);}
+function gtm_line(){var s=window.shopName;gtm_pusher('clickShare','Share Official Store PDP','Click','Line - '+s);}
+function gtm_wish(s,p){var d=s+" - "+p;gtm_pusher('clickWishlist','Wishlist Official Store','Click',d);}
+function replaceString(string,target,replacement){var i=0,length=string.length;for(i;i<length;i++){string=string.replace(target,replacement);}
+return string;}
+function gtm_visit_official_store(s,p,pdp){var page=window.location.pathname;var page_arr=page.split('/');var row=page_arr.length;var b=(pdp)?"PDP":"Home";if(page_arr[row-1]==""){delete page_arr[row-1];row-=1;}
+if(b=="PDP"&&row==3){gtm_pusher('viewShopOfficial','Visit Official Store','View',s+' - Product - '+p);}else if(row==4&&page_arr[2]=='etalase'){var etalase=replaceString(page_arr[3],"-"," ");gtm_pusher('clickOSEtalase','Visit Official Store','Click',s+' - Etalase - '+etalase);}}
+function gtm_etalase(s,e){gtm_pusher('clickOSEtalase','Visit Official Store','Click',s+' - Etalase - '+e);}
+function gtm_pusher(eventName,eventCategory,eventAction,eventLabel){window.dataLayer=window.dataLayer||[];dataLayer.push({'event':eventName,'eventCategory':eventCategory,'eventAction':eventAction,'eventLabel':eventLabel,});}
+function gtm_OSBreadcrumbOfficialStore(shopName,eventCategory){gtm_pusher("clickOfficialStore",eventCategory,"Click Breadcrumb",shopName+" - Official Store");}
+function gtm_OSBreadcrumbBrand(shopName,eventCategory){gtm_pusher("clickOfficialStore",eventCategory,"Click Breadcrumb",shopName+" - Official Store - Brand");}
+function gtm_OSBreadcrumbShopName(shopName,eventCategory){gtm_pusher("clickOfficialStore",eventCategory,"Click Breadcrumb",shopName+" - Official Store - Brand - "+shopName);}
+$(document).ready(function(){var s=$("#shop_name");var p=$("#product-name");var EvtCategoryOSShopPage="Official Store Shop Page";var EvtCategoryOSPDP="Official Store Product Detail Page";if(s.length>0){var sn=s.val();var pdp=false;if(p.length>0){var pn=p.val();pdp=true;}
+gtm_visit_official_store(sn,pn,pdp);if($("#btn-wish-add").length>0){$("#btn-wish-add").click(function(){gtm_wish_pdp(sn);});}
+if($("#btn-favorit").length>0){$("#btn-favorit").click(function(){if(!$(this).hasClass("active")){gtm_fav_pdp(sn);}});}
+if($("#s_fave_this_shop").length>0){$("#s_fave_this_shop").click(function(){gtm_fav(sn);});}
+var c=$("div.jssocials-share-copy");if(c.length>0){c.click(function(){gtm_share(sn,pdp);});}
+var social=$("div.jssocials-share-facebook, div.jssocials-share-twitter, div.jssocials-share-googleplus, div.jssocials-share-blogger");if(social.length>0){social.click(function(){var n="";if($(this).hasClass("jssocials-share-facebook")){n="Facebook";}
+else if($(this).hasClass("jssocials-share-twitter")){n="Twitter";}
+else if($(this).hasClass("jssocials-share-googleplus")){n="Googleplus";}
+else if($(this).hasClass("jssocials-share-blogger")){n="Blogger";}
+gtm_share_social(sn,n,pdp);});}
+if($("#etalase_container").length>0){$('#etalase_container').on('click','li',function(){var etalase=$(this).text();var etalase_name=etalase.toLowerCase();gtm_etalase(sn,etalase_name);});}
+if($("#osbreadcrumb-os").length>0){$("#osbreadcrumb-os").click(function(){gtm_OSBreadcrumbOfficialStore(sn,EvtCategoryOSShopPage);});}
+if($("#osbreadcrumb-brand").length>0){$("#osbreadcrumb-brand").click(function(){gtm_OSBreadcrumbBrand(sn,EvtCategoryOSShopPage);});}
+if($("#osbreadcrumb-shop").length>0){$("#osbreadcrumb-shop").click(function(){gtm_OSBreadcrumbShopName(sn,EvtCategoryOSShopPage);});}
+if($("#osbreadcrumb-pdp-os").length>0){$("#osbreadcrumb-pdp-os").click(function(){gtm_OSBreadcrumbOfficialStore(sn,EvtCategoryOSPDP);});}
+if($("#osbreadcrumb-pdp-brand").length>0){$("#osbreadcrumb-pdp-brand").click(function(){gtm_OSBreadcrumbBrand(sn,EvtCategoryOSPDP);});}
+if($("#osbreadcrumb-pdp-shop").length>0){$("#osbreadcrumb-pdp-shop").click(function(){gtm_OSBreadcrumbShopName(sn,EvtCategoryOSPDP);});}}});
