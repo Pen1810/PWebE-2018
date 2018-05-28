@@ -497,23 +497,12 @@ a:after {
    ========================================================================== */
 
 #headerwrap {
-	background: url(../img/main-bg.jpg) no-repeat center top;
-	margin-top: -10px;
+    margin-top: -10px;
 	padding-top:20px;
 	text-align:center;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 700px;
+    background: url("../img/background.png") no-repeat;
+    min-height: 700px;
 	width: 100%;
-
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
 }
 
