@@ -1,0 +1,1197 @@
+var taViewportDetectionManager;var taHandler;var taDisplay=window.taDisplay||[];(function(window){function isElementInViewport(el){var rect=el.getBoundingClientRect();return(rect.top>=0&&rect.left>=0&&rect.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&rect.right<=(window.innerWidth||document.documentElement.clientWidth));}
+var AdsViewportDetectionManager=function(){this.tracker=new Object();}
+AdsViewportDetectionManager.prototype.collectData=function(data){this.tracker[data.main_container_id]=new Object();this.tracker[data.main_container_id].data=data.data;this.tracker[data.main_container_id].lock=[];this.tracker[data.main_container_id].lock_main=false;this.tracker[data.main_container_id].type=data.type;this.tracker[data.main_container_id].container_name=data.container_name;};AdsViewportDetectionManager.prototype.startDetect=function(){var _this=this;var eventMethod=window.addEventListener?"addEventListener":"attachEvent";var eventer=window[eventMethod];var messageEvent=eventMethod=="attachEvent"?"onscroll":"scroll";_this.scrollHandler=function(){var _this=this;_this.isScrolling=true;if(!_this.tickerHandler){_this.tickerHandler=setInterval(function(){var _this=this;if(_this.isScrolling){_this.detectAdsInViewport();_this.isScrolling=false;}}.bind(_this),1000);}}.bind(_this);eventer(messageEvent,_this.scrollHandler,false);_this.detectAdsInViewport();};AdsViewportDetectionManager.prototype.detectAdsInViewport=function(){var _this=this;for(var id in _this.tracker){var data=_this.tracker[id].data;if(!document.getElementById(id)){continue;}
+var containers=document.getElementById(id).getElementsByClassName(_this.tracker[id].container_name);for(var i=0;i<containers.length;i++){var elem=containers[i];var isAdVisible=isElementInViewport(elem);var xmlhttp=new XMLHttpRequest();if(isAdVisible&&!_this.tracker[id].lock[i]){if(_this.tracker[id].type=='product'&&(data[i].product&&(data[i].product.image.s_url!=data[i].product.image.s_ecs))){_this.tracker[id].lock[i]=true;xmlhttp.open('GET',data[i].product.image.s_url+'&render=false',true);xmlhttp.withCredentials=true;xmlhttp.send(null);}else if(_this.tracker[id].type=='shop'&&(data[i].shop&&(data[i].shop.image_shop.xs_url!=data[i].shop.image_shop.xs_ecs))){_this.tracker[id].lock[i]=true;xmlhttp.open('GET',data[i].shop.image_shop.xs_url+'&render=false',true);xmlhttp.withCredentials=true;xmlhttp.send(null);}else if(_this.tracker[id].type=='cpm'&&(data[i].cpm&&(data[i].cpm.image_cpm.full_url!=data[i].cpm.image_cpm.full_ecs))){_this.tracker[id].lock[i]=true;xmlhttp.open('GET',data[i].cpm.image_cpm.full_url+'&render=false',true);xmlhttp.withCredentials=true;xmlhttp.send(null);}
+var main_container=document.getElementById(id);if(main_container&&main_container.getAttribute('src')=="fav_product"){if(!_this.tracker[id].lock_main&&_this.tracker[id].lock[i]){window.taHandler.pushDataGTMFeed('imp',_this.tracker[id].type,main_container);var processedData=[];if(_this.tracker[id].type=='product'){for(var i=0;i<_this.tracker[id].data.length;i++){var adData=taHandler.constructEcommerceProductList(_this.tracker[id].data[i],"impression",i);processedData.push(adData);}}else{for(var i=0;i<_this.tracker[id].data.length;i++){var adData=taHandler.constructEcommerceShopList(_this.tracker[id].data[i],"impression",i);processedData.push(adData);}}
+if(processedData.length>0){window.taHandler.pushEcommerceDataGTMFeed('imp',processedData,_this.tracker[id].type,main_container);}
+_this.tracker[id].lock_main=true;}}}}}};window.taViewportDetectionManager=new AdsViewportDetectionManager();})(window);(function(window){var taHandler=new Object();taHandler.ad_url='https://ta.tokopedia.com';taHandler.tkpd_url='https://www.tokopedia.com';taHandler.merlin_url='https://merlin.tokopedia.com';taHandler.tome_url='https://tome.tokopedia.com';taHandler.display_ep='/promo/v1.1/display/ads';taHandler.userinfo_ep='/promo/v1/info/user';taHandler.merlin_cat_rcmd_ep='/v4/product/category/recommendation';taHandler.merlin_basket_rcmd_ep='/v1/recommendation/product/keyword/basket';taHandler.tome_token_ep='/v1/user/token';taHandler.lang='id';taHandler.counter={product:0,shop:0};taHandler.queryParams={'ep':1,'item':1,'src':1,'device':1,'page':1,'dep_id':1,'h':1,'q':1,'catalog_id':1,'pmin':1,'pmax':1,'fshop':1,'official':1,'floc':1,'fcity':1,'wholesale':1,'shipping':1,'preorder':1,'condition':1,'freereturns':1,'cashback':1,'rating':1,'brand':1,'ab_test':1,'pub_id':1,'pub_unit':1,'pub_domain':1,'search_nf':1,'user_id':1,'template_id':1,'is_userinfo_rcmd':2,'cat_rcmd_key':2,'template':2,'trigger':2,'no_request':3,'merlin_url':2,'tome_url':2,'ad_url':2,'tkpd_url':2,'variants':1,'xparams':1}
+taHandler.vocabulary=new Object();taHandler.vocabulary.id={'Wholesale':'Grosir','tt-1-1':'Tingkatkan penjualan','tt-1-2':'TopAds membantu Anda untuk menarik calon pembeli secara lebih efektif. Toko dan produk Anda akan lebih mudah ditemukan oleh pengunjung Tokopedia.','tt-2-1':'Menjangkau dengan tepat','tt-2-2':'TopAds membantu Anda menjangkau calon pembeli yang sesuai, melalui pencarian produk dan penelusuran kategori produk.','tt-3-1':'Efektif dan Efisien','tt-3-2':'Dengan TopAds, hasil yang Anda harapkan sesuai dengan biaya yang Anda keluarkan.','tt-4':'Baca Selengkapnya','tt-5':'Promosi oleh TopAds.','tt-6':'Pelajari selengkapnya.','tt-7':'Promosi oleh TopAds yang muncul berdasarkan minat Anda.','tt-8':'Promo produk yang terkait dengan produk ini','close':'Tutup','Favorite':'Favoritkan','Favorited':'Favorit','empty-prod':'Tidak ada produk di toko ini','toast-fav':' ditambahkan ke dalam favorit.','toast-unfav':' dihapus dari favorit.','related':'Produk Terkait','trend':'Inspirasi dari Pembelian Anda','visit-shop':'Kunjungi Toko','BUY_NOW':'Beli Sekarang','DONATE_NOW':'Donasi Sekarang','CHECK_MORE':'Cek Selengkapnya','PAY_NOW':'Bayar Sekarang','SUBSCRIBE_NOW':'Daftar Sekarang','first-buyer':'Jadilah pembeli pertama','lang':'id'}
+taHandler.vocabulary.en={'Wholesale':'Wholesale','tt-1-1':'Increase Sales','tt-1-2':'Your shop and products are more visible for Tokopedia users.','tt-2-1':'Right on Target','tt-2-2':'TopAds helps you in reaching the right target market, through product searching, and product category.','tt-3-1':'Effective & Efficient','tt-3-2':'With TopAds, the result is worth your investment.','tt-4':'Read More','tt-5':'Promoted by TopAds.','tt-6':'Find out more.','tt-7':'Promoted by TopAds based on your interest.','tt-8':'Promoted products related to this item','close':'Close','Favorite':'Favorite','Favorited':'Favorited','empty-prod':'This shop has no product','toast-fav':' is added to your favorite list','toast-unfav':' is removed from your favorite list','related':'Related to this Item','trend':'Inspired by Your Shopping Trends','visit-shop':'Visit Shop','BUY_NOW':'Buy Now','DONATE_NOW':'Donate Now','CHECK_MORE':'Read More','PAY_NOW':'Pay Now','SUBSCRIBE_NOW':'Subscribe Now','first-buyer':'Be the first buyer','lang':'en'}
+taHandler.gtmLabel={'fav_product':'FavProduct','directory':'Directory','search':'Search','hotlist':'Hotlist','recommendation':'Recommendation','fav_product_detail':'FavProductDetail','fav_shop':'FavShop','inbox_message_detail':'InboxMessageDetail','catalog':'Catalog','page_not_found':'PageNotFound','empty_cart':'EmptyCart'}
+taHandler.procName={'userinfo':'_processAdsUserInfo','cat':'_processAdsCatRcmd','basket':'_processAdsBasketRcmd'}
+taHandler.tempData=new Object();taHandler.clear=new Object();taHandler.tracker=new Object();taHandler.emptyAds={'status':{'error_code':0,'message':'OK'},'header':{'total_data':0,'process_time':0,'meta':{'display':'none'}},'data':[]};taHandler._buildQuery=function(ele){var query='?';if(ele.attributes.length==1){return '';}
+var queryParams=taHandler.queryParams;var attr=ele.attributes;for(var i=0;i<attr.length;i++){if(queryParams[attr[i].name]==1&&attr[i].value!='null'){query+='&'+attr[i].name+'='+encodeURIComponent(attr[i].value);}}
+query=query.replace('?&','?');return query;}
+taHandler._parseURL=function(q){var result=new Object();if(q){var params;q=q.replace('?','');params=q.split('&');for(var i=0;i<params.length;i++){var param_split=params[i].split('=');if(param_split[1]){result[param_split[0]]=decodeURIComponent(param_split[1].replace(/\+/g,' '));}else{result[param_split[0]]=null;}}}
+return result;}
+taHandler._modAttr=function(state){var ele=document.getElementById(state.id);if(ele&&ele.classList.contains('ta-inventory')){for(var prop in state){if(prop=="id"||prop=="class"){continue;}
+if(state[prop]){ele.setAttribute(prop,state[prop]);}else{ele.setAttribute(prop,'null');}}}}
+taHandler._trimText=function(ele){var elements;if(ele){elements=[ele];}else{elements=document.getElementsByClassName('ta-inventory');}
+for(var i=0;i<elements.length;i++){var ele=elements[i];var ep=taHandler.tracker[ele.id]?taHandler.tracker[ele.id]["ep"]:"";if(taHandler.tracker[ele.id]&&taHandler.tracker[ele.id].length<0){continue;}
+var target_texts=ele.getElementsByClassName('ta-ellipsis');if(target_texts.length>0){for(var j=0;j<target_texts.length;j++){var text=target_texts[j];var words;switch(ep){case 'cpm':var itemIdx=text.getAttribute('idx');var ad=taHandler.tracker[ele.id][0];words=ad.cpm.shop.product[itemIdx].name;break;default:if(taHandler.tracker[ele.id][j].product!=null){words=taHandler.tracker[ele.id][j].product.name;}else{return;}
+break;}
+words=words.split(' ');if(words.length==1){if(text.scrollWidth<=text.offsetWidth){continue;}
+var max_char=parseInt(text.getAttribute('data-max-char'));if((max_char>0)&&(words[0].length>max_char)){text.innerHTML=words[0].substring(0,max_char)+'...';}
+continue;}
+if(text.scrollHeight<=text.offsetHeight){continue;}
+while(text.scrollHeight>text.offsetHeight){if(words.length>1){words.pop();}else{break;}
+text.innerHTML=words.join(' ')+'...';}}}}}
+taHandler._getHosts=function(ele){var host=new Object();host.ta=taHandler.ad_url;if(ele&&ele.getAttribute('ad_url')){host.ta=ele.getAttribute('ad_url');}
+host.tkpd=taHandler.tkpd_url;if(ele&&ele.getAttribute('tkpd_url')){host.tkpd=ele.getAttribute('tkpd_url');}
+host.tome=taHandler.tome_url;if(ele&&ele.getAttribute('tome_url')){host.tome=ele.getAttribute('tome_url');}
+host.merlin=taHandler.merlin_url;if(ele&&ele.getAttribute('merlin_url')){host.merlin=ele.getAttribute('merlin_url');}
+switch(true){case((new RegExp(/ta(?:-staging)?\.tokopedia/)).test(host.ta)):host.cdn='https://ecs7.tokopedia.net';break;default:host.cdn=host.ta;break;}
+host.ta_microsite=host.tkpd+'/iklan';return host;}
+taHandler._renderTitle=function(ele,ads,template){var host=taHandler._getHosts(ele);var construct;var device=ele.getAttribute('device');if(!device){device='desktop';}
+var search_nf=ele.getAttribute("search_nf");var ad_type=ads.header.meta.display;switch(true){case(template=='inbox_message_detail'||template=='intermediary'||template=='intermediary-2'||template=='page_not_found'||template=='catalog'||template=='catalog_dtl'||template=='directory_catalog-list'||template=="cart"||template=="thanks"||template=='directory_catalog'||template=='directory_product'||(template=='directory_product_1'&&ad_type=='shop')||(template=='directory_product_new_1'&&ad_type=='shop')||template=='inbox_talk'||((template=='search'||template=='search-a'||template=='search-b')&&search_nf==1)):construct='<div class="popover-promote clearfix">'+
+'<div class="inline-block">'+
+'<strong>Promoted</strong>'+
+'</div>'+
+'<div class="popover-promote__content__container">'+
+'<a><i class="icon-info-alt"></i></a>';if(!(template=='directory_catalog-list'||template=='inbox_talk')){construct+='<div class="popover-promote__content">';}else{construct+='<div class="popover-promote__content popover-promote__content--bottom">';}
+construct+='<div class="pull-left">'+
+'<p class="popover-promote__content__text">'+
+taHandler.vocabulary[taHandler.lang]['tt-7']+
+'</p>'+
+'<a target="_blank" href="'+host.ta_microsite+'?medium='+device+'&source=tooltip'+'" class="btn btn-action btn-action--promote">'+taHandler.vocabulary[taHandler.lang]['tt-4']+'</a>'+
+'</div>'+
+'<div class="popover-promote__content__img">'+
+'<img src="'+host.cdn+'/img/ta/display/tooltip/toa.png">'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';break;case((new RegExp(/^m_/)).test(template)):construct='';if((new RegExp(/^m_feed/)).test(template)){if(ads.header.meta.display=='product'){construct+='<div class="ta-wrapper">';}
+construct+='<div class="ta-toast">'+
+'<div class="toast__container closed">'+
+'<div class="toast__text default">'+
+'<div class="toast__content"></div>'+
+'</div>'+
+'</div>'+
+'</div>';}
+break;case(template=='banner'&&ads.header.meta.display=='cpm'):construct='';break;case(template=='feed_plus'):construct='';if(ads.header.meta.display=='product'){construct='<div class="ta-product-header">';}else{construct='<div class="ta-shop-header">';}
+construct+='<div class="popover-promote clearfix">'+
+'<div class="inline-block">'+
+'<span class="ta-promoted-text">Promoted</span>'+
+'</div>'+
+'<div class="popover-promote__content__container">'+
+'<a><i class="icon-info-alt"></i></a>'+
+'<div class="popover-promote__content">'+
+'<div class="pull-left">'+
+'<p class="popover-promote__content__text">'+
+taHandler.vocabulary[taHandler.lang]['tt-7']+
+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=tooltip'+'" class="btn btn-action btn-action--promote" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-4']+'</a>'+
+'</div>'+
+'<div class="popover-promote__content__img">'+
+'<img src="'+host.cdn+'/img/ta/display/tooltip/toa.png"> '+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';break;case(template=='pdp'):construct='<h4 class="fs-14 mt-10 mb-10">'+
+'<i class="icon-th"></i>'+
+taHandler.vocabulary[taHandler.lang]['tt-8']+
+'<span class="other-product-nav va-middle">'+
+'<div class="popover-promote__content__container">'+
+'<a><i class="icon-info-alt"></i></a>'+
+'<div class="popover-promote__content">'+
+'<div class="pull-left">'+
+'<p class="popover-promote__content__text">'+
+taHandler.vocabulary[taHandler.lang]['tt-7']+
+'</p>'+
+'<a target="_blank" href="'+host.ta_microsite+'?medium='+device+'&source=tooltip" class="btn btn-action btn-action--promote">'+
+taHandler.vocabulary[taHandler.lang]['tt-4']+
+'</a>'+
+'</div>'+
+'<div class="popover-promote__content__img">'+
+'<img src="'+host.cdn+'/img/ta/display/tooltip/toa.png">'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'</h4>';break;case(template=='hotlist_new'||template=='pdp_new'||template=='search_new'):construct='<div class="ta-popover">'+
+'<span class="ta-popover-title">'+taHandler._renderTitleNew(template)+'</span>'+
+'<div class="ta-popover-container">'+
+'<a class="ta-popover-icon-container">'+
+'<i class="ta-icon ta-icon-tooltip"></i>'+
+'</a>'+
+'<div class="ta-popover-popup-container">'+
+'<div class="ta-popover-popup__text">'+taHandler.vocabulary[taHandler.lang]['tt-7']+'</div>'+
+'<a target="_blank" href="'+host.ta_microsite+'?medium='+device+'&source=tooltip" class="btn btn-action ta-btn-action">'+
+taHandler.vocabulary[taHandler.lang]['tt-4']+
+'</a>'+
+'<img class="ta-popover-popup__img" src="'+host.cdn+'/img/ta/display/tooltip/toa.png">'+
+'</div>'+
+'</div>'+
+'</div>';break;default:construct='';}
+return construct;}
+taHandler._renderTitleNew=function(template){var construct;switch(true){case(template=='pdp_new'):construct=taHandler.vocabulary[taHandler.lang]['tt-8'];break;default:construct='Promoted';break;}
+return construct;}
+taHandler._renderEnding=function(ele,ads,template){var construct;switch(true){case(template=='inbox_message_detail'||template=='page_not_found'||template=='home'||template=='search'||template=='search-a'||template=='search-b'||template=='intermediary'||template=='intermediary-2'||template=='catalog_dtl'||template=='directory_catalog'||(template=='directory_product_new'&&ads.header.meta.display=='shop')):construct='<div class="clear-b"></div>';if(((template=='search'||template=='catalog_dtl')&&ele.getAttribute('child'))||template=='directory_product'){construct+='<hr class="mb-0 w-full"></hr>';}
+if((template=='search'||template=='search-a'||template=='search-b'||template=='intermediary'||template=='intermediary-2'||template=='catalog_dtl')&&ele.getAttribute('search_nf')=="1"){construct+='<br class="mb-0">';}
+break;case(template=='catalog'||template=='cart'||template=='directory_product'||(template=='directory_product_new'&&ads.header.meta.display=='product')||template=='directory_product_1'||template=='directory_product_new_1'||template=='thanks'):construct='<div class="clearfix"></div>';if(template=='cart'){construct+='<div class="mb-20"></div>';}
+break;case((new RegExp(/^m_feed/)).test(template)):if(ads.header.meta.display=='shop'){construct='<div class="clear"></div>';}else{construct='</div>';}
+break;case(template=='banner'&&ads.header.meta.display=='cpm'):construct='';default:construct='';}
+return construct;}
+taHandler._constructProductMeta=function(product,template,meta){var poText="PO";if(template=='search_new'){poText="Preorder";}
+var construct='<div class="ta-product-meta">'+
+'<div class="ta-product-meta__name ta-ellipsis" data-max-char="60">'+product.name+'</div>'+
+'<div class="ta-product-meta__price">'+product.price_format+'</div>'+
+taHandler._constructRating(product.product_rating,product.count_review_format,product.product_new_label,meta)+
+'<div class="ta-product-meta__container">';if(product.product_cashback){construct+='<div class="ta-product-meta__cashback">'+
+'Cashback '+product.product_cashback_rate+'%'+
+'</div>';}
+if(product.product_wholesale){construct+=taHandler._constructWholesale(product.wholesale_price);}
+if(product.product_preorder){construct+='<div class="ta-product-meta__po">'+
+poText+
+'</div>';}
+construct+='</div>'+
+'</div>';return construct;}
+taHandler._constructShopMeta=function(ad,template){var inlineStyleBadge='';var inlineStyleShop='';if(template=='search_new'&&ad.shop.badges.length<=1){inlineStyleBadge='style="display: none;"'
+inlineStyleShop='left: 0;'}
+var construct='<div class="ta-product-meta__shop">'+
+'<div class="ta-shop-detail">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" target="_blank" style="margin-left: 2px;'+inlineStyleShop+'" title="'+ad.shop.name+'" onmousedown="taHandler.switchURL(this);" class="ta-shop-detail__name ta-ellipsis-new">'+
+ad.shop.name+
+'</a>'+
+'<div class="ta-shop-detail__location ta-ellipsis-new" style="'+inlineStyleShop+'">'+
+'<i class="ta-icon ta-icon-location"></i>'+
+ad.shop.location+
+'</div>'+
+'<div class="ta-shop-detail__badge" '+inlineStyleBadge+'>';for(var i=0;i<ad.shop.badges.length;i++){var badge=ad.shop.badges[i];if((template=='search_new'&&badge.title=='Free Return')||badge.image_url.endsWith("blank.gif")){continue;}
+construct+='<i class="ta-icon" style="background-image:url('+badge.image_url+')">'+
+'<span class="ta-fr-tooltip">'+badge.title+'</span>'+
+'</i>';}
+construct+='</div>'+
+'</div>'+
+'</div>';return construct;}
+taHandler._constructWholesale=function(wholesalePriceList){var construct='<div class="ta-product-meta__grosir">'+
+'<span class="ta-grosir">'+
+'<div class="ta-grosir-title">Grosir</div>'+
+'<div class="ta-grosir-tooltip">'+
+'<ul class="ta-grosir-list">';for(var i=0;i<wholesalePriceList.length;i++){var wholesalePrice=wholesalePriceList[i];if(i<wholesalePriceList.length-1){construct+='<li>'+
+'<div class="ta-grosir-list__amount">'+wholesalePrice.quantity_min_format+' - '+wholesalePrice.quantity_max_format+'</div>'+
+'<div class="ta-grosir-list__price">'+wholesalePrice.price_format+'</div>'+
+'</li>';}else{construct+='<li>'+
+'<div class="ta-grosir-list__amount">&#8805;&nbsp;'+wholesalePrice.quantity_min_format+'</div>'+
+'<div class="ta-grosir-list__price">'+wholesalePrice.price_format+'</div>'+
+'</li>';}}
+construct+='</ul>'+
+'</div>'+
+'</span>'+
+'</div>';return construct;}
+taHandler._constructRating=function(rating,total_review,product_new_label,meta){var construct='';var styleHidden='';if(rating<=0&&product_new_label==false){styleHidden='visibility:hidden;';}
+var stars=Math.round(rating/20);construct+='<div class="ta-product-meta__rating" style="height: 25px; min-height: 0; line-height: 25px;'+styleHidden+'">';if(product_new_label==true){construct+='<span class="label-new">'+tokopedia.loc("NEW")+'</span>';}
+else{construct+='<span class="star_'+stars+'"></span>'+
+'<span class="reviewer-count fs-11">('+total_review+')</span>';}
+construct+='</div>';return construct;}
+taHandler._constructLabels=function(ad,template){var construct;switch(true){case(template=='home'||template=='search'||template=='search-a'||template=='search-b'||template=='intermediary'||template=='intermediary-2'||template=='directory_catalog-list'||template=='directory_product'||template=='directory_product_new'||template=='catalog_dtl'||template=='directory_product_1'||template=='directory_product_new_1'):construct='<div class="row-fluid">'+
+'<div class="span12">'+
+'<div class="new-shop__label">';if(ad.product.product_cashback){construct+='<div class="label label-cashback">Cashback '+ad.product.product_cashback_rate+'%</div>';}
+if(ad.product.product_wholesale){construct+='<div class="label label-grosir">'+
+'<span class="grosir-hover">'+
+'<div>'+taHandler.vocabulary[taHandler.lang]['Wholesale']+'</div>'+
+'<div class="hovered new-hovered">'+
+'<ul class="grosir-list">';for(var i=0;i<ad.product.wholesale_price.length;i++){construct+='<li>';if(i<ad.product.wholesale_price.length-1){construct+='<div class="list-age text-left">'+ad.product.wholesale_price[i].quantity_min_format+' - '+ad.product.wholesale_price[i].quantity_max_format+'</div>';}else{construct+='<div class="list-age text-left">&#8805;&nbsp;'+ad.product.wholesale_price[i].quantity_min_format+'</div>';}
+construct+='<div class="list-price text-right">'+ad.product.wholesale_price[i].price_format+'</div>'+
+'</li>';}
+construct+='</ul>'+
+'</div>'+
+'</span>'+
+'</div>';}
+if(ad.product.product_preorder){construct+='<div class="label label-preorder badge-image">'+
+'PO'+
+'<div class="badge-tooltip">'+
+'Preorder'+
+'</div>'+
+'</div>';}
+construct+='</div>'+
+'</div>'+
+'</div>';break;case((new RegExp(/^m_feed/)).test(template)):construct='<div class="topads__type-label">';if(ad.product.product_cashback){construct+='<span class="feed__label">Cashback '+ad.product.product_cashback_rate+'%</span>';}
+if(ad.product.product_wholesale){construct+='<span class="topads__badge-grey">Grosir</span>';}
+if(ad.product.product_preorder){construct+='<span class="product-tag-po">PO</span>';}
+construct+='</div>';break;default:construct='';}
+return construct;}
+taHandler._constructBadges=function(ad,template){var construct;switch(true){case(template=='home'||template=='search'||template=='search-a'||template=='search-b'||template=='intermediary'||template=='intermediary-2'||template=='directory_product'||template=='directory_catalog-list'||template=='directory_catalog'||template=='directory_product_new'||template=='catalog_dtl'||template=='directory_product_1'||template=='directory_product_new_1'):construct='<div class="span4">'+
+'<div class="shop-detail__badges">';for(var i=0;i<ad.shop.badges.length;i++){construct+='<div class="badge-image">'+
+'<img title="'+ad.shop.badges[i].title+'" src="'+ad.shop.badges[i].image_url+'">'+
+'<div class="badge-tooltip">'+ad.shop.badges[i].title+'</div>'+
+'</div>';}
+construct+='</div>'+
+'</div>';break;case((new RegExp(/^m_feed/)).test(template)):construct='<div class="topads__shop-loc-badge">'+
+'<span class="topads__shop-location u-truncate">'+
+'<i class="icon-location"></i>'+
+ad.shop.location+
+'</span>'+
+'<span class="topads__badges">';for(var i=0;i<ad.shop.badges.length;i++){construct+='<img alt="'+ad.shop.badges[i].title+'" class="topads__img-badge" src="'+ad.shop.badges[i].image_url+'">';}
+construct+='</span>'+
+'</div>';break;default:construct='';}
+return construct;}
+taHandler._constructCpmProductList=function(ad,bannerName){var construct='<div class="ta-cpm-prod">';var totalProductShown=2;if(bannerName=="banner-vertical"||bannerName=="banner-vertical-catalog"){totalProductShown=3;}
+totalProductShown=totalProductShown>ad.cpm.shop.product.length?ad.cpm.shop.product.length:totalProductShown;for(var i=0;i<totalProductShown;i++){construct+='<div class="ta-cpm-prod-list">'+
+'<a class="hide" href="'+ad.cpm.shop.product[i].image_product.image_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="ta-cpm-prod-list-img">'+
+'<img src="'+ad.cpm.shop.product[i].image_product.image_url+'" alt="'+ad.cpm.shop.product[i].name+'">'+
+'</div>'+
+'<div class="ta-cpm-prod-list-name">'+
+'<div class="ta-cpm-name ta-ellipsis" idx="'+i+'" data-max-char="30">'+
+ad.cpm.shop.product[i].name+
+'</div>'+
+'<p class="ta-cpm-price">'+ad.cpm.shop.product[i].price_format+'</p>'+
+'</div>'+
+'</a>'+
+'</div>';}
+if(bannerName!="banner-vertical"&&bannerName!="banner-vertical-catalog"){construct+='<div class="ta-cpm-prod-link">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="circle-link">'+
+'<i class="ta-icon-arrow-right"></i>'+
+'</div>'+
+'<div>'+taHandler.vocabulary[taHandler.lang]['visit-shop']+' </div>'+
+'</a>'+
+'</div>';}
+construct+='</div>';return construct;};taHandler._getStickerClass=function(sticker_id){var sticker_class='';switch(sticker_id){case '1':sticker_class='ta-promote-icon';break;case '2':sticker_class='ta-promote-icon';break;case '3':sticker_class='ta-promote-icon';break;default:sticker_class='ta-promote-icon';}
+return sticker_class;}
+taHandler._constructAdProduct=function(ad,template,src,device,host,meta,position){var construct;var stars;var rating='';rating+='<div class="rating-slot" style="height: 25px; min-height: 0; line-height: 25px;">';if(ad.product.product_rating>0){stars=Math.round(ad.product.product_rating/20);rating+=('<span class="star_'+stars+'"></span><span class="reviewer-count fs-11">('+ad.product.count_review_format+')</span>');}else if(ad.product.product_rating==0&&meta.ab_test=="no_rating_text"){rating+='<i class="ta-icon-cart"></i><small class="muted ta-rating-0">'+taHandler.vocabulary[taHandler.lang]['first-buyer']+'</small>';}
+rating+='</div>';switch(true){case(template=='big-promo'):construct='<div class="ta-promo__item">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a class="ta-promo__link" target="_blank" href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this);"></a>'+
+'<div class="ta-promo-img__container productContainer">'+
+'<img src="'+ad.product.image.s_ecs+'">'+
+'</div>'+
+'<div class="ta-promo-product__detail">'+
+'<div class="ta-promo-product__name ta-ellipsis" data-max-char="25">'+ad.product.name+
+'</div>'+
+'<div class="ta-promo-product-price__container">'+
+'<span class="ta-promo-product__price">'+ad.product.price_format+'</span>'+
+'<span class="ta-promo-icon-container">'+
+'<i class="ta-promo-icon__toa"></i>'+
+'<div class="ta-tooltip">'+
+'<div class="ta-tooltip-content">'+
+'<p class="ta-tooltip-title">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="ta-tooltip-link" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'</div>'+
+'</div>'+
+'</div>';break;case(template=='inbox_message_detail'||template=='page_not_found'):construct='<div class="ta-slot-card">'+
+'<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this);">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>';construct+='</div>'+
+'</a>'+
+'</div>';break;case(template=='home'):construct='<div class="ta-slot-card">'+
+'<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>'+rating;construct+=taHandler._constructLabels(ad,template);construct+='</div>'+
+'</a>';construct+='<div class="new-shop-detail">'+
+'<span class="shop_id shop-data">'+
+'<div class="row-fluid">'+
+'<div class="shop-table">'+
+'<div class="shop-topads lh-18">'+
+'<i class="'+taHandler._getStickerClass(ad.sticker_id)+' icon-topads-tooltip orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="shop-detail__content lh-18">'+
+'<div class="shop-detail__name ellipsis">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a href="'+ad.shop.uri+'" class="muted" style="margin-left: 2px;" title="'+ad.shop.name+'" onmousedown="taHandler.switchURL(this);">'+ad.shop.name+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="row-fluid lh-18">'+
+'<div class="span8">'+
+'<div class="shop-detail__location ellipsis">'+
+'<span title="'+ad.shop.location+'">'+
+'<i class="sprite-location"></i>&nbsp;&nbsp;'+ad.shop.location+
+'</span>'+
+'</div>'+
+'</div>';construct+=taHandler._constructBadges(ad,template);construct+='</div>'+
+'</span>'+
+'<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;case(template=='search'||template=='search-a'||template=='search-b'||template=='directory_product'||template=='directory_catalog-list'||template=='directory_catalog'||template=='directory_product_new'||template=='catalog_dtl'||template=='directory_product_1'||template=='directory_product_new_1'):if(template=='directory_catalog-list'){construct='<div class="ta-slot-card ta-slot-card--list">';}else{construct='<div class="ta-slot-card">';}
+construct+='<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>'+rating;construct+=taHandler._constructLabels(ad,template);construct+='</div>'+
+'</a>';construct+='<div class="new-shop-detail">'+
+'<span class="shop_id shop-data">'+
+'<div class="row-fluid">'+
+'<div class="shop-table">'+
+'<div class="shop-detail__content lh-18">'+
+'<div class="shop-detail__name ellipsis">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a href="'+ad.shop.uri+'" class="muted" style="margin-left: 2px;" title="'+ad.shop.name+'" onmousedown="taHandler.switchURL(this);">'+ad.shop.name+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="shop-topads lh-18">'+
+'<i class="'+taHandler._getStickerClass(ad.sticker_id)+' icon-topads-tooltip orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="row-fluid lh-18">'+
+'<div class="span8">'+
+'<div class="shop-detail__location ellipsis">'+
+'<span title="'+ad.shop.location+'">'+
+'<i class="sprite-location"></i>&nbsp;&nbsp;'+ad.shop.location+
+'</span>'+
+'</div>'+
+'</div>';construct+=taHandler._constructBadges(ad,template);construct+='</div>'+
+'</span>'+
+'<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;case(template=='intermediary'):construct='<div class="ta-slot-card">';construct+='<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>';construct+=taHandler._constructLabels(ad,template);construct+='</div>'+
+'</a>';construct+='<div class="new-shop-detail">'+
+'<span class="shop_id shop-data">'+
+'<div class="row-fluid">'+
+'<div class="shop-table">'+
+'<div class="shop-detail__content lh-18">'+
+'<div class="shop-detail__name ellipsis">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a href="'+ad.shop.uri+'" class="muted" style="margin-left: 2px;" title="'+ad.shop.name+'" onmousedown="taHandler.switchURL(this);">'+ad.shop.name+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="shop-topads lh-18">'+
+'<i class="'+taHandler._getStickerClass(ad.sticker_id)+' icon-topads-tooltip orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="row-fluid lh-18">'+
+'<div class="span8">'+
+'<div class="shop-detail__location ellipsis">'+
+'<span title="'+ad.shop.location+'">'+
+'<i class="sprite-location"></i>&nbsp;&nbsp;'+ad.shop.location+
+'</span>'+
+'</div>'+
+'</div>';construct+=taHandler._constructBadges(ad,template);construct+='</div>'+
+'</span>'+
+'<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;case(template=='intermediary-2'):rating_intermediary='';rating_intermediary+='<div class="row-fluid">'+
+'<div class="span12">'+
+'<div class="ta-product-rating">';if(ad.product.product_rating>0){stars=Math.round(ad.product.product_rating/20);rating_intermediary+=('<i class="star_'+stars+'"></i><span>('+ad.product.count_review_format+')</span>');}else if(ad.product.product_rating==0&&meta.ab_test=="no_rating_text"){rating_intermediary+='<i class="ta-icon-cart"></i><small class="muted ta-rating-0">'+taHandler.vocabulary[taHandler.lang]['first-buyer']+'</small>';}
+rating_intermediary+='</div>'+
+'</div>'+
+'</div>';construct='<div class="ta-slot-card">';construct+='<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>';construct+=taHandler._constructLabels(ad,template);construct+=rating_intermediary;construct+='</div>'+
+'</a>';construct+='<div class="new-shop-detail">'+
+'<span class="shop_id shop-data">'+
+'<div class="row-fluid">'+
+'<div class="shop-table">'+
+'<div class="shop-detail__content lh-18">'+
+'<div class="shop-detail__name ellipsis">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a href="'+ad.shop.uri+'" class="muted" style="margin-left: 2px;" title="'+ad.shop.name+'" onmousedown="taHandler.switchURL(this);">'+ad.shop.name+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="shop-topads lh-18">'+
+'<i class="'+taHandler._getStickerClass(ad.sticker_id)+' icon-topads-tooltip orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="row-fluid lh-18">'+
+'<div class="span8">'+
+'<div class="shop-detail__location ellipsis">'+
+'<span title="'+ad.shop.location+'">'+
+'<i class="sprite-location"></i>&nbsp;&nbsp;'+ad.shop.location+
+'</span>'+
+'</div>'+
+'</div>';construct+=taHandler._constructBadges(ad,template);construct+='</div>'+
+'</span>'+
+'<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;case(template=='inbox_talk'):if(template=='inbox_talk'){construct='<div class="ta-slot-card ta-slot-card--list">';}else{construct='<div class="ta-slot-card">';}
+construct+='<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>'+
+'</div>'+
+'</a>'+
+'</div>';break;case(template=='catalog'):construct='<div class="ta-slot-card">'+
+'<a class="hide" href="'+ad.product_click_url+'"</a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this);">'+
+'<div class="ta-slot-card__shop-logo">'+
+'</div>'+
+'<div class="ta-slot-card__image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="ta-slot-card__detail">'+
+'<div class="ta-slot-card__detail__name">'+
+ad.product.name+
+'</div>'+
+'<div class="ta-slot-card__detail__price">'+
+ad.product.price_format+
+'</div>'+
+'</div>'+
+'</a>'+
+'</div>';break;case(template=="promo_detail"):construct='<div class="ta-product-list">'+
+'<a class="hide" href="'+ad.product_click_url+'"</a>'+
+'<a class="ta-link" href="'+ad.product.uri+'" target="_blank" onmousedown="taHandler.switchURL(this);"></a>'+
+'<div class="ta-product-img productContainer">'+
+'<img src="'+ad.product.image.s_ecs+'" alt="">'+
+'</div>'+
+'<div class="ta-product-name ta-ellipsis" data-max-char="25">'+
+ad.product.name+
+'</div>'+
+'<div class="ta-product-price">'+
+ad.product.price_format+
+'<div class="ta-tooltip-container lh-18">'+
+'<i class="ta-promote-icon"></i>'+
+'<div class="ta-tooltip">'+
+'<div class="ta-tooltip-content">'+
+'<p class="ta-tooltip-title">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon" class="ta-tooltip-link" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';break;case(template=='cart'||template=='thanks'):construct='<div class="ta-slot-card">'+
+'<a class="hide" href="'+ad.product_click_url+'"</a>'+
+'<a href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this);">'+
+'<div class="image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="detail">'+
+'<span class="detail__name ta-ellipsis" data-max-char="15">'+ad.product.name+'</span>'+
+'<div>'+
+'<span class="detail__price">'+ad.product.price_format+'</span>'+
+'</div>'+
+'</div>'+
+'</a>'+
+'</div>';break;case(template=='pdp'):construct='<div class="product mb-0">'+
+'<div itemprop="isRelatedTo" itemscope="" class="product-hover relative">'+
+'<a class="hide" href="'+ad.product_click_url+'"</a>'+
+'<a class="ta-link" href="'+ad.product.uri+'" target="_blank" onmousedown="taHandler.switchURL(this);"></a>'+
+'<div class="product-image productContainer">'+
+'<span>'+
+'<img itemprop="image" alt="'+ad.product.name+'" src="'+ad.product.image.s_ecs+'" title="'+ad.product.name+'">'+
+'</span>'+
+'</div>'+
+'<div class="meta-product">'+
+'<div class="name name--other-product" itemprop="name">'+
+ad.product.name+
+'</div>'+
+'<div class="row-fluid">'+
+'<div itemprop="offers" itemscope="" class="span12">'+
+'<span itemprop="price" class="price">'+ad.product.price_format+'</span>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="tooltip-hover">'+
+'<i class="ta-promote-icon icon-topads-tooltip"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';break;case(template=='m_catalog'):construct='<div class="ta-slot-card clearfix">'+
+'<a href="'+ad.product_click_url+'">'+
+'<div class="ta-slot-card__image productContainer">'+
+'<img itemprop="image" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="ta-slot-card__detail">'+
+'<div class="ta-slot-card__detail__name">'+
+ad.product.name+
+'</div>'+
+'<div class="ta-slot-card__detail__price">'+
+ad.product.price_format+
+'</div>'+
+'</div>'+
+'</a>'+
+'</div>';break;case(template=='m_feed_plus'):construct='<div class="ta-list">'+
+'<a href="'+ad.product_click_url+'" item_id="'+ad.product.id+'" target="_blank" onclick="taHandler.pushDataGTMFeed(\'click\', \'product\', this);">'+
+'<div class="ta-list-img productContainer">'+
+'<img src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</div>'+
+'<div class="ta-list-name">'+
+ad.product.name+
+'</div>'+
+'<div class="ta-list-price">'+
+ad.product.price_format+
+'</div>'+
+'</a>'+
+'<i class="ta-promote-icon"></i>'+
+'</div>';break;case((new RegExp(/^m_feed/)).test(template)):rating='<div class="ta-rating-slot">';if(ad.product.product_rating>0){stars=Math.round(ad.product.product_rating/20);rating+=('<span class="star_'+stars+'"></span><span class="reviewer-count fs-11"> ('+ad.product.count_review_format+')</span>');}else if(ad.product.product_rating==0&&meta.ab_test=="no_rating_text"){rating+='<i class="ta-icon-cart"></i><small class="muted ta-rating-0">'+taHandler.vocabulary[taHandler.lang]['first-buyer']+'</small>';}
+rating+='</div>';construct='<li>'+
+'<div class="topads__content-box">'+
+'<i class="ta-promote-icon"></i>'+
+'<a href="'+ad.product_click_url+'">'+
+'<img itemprop="image" class="productContainer" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</a>'+
+'<div class="product-list-desc">'+
+'<a href="'+ad.product_click_url+'">'+
+'<span class="product-list-name ellipsis">'+
+ad.product.name+
+'</span>'+
+'</a>'+
+'<div class="product-list-price">'+
+ad.product.price_format+
+'</div>';construct+=rating;construct+=taHandler._constructLabels(ad,template);construct+='<a href="'+ad.shop_click_url+'" class="topads__shop-link">'+
+'<div class="topads__shop-name u-truncate">'+
+ad.shop.name+
+'</div>'+
+'</a>';construct+=taHandler._constructBadges(ad,template);construct+='</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</li>';break;case((new RegExp(/^m_/)).test(template)):construct='<li>'+
+'<div class="product-list-wrapper">'+
+'<figure>'+
+'<a href="'+ad.product_click_url+'">'+
+'<img itemprop="image" class="productContainer" src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'">'+
+'</a>'+
+'</figure>'+
+'<div class="product-list-desc">'+
+'<a href="'+ad.product_click_url+'">'+
+'<span class="product-list-name pl-5 pr-5 ellipsis">'+ad.product.name+'</span>'+
+'<div class="product-list-price">'+
+ad.product.price_format+
+'</div>'+
+'<div class="product-list-bedges plr-5">'+
+'</div>'+
+'<div class="clearfix">'+
+'</div>'+
+'</a>'+
+'</div>'+
+'</div>'+
+'</li>';break;case(template=='feed_plus'||template=='feed_plus_b'):var topadsIcon="";if(template=="feed_plus_b"){topadsIcon='<div class="inline-block pull-right">'+
+'<div class="ta-tooltip-trigger  ml-5">'+
+'<i class="ta-promote-icon"></i>'+
+'<div class="ta-simple-tooltip">'+
+'<div class="ta-simple-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>';}
+var adData=taHandler.constructEcommerceProductList(ad,"click",position);construct='<div class="ta-product_box productContainer">'+
+'<div class="ta-product-detail">'+
+'<a class="hide" href="'+ad.product_click_url+'"></a>'+
+'<a target="_blank" href="'+ad.product.uri+'" item_id="'+ad.product.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\', \''+escape(JSON.stringify(adData))+'\' ,\'product\', this, '+(taHandler.counter.product+1)+');">'+
+'<img src="'+ad.product.image.s_ecs+'" alt="'+ad.product.name+'" class="ta-product-image">'+
+'<div class="ta-product-name ta-ellipsis" data-max-char="24">'+ad.product.name+'</div>'+
+'<div class="ta-product-price">'+ad.product.price_format+'</div>'+
+'</a>'+
+topadsIcon+
+'</div>'+
+'</div>';break;case(template=='blog-detail'):construct='<div class="ta-product-list">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a class="ta-link" href="'+ad.product.uri+'" target="_blank" onmousedown="taHandler.switchURL(this);"></a>'+
+'<div class="ta-product-img productContainer">'+
+'<img src="'+ad.product.image.s_ecs+'" alt="" scale="0" class="td-animation-stack-type0-2">'+
+'</div>'+
+'<div class="ta-product-name">'+
+ad.product.name+
+'</div>'+
+'<div class="ta-product-price">'+
+ad.product.price_format+
+'<div class="ta-tooltip-container lh-18">'+
+'<i class="ta-promote-icon"></i>'+
+'<div class="ta-tooltip">'+
+'<div class="ta-tooltip-content">'+
+'<p class="ta-tooltip-title">Promoted by TopAds.</p>'+
+'<a href="'+host.ta_microsite+'" class="ta-tooltip-link" target="_blank">Find out more.</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="ta-product-cta">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a class="ta-cta" href="'+ad.product.uri+'" target="_blank" onmousedown="taHandler.switchURL(this);">Beli</a>'+
+'</div>'+
+'</div>';break;case(template=='hotlist_new'||template=='pdp_new'||template=='search_new'):construct='<div class="ta-product">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a class="ta-product-anchor" target="_blank" href="'+ad.product.uri+'" onmousedown="taHandler.switchURL(this);">'+
+'<div class="ta-product-img-container productContainer">'+
+'<img src="'+ad.product.image.s_ecs+'">'+
+'</div>'+
+taHandler._constructProductMeta(ad.product,template,meta)+
+'</a>'+
+taHandler._constructShopMeta(ad,template)+
+'<div class="ta-product-cta">'+
+'<a class="hide" target="_blank" href="'+ad.product_click_url+'"></a>'+
+'<a href="'+ad.product.uri+'" target="_blank" onmousedown="taHandler.switchURL(this);" class="ta-btn ta-btn-transaction">Beli</a>'+
+'</div>'+
+'<span class="ta-tooltip">'+
+'<i class="ta-tooltip-icon__toa"></i>'+
+'<div class="ta-tooltip-container">'+
+'<div class="ta-tooltip-content">'+
+'<p class="ta-tooltip-title">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="ta-tooltip-link" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'</div>';break;default:construct='';}
+return construct;}
+taHandler._constructAdShop=function(ad,template,src,device,host,meta,position){var construct;switch(true){case(template=='home'||template=='directory_product'||template=='intermediary'||template=='intermediary-2'||template=='directory_catalog'||template=='directory_product_new'||template=='directory_product_1'||template=='directory_product_new_1'):if(template=='home'){construct='<div class="relative shop_ad">';}else{construct='<div class="shop_ad">';}
+if(template=='intermediary-2'){construct+='<div class="shop-ad_container border">'+
+'<div class="shop-ad_top-section display-block p-10">'+
+'<a class="hide" href="'+ad.shop_click_url+'"</a>'+
+'<a href="'+ad.shop.uri+'" class="shop-ad_repu--link" target="_blank" onmousedown="taHandler.switchURL(this);">'+
+'<div class="pull-left">'+
+'<span><img class="img-square" src="'+ad.shop.image_shop.xs_ecs+'" alt="'+ad.shop.name+'" itemprop="logo"></span>'+
+'</div>'+
+'</a>'+
+'<div class="shop-ad_name pull-left ml-10">'+
+'<span class="pull-left mr-5 topads-icon_container">'+
+'<i class="ta-promote-icon icon-topads-tooltip fs-12 orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'<a class="hide" href="'+ad.shop_click_url+'"</a>'+
+'<a href="'+ad.shop.uri+'" class="shop-ad_repu--link" target="_blank" onmousedown="taHandler.switchURL(this);">'+
+'<div class="shop-ad_name-link">'+ad.shop.name+
+'</div>'+
+'</a>'+
+'</div>'+
+'<div class="pull-left ml-10 undefined">';}else{construct+='<div class="shop-ad_container border">'+
+'<div class="shop-ad_top-section display-block p-15">'+
+'<a class="hide" href="'+ad.shop_click_url+'"</a>'+
+'<a href="'+ad.shop.uri+'" class="shop-ad_repu--link" target="_blank" onmousedown="taHandler.switchURL(this);">'+
+'<div class="pull-left">'+
+'<span><img class="img-square" src="'+ad.shop.image_shop.xs_ecs+'" alt="'+ad.shop.name+'" itemprop="logo"></span>'+
+'</div>'+
+'</a>'+
+'<div class="shop-ad_name pull-left ml-10">'+
+'<span class="pull-left mr-5 topads-icon_container">'+
+'<i class="ta-promote-icon icon-topads-tooltip fs-12 orange"></i>'+
+'<div class="shop-topads-tooltip">'+
+'<div class="shop-topads-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</span>'+
+'<a class="hide" href="'+ad.shop_click_url+'"</a>'+
+'<a href="'+ad.shop.uri+'" class="shop-ad_repu--link" target="_blank" onmousedown="taHandler.switchURL(this);">'+
+'<div class="shop-ad_name-link">'+ad.shop.name+
+'</div>'+
+'</a>'+
+'</div>'+
+'<div class="pull-left ml-10 mt-5 undefined">';}
+if(ad.shop.enable_fav){construct+='<a class="ta-btn-fav-alt" id="fav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" onclick="taHandler.doShopAction(\'fav\', this);">'+
+'<i class="sprite-fav-icon sprite-fav-add"></i> '+taHandler.vocabulary[taHandler.lang]['Favorite']+
+'</a>'+
+'<a class="ta-btn-favorited hide" id="unfav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" onclick="taHandler.doShopAction(\'unfav\', this);" style="display:none">'+
+'<i class="sprite-fav-icon sprite-fav-checked mr-2"></i> '+taHandler.vocabulary[taHandler.lang]['Favorited']+
+'</a>';}
+if(template=='intermediary-2'){construct+='</div>'+
+'<div class="shop-ad_tagline ml-50">'+
+'<span class="shop-ad_tagline-text">'+ad.shop.tagline+'</span>'+
+'</div>'+
+'</div>'+
+'<div class="shop-ad_bottom-section display-block p-10">';}else{construct+='</div>'+
+'<div class="shop-ad_tagline clear-b ml-50">'+
+'<span class="shop-ad_tagline-text">'+ad.shop.tagline+'</span>'+
+'</div>'+
+'</div>'+
+'<div class="shop-ad_bottom-section display-block p-15">';}
+if(ad.shop.image_product.length>0){construct+='<a class="hide" href="'+ad.shop_click_url+'"</a>'+
+'<a href="'+ad.shop.uri+'" class="shop-ad_repu--link" target="_blank" onmousedown="taHandler.switchURL(this);">';for(var i=0;i<4;i++){construct+='<div class="shop-ad_product">'+
+'<img src="'+ad.shop.image_product[i].image_url+'" alt="'+ad.shop.image_product[i].product_name+'">'+
+'</div>';}
+construct+='</a>'+
+'<div class="clearfix"></div>';}else{construct+='<div class="muted">'+taHandler.vocabulary[taHandler.lang]['empty-prod']+'</div>';}
+construct+='</div>'+
+'</div>'+
+'</div>';break;case(template=='m_feed_plus'):construct='<div class="ta-shop topads__contents-shop">'+
+'<a href="'+ad.shop_click_url+'" item_id="'+ad.shop.id+'" target="_blank" onclick="taHandler.pushDataGTMFeed(\'click\', \'shop\', this);">'+
+'<div class="title-shop">'+
+'<div class="img">'+
+'<img src="'+ad.shop.image_shop.xs_ecs+'" class="shop-ad_container" alt="'+ad.shop.name+'">'+
+'</div>'+
+'<div class="title topads__title shop">'+
+'<div class="name">';if(ad.shop.gold_shop_badge){construct+='<img alt="gold_shop" class="topads__shop__badges" src="'+host.cdn+'/img/ta/display/gm/gold-active-large.png'+'">'+
+'&nbsp;';}
+construct+='<strong class="ta-shop-name">'+ad.shop.name+'</strong>'+
+'</div>'+
+'<div class="desc">'+ad.shop.tagline+'</div>'+
+'</div>'+
+'<i class="ta-promote-icon"></i>'+
+'</div>'+
+'</a>'+
+'<a href="'+ad.shop_click_url+'" item_id="'+ad.shop.id+'" class="products" target="_blank" onclick="taHandler.pushDataGTMFeed(\'click\', \'shop\', this);">';if(ad.shop.image_product.length>0){for(var i=0;i<3;i++){construct+='<div class="product-shop">'+
+'<div class="img">'+
+'<img src="'+ad.shop.image_product[i].image_url+'">'+
+'</div>'+
+'<div class="name">'+
+ad.shop.image_product[i].product_name+
+'</div>'+
+'</div>';}}else{construct+='<div class="muted">'+taHandler.vocabulary[taHandler.lang]['empty-prod']+'</div>';}
+construct+='<div class="clear"></div>'+
+'</a>'+
+'<div class="btn-favorite">';if(ad.shop.enable_fav){construct+='<button class="favorite" id="fav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'fav\', this);">'+
+'<i class="icon-plus"></i>'+taHandler.vocabulary[taHandler.lang]['Favorite']+
+'</button>'+
+'<button class="favorited" id="unfav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'unfav\', this);" style="display:none">'+
+'<i class="icon-check"></i>'+taHandler.vocabulary[taHandler.lang]['Favorited']+
+'</button>';}
+construct+='</div>'+
+'</div>';break;case((new RegExp(/^m_feed/)).test(template)):construct='<div class="topads__contents-shop">'+
+'<div class="topads__content-box">'+
+'<a href="'+ad.shop_click_url+'">'+
+'<img src="'+ad.shop.image_shop.xs_ecs+'" class="topads__shop__img shop-ad_container" alt="'+ad.shop.name+'">'+
+'<div class="topads__title shop">';if(ad.shop.gold_shop_badge){construct+='<img alt="gold_shop" class="topads__shop__badges" src="'+host.cdn+'/img/ta/display/gm/gold-active-large.png'+'">';}
+construct+='<span class="ta-shop-name">'+ad.shop.name+'</span>'+
+'<i class="ta-promote-icon shop"></i>'+
+'</div>'+
+'<div class="topads__shop__tagline">'+
+ad.shop.tagline+
+'</div>'+
+'<div class="topads__type-marketing">';if(ad.shop.image_product.length>0){construct+='<div class="topads__img__wrapper">';for(var i=0;i<3;i++){if(i>=ad.shop.image_product.length){break;}
+construct+='<img class="topads__img__shop__product" src="'+ad.shop.image_product[i].image_url+'">';}
+construct+='</div>';}
+construct+='</div>'+
+'</a>';if(ad.shop.enable_fav){construct+='<span class="favorite__btn-fav green" id="fav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'fav\', this);">'+
+'<i class="icon-plus"></i>'+
+taHandler.vocabulary[taHandler.lang]['Favorite']+
+'</span>'+
+'<span class="favorite__btn-fav" id="unfav_shop_'+ad.shop.id+'" ad_key="'+ad.ad_ref_key+'" src="'+src+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'unfav\', this);" style="display:none">'+
+'<i class="icon-check"></i>'+
+taHandler.vocabulary[taHandler.lang]['Favorited']+
+'</span>';}
+construct+='</div>'+
+'</div>';break;case(template=='feed_plus'||template=='feed_plus_b'):var adData=taHandler.constructEcommerceShopList(ad,"click",position);construct='<div class="ta-shop-content">'+
+'<div class="ta-shop-info">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a target="_blank" href="'+ad.shop.uri+'" target="_blank" item_id="'+ad.shop.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\',\''+escape(JSON.stringify(adData))+'\', \'shop\', this, '+taHandler.counter.shop+');">'+
+'<div class="ta-shop_profile-image">'+
+'<img class="shop-ad_container" src="'+ad.shop.image_shop.xs_ecs+'">'+
+'</div>'+
+'</a>'+
+'<div class="ta-shop_detail">';if(ad.shop.shop_is_official){construct+='<div class="badge-image">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a target="_blank" href="'+ad.shop.uri+'" target="_blank" item_id="'+ad.shop.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\', \''+escape(JSON.stringify(adData))+'\' , \'shop\', this, '+taHandler.counter.shop+');">'+
+'<img alt="official-store" class="ta-badge" height="15" src="'+host.cdn+'/img/official_store/badge_official.png" width="15">'+
+'</a>'+
+'<div class="badge-tooltip">'+
+'Official Store'+
+'</div>'+
+'</div>';}else if(ad.shop.gold_shop_badge){construct+='<div class="badge-image">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a target="_blank" href="'+ad.shop.uri+'" target="_blank" item_id="'+ad.shop.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\', \''+escape(JSON.stringify(adData))+'\' ,  \'shop\', this, '+taHandler.counter.shop+');">'+
+'<img alt="gold-merchant" class="ta-badge" height="15" src="'+host.cdn+'/img/gold-active-large.png" width="15">'+
+'</a>'+
+'<div class="badge-tooltip">'+
+'Gold Merchant'+
+'</div>'+
+'</div>';}
+var topadsIcon="";if(template=="feed_plus_b"){topadsIcon='<div class="ta-tooltip-trigger ml-5">'+
+'<i class="ta-promote-icon"></i>'+
+'<div class="ta-simple-tooltip">'+
+'<div class="ta-simple-tooltip-content">'+
+'<p class="fs-11 mb-0">'+taHandler.vocabulary[taHandler.lang]['tt-5']+'</p>'+
+'<a href="'+host.ta_microsite+'?medium='+device+'&source=icon'+'" class="fs-11" target="_blank">'+taHandler.vocabulary[taHandler.lang]['tt-6']+'</a>'+
+'</div>'+
+'</div>'+
+'</div>';}
+construct+='<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a target="_blank" href="'+ad.shop.uri+'" target="_blank" item_id="'+ad.shop.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\',\''+escape(JSON.stringify(adData))+'\' ,  \'shop\', this, '+taHandler.counter.shop+');">'+
+'<div class="ta-shop_name">'+
+ad.shop.name+
+'</div>'+
+'</a>'+
+'<div class="ta-shop_activity ta-ellipsis" data-max-char="70">'+
+'<a class="hide" href="'+ad.shop_click_url+'"></a>'+
+'<a class="ta-shop_activity" target="_blank" href="'+ad.shop.uri+'" target="_blank" item_id="'+ad.shop.id+'" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\', \''+escape(JSON.stringify(adData))+'\' ,  \'shop\', this, '+taHandler.counter.shop+');">'+
+ad.shop.tagline+
+'</a>'+
+topadsIcon+
+'</div>'+
+'</div>';if(ad.shop.enable_fav){construct+='<a class="ta-shop_favorite-btn" '+
+'id="fav_shop_'+ad.shop.id+
+'" ad_key="'+ad.ad_ref_key+
+'" src="'+src+
+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'fav\', this);">'+
+'<i class="icon-plus-alt ta-icon-favo"></i>'+
+taHandler.vocabulary[taHandler.lang]['Favorite']+
+'</a>'+
+'<a class="ta-shop_unfavorite-btn" '+
+'id="unfav_shop_'+ad.shop.id+
+'" ad_key="'+ad.ad_ref_key+
+'" src="'+src+
+'" item_id="'+ad.shop.id+'" onclick="taHandler.doShopAction(\'unfav\', this);"'+
+' style="display:none">'+
+'<i class="icon-checked-alt ta-icon-favo"></i>'+
+taHandler.vocabulary[taHandler.lang]['Favorited']+
+'</a>';}
+construct+='</div>'+
+'<a class="hide" href="'+ad.shop_click_url+'" class="ta-shop-product clearfix" target="_blank"></a>'+
+'<a target="_blank" href="'+ad.shop.uri+'" class="ta-shop-product clearfix" item_id="'+ad.shop.id+'" target="_blank" onmousedown="taHandler.switchURL(this);" onclick="taHandler.pushDataGTMFeedWrapper(\'click\', \''+escape(JSON.stringify(adData))+'\' ,  \'shop\', this, '+taHandler.counter.product+');">'+
+'<div class="ta-content-container">';num_image=Math.min(ad.shop.image_product.length,4);for(var i=0;i<num_image;i++){construct+='<div class="ta-shop-product_image">'+
+'<img class="ta-product-image" src="'+ad.shop.image_product[i].image_url+'">'+
+'</div>';}
+construct+='</div>'+
+'</a>'+
+'</div>';break;default:construct='';}
+return construct;}
+taHandler._constructAdCpm=function(ad,template,src,device,host,meta,position){var construct;var templateId=ad.cpm.template_id;switch(templateId){case "3":var shopDesc=ad.cpm.shop.slogan==""?ad.cpm.shop.tagline:ad.cpm.shop.slogan;var iconSrc='';var cpmClass='';var toolTipText='';if(template=='banner-intermediary'||(template=='banner-vertical'&&src=='hotlist')||(template=='banner-vertical'&&src=='search')){cpmClass='mt-20';}
+if(ad.cpm.shop.shop_is_official){iconSrc=host.cdn+'/img/ta/display/of/ofstore.png';toolTipText='Official Store';}else if(ad.cpm.shop.gold_shop){iconSrc=host.cdn+'/img/ta/display/gm/gold_merchant_logo_new.png';toolTipText='Gold Merchant';}
+switch(true){case(template=='banner-search'||template=='banner-intermediary'||template=='banner-category'||template=='banner'||template=='banner-hotlist'):construct='<div class="ta-cpm-blank-slot '+cpmClass+'">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" class="ta-space-link" onmousedown="taHandler.switchURL(this)"></a>'+
+'<div class="ta-cpm-shop cpmContainer">'+
+'<div class="ta-cpm-shop-img">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<img src="'+ad.cpm.shop.image_shop.xs_ecs+'" alt="'+ad.cpm.shop.name+'">'+
+'</a>'+
+'</div>'+
+'<div class="ta-cpm-shop-detail">'+
+'<div class="ta-cpm-shop-detail-wrap">'+
+'<div class="ta-cpm-shop-name">'+
+'<span class="promoted_by">Promoted by</span> ';if(ad.cpm.shop.shop_is_official||ad.cpm.shop.gold_shop_badge){construct+='<span class="badge-image">'+
+'<img src="'+iconSrc+'" class="ta-cpm-shop-badge">&nbsp'+
+'</span>'+
+'<div class="badge-tooltip">'+toolTipText+'</div>';}
+construct+='<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<h3>'+
+ad.cpm.shop.name+
+'</h3>'+
+'</a>'+
+'</div>'+
+'<div class="ta-cpm-shop-desc">'+
+'<p>'+shopDesc+'</p>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+taHandler._constructCpmProductList(ad,template)+
+'<div class="clear"></div>'+
+'</div>';break;case(template=='banner-vertical'||template=='banner-vertical-catalog'):construct='<div class="ta-cpm-blank-slot '+cpmClass+'">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" class="ta-space-link" onmousedown="taHandler.switchURL(this)"></a>'+
+'<div class="ta-cpm-shop cpmContainer">'+
+'<div class="ta-cpm-shop-img">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<img src="'+ad.cpm.shop.image_shop.xs_ecs+'" alt="'+ad.cpm.shop.name+'">'+
+'</a>'+
+'</div>'+
+'<div><span class="promoted_by">Promoted by</span></div>'+
+'<div class="ta-cpm-shop-name">';if(ad.cpm.shop.shop_is_official||ad.cpm.shop.gold_shop_badge){construct+='<span class="badge-image">'+
+'<img src="'+iconSrc+'" class="ta-cpm-shop-badge">'+
+'<div class="badge-tooltip">'+toolTipText+'</div>'+
+'</span>';}
+construct+='<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<h3>'+ad.cpm.shop.name+'</h3>'+
+'</a>'+
+'</div>'+
+'<div class="ta-cpm-shop-desc">'+
+'<p>'+shopDesc+'</p>'+
+'</div>'+
+'</div>'+
+taHandler._constructCpmProductList(ad,template)+
+'<div class="text-center">'+
+'<div class="ta-cpm-prod-link">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+taHandler.vocabulary[taHandler.lang]['visit-shop']+' <i class="ta-icon-arrow-right ml-5"></i>'+
+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="clear"></div>'+
+'</div>';break;default:construct='';}
+break;case "4":var shopDesc=ad.cpm.description;switch(true){case(template=='banner-search'||template=='banner-intermediary'||template=='banner-category'||template=='banner'||template=='banner-hotlist'):construct='<div class="ta-cpm-blank-slot ta-cpm-blank-slot--digital">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" class="ta-space-link" onmousedown="taHandler.switchURL(this)"></a>'+
+'<div class="ta-cpm-digital-left cpmContainer">'+
+'<div class="ta-cpm-digital-img">'+
+'<img src="'+ad.cpm.image_cpm.full_ecs+'" alt="'+ad.cpm.name+'">'+
+'</div>'+
+'<div class="ta-cpm-digital-detail">'+
+'<div class="ta-cpm-digital-detail-wrap">'+
+'<div class="ta-cpm-digital-title">'+
+'<span class="">'+ad.cpm.name+'</span>'+
+'</div>'+
+'<div class="ta-cpm-digital-desc">'+
+'<p>'+
+shopDesc+
+'</p>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="ta-cpm-digital-right">'+
+'<div class="ta-cpm-digital-img">'+
+'<img src="'+ad.cpm.image_cpm.illustration_url+'" alt="'+ad.cpm.name+'">'+
+'</div>'+
+'<div class="ta-cpm-digital-link">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a class="hide" href="'+ad.cpm.uri+'" class="ta-space-link" onmousedown="taHandler.switchURL(this)">'+
+'<div class="circle-link">'+
+'<i class="ta-icon-arrow-right"></i>'+
+'</div>'+
+'<div class="ta-cpm-buy-now">'+
+taHandler.vocabulary[taHandler.lang][ad.cpm.button_text]+
+'</div>'+
+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="clear">'+
+'</div>'+
+'</div>';break;case(template=='banner-vertical'||template=='banner-vertical-catalog'):construct='<div class="ta-cpm-blank-slot ta-cpm-blank-slot--digital vertical mt-20">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" class="ta-space-link" onmousedown="taHandler.switchURL(this)"></a>'+
+'<div class="ta-cpm-digital-left cpmContainer">'+
+'<div class="ta-cpm-digital-img">'+
+'<img src="'+ad.cpm.image_cpm.full_ecs+'" alt="'+ad.cpm.name+'">                     '+
+'</div>'+
+'<div class="ta-cpm-digital-detail">'+
+'<div class="ta-cpm-digital-detail-wrap">'+
+'<div class="ta-cpm-digital-title">'+
+'<span class="">'+ad.cpm.name+'</span>'+
+'</div>'+
+'<div class="ta-cpm-digital-desc">'+
+'<p>'+
+shopDesc+
+'</p>'+
+'</div>'+
+'</div>'+
+'</div>'+
+'<div class="ta-cpm-digital-link">'+
+'<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+taHandler.vocabulary[taHandler.lang][ad.cpm.button_text]+
+' <i class="ta-icon-arrow-right ml-5"></i>'+
+'</a>'+
+'</div>'+
+'</div>'+
+'<div class="ta-cpm-digital-img-bottom">'+
+'<img src="'+ad.cpm.image_cpm.vertical_illustration_url+'" alt="'+ad.cpm.name+'">'+
+'</div>'+
+'<div class="clear">'+
+'</div>'+
+'</div>';break;default:construct='';}
+break;default:construct='<a class="hide" href="'+ad.ad_click_url+'"></a>'+
+'<a href="'+ad.cpm.uri+'" onmousedown="taHandler.switchURL(this)">'+
+'<div class="image cpmContainer">'+
+'<img itemprop="image" src="'+ad.cpm.image_cpm.full_ecs+'" alt="'+ad.cpm.name+'">'+
+'</div>'+
+'</a>';break;}
+return construct;}
+taHandler._constructGTM=function(type,ad,src){var construct='';if(type=='product'){construct='taHandler.pushDataGTMProduct({'+
+'\'label\': \'Product '+taHandler.gtmLabel[src]+'\','+
+'\'adId\': \''+ad.id+'\','+
+'\'shopId\': \''+ad.shop.id+'\','+
+'\'productId\': \''+ad.product.id+'\','+
+'\'categoryId\': \''+ad.product.category.id+'\','+
+'\'event\': \'clickTopAds\''+
+'});';}else if(type=='shop'){construct='taHandler.pushDataGTMShop({'+
+'\'label\': \'Shop '+taHandler.gtmLabel[src]+'\','+
+'\'adId\': \''+ad.id+'\','+
+'\'shopId\': \''+ad.shop.id+'\','+
+'\'event\': \'clickTopAds\''+
+'});';}
+return construct;}
+taHandler._renderAds=function(ele,ads,template){var constructAd;if(ads.header.meta.display=='product'){constructAd=this._constructAdProduct;taHandler.counter.product++;}else if(ads.header.meta.display=='shop'){constructAd=this._constructAdShop;taHandler.counter.shop++;}else{constructAd=this._constructAdCpm;}
+var src=ele.getAttribute('src');if(!src){src='inbox_message_detail';}
+var device=ele.getAttribute('device');if(!device){device='desktop';}
+var host=taHandler._getHosts(ele);var construct;switch(true){case(template=='m_catalog'):construct='<div class="ta-slot mt-10">';break;case(template=='m_feed_plus'):if(ads.header.meta.display=='product'){construct='<div class="ta-container">';}else{construct='<div class="ta-container ta-container-shop">';}
+break;case(template=='promo_detail'):construct='<div class="ta-cpc">'+
+'<div class="ta-product">';break;case((new RegExp(/^m_feed/)).test(template)):if(ads.header.meta.display=='product'){construct='<div class="row-fluid">'+
+'<ul class="product-list-container">';}else{construct='';}
+break;case((new RegExp(/^m_/)).test(template)):construct='<ul class="product-list-container">'+
+'<div class="row-fluid mt-10">';break;case(template=='feed_plus'||template=='feed_plus_b'):if(ads.header.meta.display=='product'){construct='<div class="ta-product-content clearfix">'+
+'<div class="ta-product_container clearfix">'}else{construct='';}
+break;case(template=='big-promo'):construct='<div class="ta-promo-page-container">';break;case(ads.header.meta.display=='cpm'):construct='';break;case(template=='pdp'):construct='<div class="ta-grid-shop-product">'
+break;case(template=='blog-detail'):construct='<div class="ta-cpc">'+
+'<div class="ta-product">';break;case(template=='hotlist_new'||template=='pdp_new'||template=='search_new'):construct='<div class="ta-product-container">';break;default:construct='<div class="ta-slot">';}
+for(var i=0;i<ads.data.length;i++){ad=ads.data[i];if((template=='feed_plus'||template=='feed_plus_b')&&ads.header.meta.display=='product'){if(i!=0&&i%3==0){construct+='</div>'+
+'<div class="ta-product_container clearfix">'}}
+construct+=constructAd(ad,template,src,device,host,ads.header.meta,i);}
+switch(true){case(template=='m_catalog'):construct+='</div>';break;case(template=='promo_detail'):construct+='<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;case(template=='m_feed_plus'):if(ads.header.meta.display=='product'){construct+='<div class="clear"></div>'+
+'</div>';}else{construct+='</div>';}
+break;case((new RegExp(/^m_feed/)).test(template)):if(ads.header.meta.display=='product'){construct+='</ul>'+
+'</div>';}
+break;case((new RegExp(/^m_/)).test(template)):construct+='</div>'+
+'</ul>';break;case(template=='feed_plus'||template=='feed_plus_b'):if(ads.header.meta.display=='product'){construct+='</div>'+
+'</div>';}
+break;case(ads.header.meta.display=='cpm'):construct+='';break;case(template=='blog-detail'):construct+='<div class="clearfix"></div>'+
+'</div>'+
+'</div>';break;default:construct+='</div>';}
+return construct;}
+taHandler._renderThisContainer=function(ele,ads,template){ele.innerHTML='';var tmplt=ele.getAttribute('template');if(!tmplt){tmplt=template;}
+if(!ads.errors&&ads.header.total_data>0){if(ele.classList.contains('ta-inventory-empty')){ele.classList.remove('ta-inventory-empty');}
+construct='';construct+=taHandler._renderTitle(ele,ads,tmplt);construct+=taHandler._renderAds(ele,ads,tmplt);construct+=taHandler._renderEnding(ele,ads,tmplt);ele.innerHTML=construct;}else{ele.classList.add('ta-inventory-empty');}
+var container_name;if(ads.header.meta.display=='product'){container_name='productContainer';}else if(ads.header.meta.display=='shop'){container_name='shop-ad_container';}else{container_name='cpmContainer';}
+window.taViewportDetectionManager.collectData({data:ads.data,main_container_id:ele.id,container_name:container_name,type:ads.header.meta.display});window.taViewportDetectionManager.startDetect();taHandler.tracker[ele.id]=ads.data;taHandler.tracker[ele.id]["ep"]=ads.header.meta.display;if(template!="search_new"){setTimeout(function(){taHandler._trimText(ele);},300);}}
+taHandler._renderAll=function(ele,ads,template){var child=parseInt(ele.getAttribute('child'));if(child<0||isNaN(child)){child=0;}
+if(child<=0){taHandler._renderThisContainer(ele,ads,template);}else{var total_ads_rendered=0;if(ele.getAttribute('child_item')){var child_item=parseInt(ele.getAttribute('child_item'));if(child_item<0||isNaN(child_item)){child_item=0;}
+if(child_item>ads.header.total_data){child_item=ads.header.total_data;}
+var ads_this=JSON.parse(JSON.stringify(ads));ads_this.header.total_data=child_item;ads_this.data=ads_this.data.slice(0,child_item);taHandler._renderThisContainer(ele,ads_this,template);total_ads_rendered+=child_item;}
+for(var i=1;i<=child;i++){var child_container=document.getElementById(ele.id+'-child-'+String(i));if(child_container&&child_container.classList.contains('ta-inventory','child')){var child_item=parseInt(child_container.getAttribute('child_item'));if(child_item<0||isNaN(child_item)){child_item=0;}
+if(child_item>ads.header.total_data-total_ads_rendered){child_item=ads.header.total_data-total_ads_rendered;}
+var ads_this=JSON.parse(JSON.stringify(ads));ads_this.header.total_data=child_item;ads_this.data=ads_this.data.slice(total_ads_rendered,total_ads_rendered+child_item);taHandler._renderThisContainer(child_container,ads_this,template);total_ads_rendered+=child_item;}}}}
+taHandler.clearAll=function(id){var ele=document.getElementById(id);if(!ele.classList.contains('ta-inventory')){return;}
+var child=parseInt(ele.getAttribute('child'));if(child<0||isNaN(child)){child=0;}
+ele.innerHTML='';ele.classList.add('ta-inventory-empty');for(var i=1;i<=child;i++){var child_container=document.getElementById(ele.id+'-child-'+String(i));if(child_container&&child_container.classList.contains('ta-inventory','child')){child_container.innerHTML='';child_container.classList.add('ta-inventory-empty');}}}
+taHandler._processAds=function(ele,template){var trigger=ele.getAttribute('trigger');if(trigger!="render"){var ad_url;if(ele.getAttribute('ad_url')){ad_url=ele.getAttribute('ad_url');}else{ad_url=taHandler.ad_url;}
+var url=ad_url+taHandler.display_ep+taHandler._buildQuery(ele);var ajax=new XMLHttpRequest();ajax.onreadystatechange=function(){if(ajax.readyState==XMLHttpRequest.DONE){var ads=JSON.parse(ajax.responseText);if(ads.errors){ads=taHandler.emptyAds;}
+if(ele.getAttribute('trigger')!='ajax'){taHandler._renderAll(ele,ads,template);}else{if(!taHandler.clear[ele.id]){taHandler.tempData[ele.id]=ads;}else{delete taHandler.tempData[ele.id];delete taHandler.clear[ele.id];}}}};ajax.open('GET',url,true);ajax.withCredentials=true;ajax.send();}else{if(taHandler.tempData[ele.id]&&!taHandler.clear[ele.id]){taHandler._renderAll(ele,taHandler.tempData[ele.id],template);delete taHandler.tempData[ele.id];}else{var timer=setInterval(function(){if(taHandler.tempData[ele.id]){clearInterval(timer);ele.setAttribute('trigger','render');taHandler._processAds(ele,template);}},100);}
+ele.setAttribute('trigger','ajax');}}
+taHandler._processAdsUserInfo=function(ele,template,callback){if(ele.getAttribute('is_userinfo_rcmd')=="true"){var trigger=ele.getAttribute('trigger');if(trigger!="render"){var ad_url;if(ele.getAttribute('ad_url')){ad_url=ele.getAttribute('ad_url');}else{ad_url=taHandler.ad_url;}
+var url=ad_url+taHandler.userinfo_ep+'?pub_id=12';var ajax=new XMLHttpRequest();ajax.onreadystatechange=function(){if(ajax.readyState==XMLHttpRequest.DONE){if(ajax.status==200){var result=JSON.parse(ajax.responseText);var dep_id='';if(result.user_categories_id!==undefined&&result.user_categories_id.length>0){var dep_len=Math.min(result.user_categories_id.length,3)
+for(i=0;i<dep_len;i++){if(i!=0){dep_id+=',';}
+dep_id+=result.user_categories_id[i].toString();}}else{dep_id=0;}
+ele.setAttribute('dep_id',dep_id);if(trigger=='ajax'){return;}
+taHandler._processAds(ele,template);}else{callback(ele,template);}}}
+ajax.open('GET',url,true);ajax.withCredentials=true;ajax.timeout=2000;ajax.send();}else{taHandler._processAds(ele,template);}}else{callback(ele,template);}}
+taHandler._processAdsCatRcmd=function(ele,template,callback){if(ele.getAttribute('cat_rcmd_key')&&ele.getAttribute('cat_rcmd_key')!=''){var trigger=ele.getAttribute('trigger');if(trigger!="render"){var merlin_url;if(ele.getAttribute('merlin_url')){merlin_url=ele.getAttribute('merlin_url');}else{merlin_url=taHandler.merlin_url;}
+var url=merlin_url+taHandler.merlin_cat_rcmd_ep;var ajax=new XMLHttpRequest();ajax.onreadystatechange=function(){if(ajax.readyState==XMLHttpRequest.DONE){if(ajax.status==200){var result=JSON.parse(ajax.responseText);var dep_id;if(result.data){var arr_cat=result.data[0].product_category_prediction[0].product_category_id;var last_cat=arr_cat[arr_cat.length-1];dep_id=last_cat.id;}
+ele.setAttribute('dep_id',dep_id);if(trigger=='ajax'){return;}
+taHandler._processAds(ele,template);}else{callback(ele,template);}}}
+ajax.open('POST',url,true);ajax.timeout=2000;ajax.setRequestHeader('Content-Type','application/json');ajax.send(JSON.stringify({parcel:[{data:{product_title:ele.getAttribute('cat_rcmd_key')}}],size:1,expect:1}));}else{taHandler._processAds(ele,template);}}else{callback(ele,template);}}
+taHandler._processAdsBasketRcmd=function(ele,template,callback){if(ele.getAttribute('basket_rcmd_key')&&ele.getAttribute('basket_rcmd_key')!='null'){var trigger=ele.getAttribute('trigger');if(trigger!="render"){var merlin_url;if(ele.getAttribute('merlin_url')){merlin_url=ele.getAttribute('merlin_url');}else{merlin_url=taHandler.merlin_url;}
+var url=merlin_url+taHandler.merlin_basket_rcmd_ep;var ajax=new XMLHttpRequest();ajax.onreadystatechange=function(){if(ajax.readyState==XMLHttpRequest.DONE){if(ajax.status==200){var result=JSON.parse(ajax.responseText);if(result.data){var rcmd=result.data[0]['cat_keyword'];if(rcmd.length>0){var random_idx=Math.floor(Math.random()*rcmd.length);if(rcmd[random_idx]){ele.setAttribute('dep_id',rcmd[random_idx][0]);ele.setAttribute('q',rcmd[random_idx][1]);}}else{return;}}
+taHandler._processAds(ele,template);}else{callback(ele,template);}}}
+var rawkey=ele.getAttribute('basket_rcmd_key');var key=JSON.parse(rawkey);ajax.open('POST',url,true);ajax.timeout=2000;ajax.setRequestHeader('Content-Type','application/json');ajax.send(JSON.stringify({parcel:[{data:key}],size:1}));}else{taHandler._processAds(ele,template);}}else{callback(ele,template);}}
+taHandler._loadStyle=function(template,ad_url){var style_url=taHandler.ad_url;if(ad_url){style_url=ad_url;}
+if(template=='directory_catalog-list'){template='directory_catalog';}
+if(template){style_url+='/plugin/css/display/'+template.replace(/_/g,'-');}else{style_url+='/plugin/css/display';}
+var stylesheets=document.getElementsByTagName('link');var loaded=false;for(var i=0;i<stylesheets.length;i++){if(stylesheets[i].href==style_url){loaded=true;break;}}
+if(!loaded){var style=document.createElement('link');style.rel='stylesheet';style.type='text/css';style.href=style_url;document.getElementsByTagName('head')[0].appendChild(style);}}
+taHandler._getCookie=function(param){var value="; "+document.cookie;var parts=value.split('; '+param+'=');if(parts.length==2)return parts.pop().split(';').shift();}
+taHandler._setLangFromCookie=function(){var lang;var name='lang=';var decodedCookie=decodeURIComponent(document.cookie);var ca=decodedCookie.split(';');for(var i=0;i<ca.length;i++){var c=ca[i];while(c.charAt(0)==' '){c=c.substring(1);}
+if(c.indexOf(name)==0){lang=c.substring(name.length,c.length);}}
+if(lang){this.lang=lang;}}
+taHandler._getTomeToken=function(){var token_ele=document.getElementById('token');if(token_ele){taHandler.token=document.getElementById('token').getAttribute('value');}}
+taHandler.doShopAction=function(action,ele){if(typeof tokopedia!='undefined'){if(tokopedia.processAjax!=0)return;}
+var token;var tome_url;var main_container=ele;while(!main_container.classList.contains('ta-inventory')){main_container=main_container.parentElement;}
+token=main_container.getAttribute('token');tome_url=main_container.getAttribute('tome_url');if(!token){taHandler._getTomeToken();token=taHandler.token;}
+if(!tome_url){tome_url=taHandler.tome_url;}
+var url=tome_url+'/shop/favorite-shop';if(typeof tokopedia!='undefined'){tokopedia.processAjax++;}
+var ajax=new XMLHttpRequest();ajax.onreadystatechange=function(){if(ajax.readyState==XMLHttpRequest.DONE){if(ajax.status==200){var result=JSON.parse(ajax.responseText);if(result.message_error){if(result.must_login){window.location='/login.pl';}else{if(typeof tokopedia!='undefined'){var message_error=tokopedia.render_message('error',result.message_error);tokopedia.alert('',message_error);}}}else if(result.success){if(action=='fav'){ele.setAttribute('style','display:none');ele.nextSibling.removeAttribute('style');}else if(action=='unfav'){ele.setAttribute('style','display:none');ele.previousSibling.removeAttribute('style');}
+if(main_container.getAttribute('device')=='mobile'&&typeof tokopedia=='undefined'){taHandler._showToaster(action,ele);}
+if(main_container.getAttribute('src')=='fav_product'){taHandler.pushDataGTMFeed('click','fav',ele);}}else{if(typeof tokopedia!='undefined'){tokopedia.alert_error();}}}else{if(typeof tokopedia!='undefined'){tokopedia.alert_error();}}
+if(typeof tokopedia!='undefined'){tokopedia.remove_ajax_loader();tokopedia.processAjax=0;}}}
+if(typeof tokopedia!='undefined'){tokopedia.processAjax++;tokopedia.show_ajax_loader();}
+var data='action=fave_shop&act=POST';data+='&token='+token;data+='&src='+ele.getAttribute('src');data+='&s_id='+ele.getAttribute('id').split('_')[2];data+='&ad_key='+ele.getAttribute('ad_key');data+='&uri_path='+window.location.pathname;data+='&qs='+JSON.stringify(taHandler._parseURL(window.location.search));ajax.open('POST',url,true);ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');ajax.withCredentials=true;ajax.timeout=2000;ajax.send(encodeURI(data));}
+taHandler.doInfoAction=function(action,ele){var main_container=ele;while(!main_container.classList.contains('promote-sheet')){main_container=main_container.parentElement;}
+var info_ele=main_container.getElementsByClassName('promote-sheet__container')[0];var sheet=info_ele.querySelector(".promote-sheet__content");if(action=='open'){info_ele.classList.add('active');document.body.classList.add('noscroll');taHandler.toggleViewportScrolling(true);var timer=setInterval(function(){clearInterval(timer);sheet.classList.add('show');},75);}else if(action=='close'){var styleUsed=window.getComputedStyle(info_ele);if(styleUsed.getPropertyValue('opacity')==1){sheet.classList.remove('show');document.body.classList.remove('noscroll');taHandler.toggleViewportScrolling(false);var timer=setInterval(function(){clearInterval(timer);info_ele.classList.remove('active');},250);}}else{}}
+taHandler._showToaster=function(action,ele){var ad_container;var main_container=ele;while(!main_container.classList.contains('ta-inventory')){if(main_container.classList.contains('topads__contents-shop')){ad_container=main_container;}
+main_container=main_container.parentElement;}
+var shop_name=(ad_container.getElementsByClassName('topads__title shop')[0]).getElementsByClassName('ta-shop-name')[0].innerHTML;var message;if(action=='fav'){message=shop_name+taHandler.vocabulary[taHandler.lang]['toast-fav'];}else{message=shop_name+taHandler.vocabulary[taHandler.lang]['toast-unfav'];}
+var toaster_container=main_container.getElementsByClassName('toast__container')[0];toaster_container.getElementsByClassName('toast__content')[0].innerHTML=message;toaster_container.classList.remove('closed');toaster_container.classList.add('active');setTimeout(function(){toaster_container.classList.remove('active');toaster_container.classList.add('closed');},3000);}
+taHandler._buildProcess=function(ele){var seq=ele.getAttribute('seq');if(!seq){seq='cat userinfo basket';}
+var seq_list=seq.split(' ');var proc_seq='';for(var i=0;i<seq_list.length;i++){var proc=seq_list[i];if(taHandler.procName[proc]){proc_seq+='taHandler.'+taHandler.procName[proc]+'(ele, template, function(ele, template) {';}}
+proc_seq+='taHandler._processAds(ele, template);';for(var i=seq_list.length-1;i>=0;i--){var proc=seq_list[i];if(taHandler.procName[proc]){proc_seq+='});';}}
+return proc_seq;}
+taHandler.createAds=function(target_ids){var elements;if(Array.isArray(target_ids)){elements=new Array();for(var i=0;i<target_ids.length;i++){var ele=document.getElementById(target_ids[i]);if(ele){elements.push(ele);}}}else{elements=document.querySelectorAll('.ta-inventory:not(.child)');}
+if(elements.length>0){for(var i=0;i<elements.length;i++){var ele=elements[i];var template=ele.getAttribute('template');if(!template){template='inbox_message_detail';ele.setAttribute('template',template);}
+taHandler._loadStyle(template,ele.getAttribute('ad_url'));if(ele.getAttribute('clear')=='true'){taHandler.clearAll(ele.id);ele.removeAttribute('clear');if(ele.getAttribute('trigger')=='ajax'){if(taHandler.tempData[ele.id]){delete taHandler.tempData[ele.id];}else{taHandler.clear[ele.id]=true;}}}else{if(ele.getAttribute('src')=='pdp'&&ele.getAttribute('device')=='desktop'&&taHandler._getCookie('pdpABTestDisplay'+ele.getAttribute('user_id'))=='false'){continue;}
+eval(taHandler._buildProcess(ele));}}}}
+taHandler.pushStates=function(states){if(states&&Array.isArray(states)){var next_states=states;var target_ids=new Array();while(next_states.length>0){var state=next_states.pop();if(state&&state.id){if(!state.no_request){target_ids.push(state.id);}
+delete state.no_request;taHandler._modAttr(state);}}
+if(target_ids.length>0){taHandler.createAds(target_ids);}}}
+taHandler.pushState=function(state){var target_ids=[];if(state&&state.id){if(!state.no_request){target_ids.push(state.id);}
+delete state.no_request;taHandler._modAttr(state);}
+if(target_ids.length>0){taHandler.createAds(target_ids);}}
+taHandler.pushStateToAll=function(state){if(state&&typeof state=="object"){var elements=document.querySelectorAll('.ta-inventory:not(.child)');if(elements.length>0){for(var i=0;i<elements.length;i++){var next_state=state;next_state.id=elements[i].id;taHandler._modAttr(next_state);}}
+taHandler.createAds();}}
+taHandler.switchURL=function(ele){if(ele){var prev_sibling=ele.previousSibling;if(prev_sibling&&prev_sibling.getAttribute('href')){ele.setAttribute('href',prev_sibling.getAttribute('href'));}}}
+taHandler.pushDataGTMProduct=function(params){window.dataLayer=window.dataLayer||[];window.dataLayer.push({'event':params.event,'label':params.label,'productInfo':{'adId':params.adId,'shopId':params.shopId,'productId':params.productId,'categoryId':params.categoryId}});}
+taHandler.pushDataGTMShop=function(params){window.dataLayer=window.dataLayer||[];window.dataLayer.push({'event':params.event,'label':params.label,'productInfo':{'adId':params.adId,'shopId':params.shopId,}});}
+taHandler.pushDataGTMFeedWrapper=function(event,data,type,ele,counter){taHandler.pushDataGTMFeed(event,type,ele);taHandler.pushEcommerceDataGTMFeed(event,JSON.parse(unescape(data)),type,ele,counter);}
+taHandler.pushDataGTMFeed=function(event,type,ele){var main_container=ele;while(!main_container.classList.contains('ta-inventory')){main_container=main_container.parentElement;}
+var page=1;if(main_container.getAttribute('page')){page=main_container.getAttribute('page');}
+var user_id=0;if(main_container.getAttribute('user_id')){user_id=main_container.getAttribute('user_id');}
+var item_id=0;if(ele.getAttribute('item_id')){item_id=ele.getAttribute('item_id');}
+var action;switch(event){case 'click':action='Click';break;case 'imp':action='Impression';break;default:action='Click';break;}
+var label=page.toString();var item_id_field_name;switch(type){case 'product':label+=' - TopAds Product';item_id_field_name='productId';break;case 'shop':label+=' - TopAds Shop';item_id_field_name='shopId';break;case 'fav':label+=' - TopAds Favorite';item_id_field_name='shopId';break;default:label+=' - TopAds Product';item_id_field_name='productId';break;}
+var data={'event':'clickFeed','eventCategory':'Feed','eventAction':action,'eventLabel':label,'contactInfo':{}}
+data.contactInfo.userId=user_id;data[item_id_field_name]=item_id;window.dataLayer=window.dataLayer||[];window.dataLayer.push(data);}
+taHandler.pushEcommerceDataGTMFeed=function(event,data,type,ele){var main_container=ele;while(!main_container.classList.contains('ta-inventory')){main_container=main_container.parentElement;}
+var page=1;if(main_container.getAttribute('page')){page=main_container.getAttribute('page');}
+var action;var dlEvent="";var dlEventAction=event=='imp'?'impression':'click';var label=page.toString();var item_id_field_name;switch(type){case 'product':dlEvent="product";label+=' - TopAds Product';item_id_field_name='productId';if(event=='imp'){dlEvent+="View";var productList=data;var ecommerceData={'currencyCode':'IDR','impressions':productList,}}else{var dataArr=[];dataArr.push(data);dlEvent+="Click";var productList=dataArr;var ecommerceData={'click':{'actionField':{'list':productList[0].list},'products':productList},}}
+break;case 'shop':dlEvent="promo";label+=' - TopAds Product';item_id_field_name='productId';if(event=='imp'){dlEvent+="View";var shopList=data;var ecommerceData={'promoView':{'promotions':shopList}}}else{var dataArr=[];dataArr.push(data);dlEvent+="Click";var shopList=dataArr;var ecommerceData={'promoClick':{'promotions':shopList},}}
+break;default:dlEvent="product";label+=' - TopAds Product';item_id_field_name='productId';if(event=='imp'){dlEvent+="View";var productList=data;var ecommerceData={'currencyCode':'IDR','impressions':productList,}}else{var dataArr=[];dataArr.push(data);dlEvent+="Click";var productList=dataArr;var ecommerceData={'click':{'actionField':{'list':productList[0].list},'products':productList},}}
+break;}
+var data={'event':dlEvent,'eventCategory':'homepage','eventAction':'feed tab - '+dlEventAction+' on top ads promoted '+type,'eventLabel':'','ecommerce':ecommerceData}
+window.dataLayer=window.dataLayer||[];window.dataLayer.push(data);}
+taHandler.constructEcommerceProductList=function(data,event,position){var impressionObject={};impressionObject.name=data.product.name;impressionObject.id=data.product.id;impressionObject.price=parseInt(data.product.price_format.replace(/[^0-9]/g,''));impressionObject.brand="none / other";impressionObject.category="- / - / - / "+data.product.category.id;impressionObject.variant="none / other";impressionObject.list="/feed - topads product "+taHandler.counter.product+" - promoted";impressionObject.position=position+1;return impressionObject;}
+taHandler.constructEcommerceShopList=function(data,event,position){var promotionObject={};promotionObject.id=data.id;promotionObject.name='/feed - topads promo '+taHandler.counter.shop+' - '+'promoted';promotionObject.creative=data.shop.name;promotionObject.position=position+1;return promotionObject;}
+taHandler.init=function(){var elements=document.querySelectorAll('.ta-inventory:not(.child)');if(elements.length>0){if(elements[0].getAttribute('ad_url')){taHandler.ad_url=elements[0].getAttribute('ad_url');}
+if(elements[0].getAttribute('tkpd_url')){taHandler.tkpd_url=elements[0].getAttribute('tkpd_url');}
+if(elements[0].getAttribute('merlin_url')){taHandler.merlin_url=elements[0].getAttribute('merlin_url');}
+if(elements[0].getAttribute('tome_url')){taHandler.tome_url=elements[0].getAttribute('tome_url');}
+var current_script=document.currentScript;if(!(current_script&&current_script.previousSibling&&current_script.previousSibling.tagName=='script'&&current_script.previousSibling.getAttribute('src')==taHandler.ad_url+'/display/ta-display-loader.js')){}
+var target_ids=new Array();for(var i=0;i<elements.length;i++){var ele=elements[i];if(!ele.getAttribute('trigger')||ele.getAttribute('trigger')=="none"){target_ids.push(ele.id);}}
+taHandler.createAds(target_ids);}}
+var freezeViewPort=function(e){e.preventDefault();};taHandler.toggleViewportScrolling=function(scrollable){if(scrollable===true){document.body.addEventListener("touchmove",freezeViewPort,false);}else{document.body.removeEventListener("touchmove",freezeViewPort,false);}}
+taHandler._setLangFromCookie();window.addEventListener('resize',function(){taHandler._trimText();});document.onclick=function(event){var ele=event.target;if(ele.className=='promote-sheet'||ele.className=='promote-sheet__wrapper'){var main_container=ele;while(!main_container.classList.contains('ta-inventory')){main_container=main_container.parentElement;}
+if(main_container.classList.contains('ta-inventory')){taHandler.doInfoAction('close',ele);}}}
+if(document.readyState=='interactive'||document.readyState=='complete'){taHandler.init();}else{document.addEventListener('DOMContentLoaded',function(){taHandler.init();},false);}
+window.taHandler=taHandler;})(window);(function(window){var commandQueue=[];commandQueue.push=function(){for(var i=0;i<arguments.length;i++){window.taHandler.pushState(arguments[i]);}
+return commandQueue;};if(document.readyState=='interactive'||document.readyState=='complete'){window.taDisplay=commandQueue.push.apply(commandQueue,window.taDisplay);}else{document.addEventListener('DOMContentLoaded',function(){window.taDisplay=commandQueue.push.apply(commandQueue,window.taDisplay);},false);}})(window);
