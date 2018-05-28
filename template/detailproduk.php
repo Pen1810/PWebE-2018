@@ -44,11 +44,9 @@ require_once("config.php");
     <li><img src="img/JB.png" alt=""/></li>
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#contact" class="smoothScroll">Contact</a></li>
-    <li><img onclick="changeEng()" src="img/eng.png" style="cursor: pointer; margin:12px 0 0 800px; height:20px;">
-    </li>
-    <li><img onclick="changeInd()" src="img/ina.jpg"
-             style="cursor: pointer; margin:7px 0 0 850px; margin-top:-40px; height:30px;"></li>
+    <li><a href="#contact" class="smoothScroll">About</a></li>
+    <li style="float:right"><a href="signup.php" class="smoothScroll">Sign Up</a></li>
+    <li style="float:right"><a href="signin.php" class="smoothScroll">Sign in</a></li>
 </ul>
 
 <!-- ========== FOOTER SECTION ========== -->
@@ -85,139 +83,5 @@ require_once("config.php");
 </div><!-- /f -->
 <!-- dialog box -->
 
-
-<!-- script of dialog -->
-<script>
-    let counter = 2;
-    let whitebg = document.getElementById("white-background");
-    let sizebox = document.getElementById("size-box");
-    let dsgn = document.getElementById("design-con");
-    let buybox = document.getElementById("buy-box");
-    let dlg = document.getElementById("dlgbox");
-    let tblsize = document.getElementById("tablesize");
-    let button = document.getElementById("buttonDsgn");
-    let pertama = document.getElementsByTagName("p");
-    let kedua = document.getElementsByTagName("p");
-    let buyButton = document.getElementsByTagName("button");
-    let availArray = [0, 2, 4, 6, 8, 10, 12, 14, 16];
-    let sizeArray = [1, 3, 5, 7, 9, 11, 13, 15, 17];
-    let availableStock;
-    let footerh3 = document.getElementsByTagName("h3");
-
-    function showTable() {
-        sizebox.style.display = "none";
-        tblsize.style.display = "block";
-        tblsize.style.left = "410px";
-        tblsize.style.top = "90px";
-    }
-
-    function changeInd() {
-        footerh3[0].innerHTML = "KONTAK KAMI";
-        footerh3[1].innerHTML = "Kirim Kami Pesan";
-        footerh3[3].innerHTML = "Telepon Kami";
-        footerh3[5].innerHTML = "Kami di Sosial Media";
-
-        for (let i = 0; i < 9; i++) {
-            availableStock = Math.floor(Math.random() * (100 - 1 + 1)) + 10;
-            pertama[availArray[i]].innerHTML = "Stok yang Tersedia : " + availableStock;
-            kedua[sizeArray[i]].innerHTML = "Ukuran : (2x2)m";
-            buyButton[i].innerHTML = "Beli";
-        }
-    }
-
-    function changeEng() {
-        footerh3[0].innerHTML = "CONTACT US";
-        footerh3[1].innerHTML = "Send Us Message";
-        footerh3[3].innerHTML = "Call Us";
-        footerh3[5].innerHTML = "We Are Social";
-
-        for (let i = 0; i < 9; i++) {
-            availableStock = Math.floor(Math.random() * (100 - 1 + 1)) + 10;
-            pertama[availArray[i]].innerHTML = "Available Stock : " + availableStock;
-            kedua[sizeArray[i]].innerHTML = "Size : (2x2)m";
-            buyButton[i].innerHTML = "Buy";
-        }
-    }
-
-    function showSize() {
-        whitebg.style.display = "block";
-        sizebox.style.display = "block";
-        dsgn.style.display = "none";
-
-        sizebox.style.left = "410px";
-        sizebox.style.top = "10px";
-    }
-
-    function closeButton() {
-        sizebox.style.display = "none";
-        whitebg.style.display = "none";
-        tablesize.style.display = "none";
-    }
-
-    function showBuy() {
-        let discountValue = Math.floor(Math.random() * (15 - 10 + 1)) + 10;
-        let discountTotal = discountValue / 100 * 200;
-        document.getElementById("discount").innerHTML = "Rp" + discountTotal;
-        document.getElementById("totalPayment").innerHTML = "Rp" + (200 - discountTotal);
-
-        whitebg.style.display = "block";
-        buybox.style.display = "block";
-        dlg.style.display = "none";
-        dsgn.style.display = "none";
-        sizebox.style.display = "none";
-
-        buybox.style.top = "35px";
-        buybox.style.left = "450px";
-    }
-
-    function dlgOKBuy() {
-        whitebg.style.display = "none";
-        buybox.style.display = "none";
-        dlg.style.display = "none";
-    }
-
-    function dlgOKDes() {
-        whitebg.style.display = "none";
-        dsgn.style.display = "none";
-        dlg.style.display = "none";
-    }
-
-    function showDesign() {
-        whitebg.style.display = "block";
-        dsgn.style.display = "block";
-        dlg.style.display = "none";
-
-        let winWidth = window.innerWidth;
-        let winHeight = window.innerHeight;
-
-        dsgn.style.left = "350px";
-        dsgn.style.top = "40px";
-    }
-
-    function dlgOK() {
-        whitebg.style.display = "none";
-        dlg.style.display = "none";
-    }
-
-    function showDialog() {
-        whitebg.style.display = "block";
-        dlg.style.display = "block";
-        button.style.display = "block";
-        counter += 1;
-
-        if (counter === 12) {
-            counter = 2;
-        }
-
-        let test = document.getElementsByTagName("img")[counter].getAttribute("src");
-        document.getElementById("photo").src = test;
-
-        let winWidth = window.innerWidth;
-        let winHeight = window.innerHeight;
-
-        dlg.style.left = (winWidth / 2) - 480 / 2 + "px";
-        dlg.style.top = "50px";
-    }
-</script>
 </body>
 </html>
