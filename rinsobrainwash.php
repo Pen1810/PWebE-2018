@@ -56,6 +56,7 @@ require_once("config.php");
         <div class="col-sm-3">
             <br>
             <br>
+            <br>
             <img src="img/Rinso.JPG">
         </div>
         <div class="col-sm-4">
