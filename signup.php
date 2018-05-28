@@ -122,59 +122,59 @@ if (isset($_POST['signup'])){
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <form name="signup" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onchange="validateInput()" method="post">
-                <?php
-                if ($error) {
-                    ?>
-                    <div>
-                        <label for="nameInput"><strong>Nama Lengkap:</strong></label>
-                        <input type="text" name="name" id="nameInput" class="form-control" <?php echo "value='".$_POST['name']."'" ?>>
-                    </div>
-                    <div>
-                        <label for="usernameInput"><strong>Username:</strong></label>
-                        <input type="text" name="username" id="usernameInput" class="form-control" <?php echo "value='".$_POST['username']."'" ?>>
-                        <?php
-                        if ($username_err != "") echo "<div class='alert alert-danger'>$username_err</div>";
-                        ?>
-                    </div>
-                    <div>
-                        <label for="emailInput"><strong>Alamat Email:</strong></label>
-                        <input type="email" name="email" id="emailInput" class="form-control" <?php echo "value='".$_POST['email']."'" ?>>
-                    </div>
-                    <div>
-                        <label for="addressInput"><strong>Alamat Rumah:</strong></label>
-                        <input type="text" name="address" id="addressInput" class="form-control" <?php echo "value='".$_POST['address']."'" ?>>
-                    </div>
-                    <div>
-                        <label for="phoneInput"><strong>Nomor Telepon:</strong></label>
-                        <input type="text" name="phone" id="phoneInput" class="form-control" <?php echo "value='".$_POST['phone']."'" ?>>
-                    </div>
-                    <div>
-                        <label for="passInput"><strong>Password:</strong></label>
-                        <input type="password" name="pass" id="passInput" class="form-control"
-                               oninput="analyzePassword()">
-                        <div id="passNotif"></div>
-                        <p style="font-size: 10pt">Info: Password harus memiliki panjang minimal 8 karakter.</p>
-                    </div>
-                    <div>
-                        <label for="rePassInput"><strong>Konfirmasi Password:</strong></label>
-                        <input type="password" name="repass" id="rePassInput" class="form-control"
-                               onchange="checkPassword()" disabled="disabled">
-                        <div id="rePassInfo"></div>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" name="agreement" id="agreement" value="ok" onclick="setAgreed()">
-                            <span style="font-size: 10pt;">Saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
-                        </label>
-                    </div>
-                    <div>
-                        <input type="submit" value="Sign Up" name="submit" class="btnSubmit" id="submitform"
-                               disabled="disabled">
-                    </div>
+            <form name="signup" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                  onchange="validateInput()" method="post">
+                <div>
+                    <label for="nameInput"><strong>Nama Lengkap:</strong></label>
+                    <input type="text" name="name" id="nameInput"
+                           class="form-control" <?php if ($error) echo "value='" . $_POST['name'] . "'" ?>>
+                </div>
+                <div>
+                    <label for="usernameInput"><strong>Username:</strong></label>
+                    <input type="text" name="username" id="usernameInput"
+                           class="form-control" <?php if ($error) echo "value='" . $_POST['username'] . "'" ?>>
                     <?php
-                }
-                ?>
+                    if ($username_err != "") echo "<div class='alert alert-danger'>$username_err</div>";
+                    ?>
+                </div>
+                <div>
+                    <label for="emailInput"><strong>Alamat Email:</strong></label>
+                    <input type="email" name="email" id="emailInput"
+                           class="form-control" <?php if ($error) echo "value='" . $_POST['email'] . "'" ?>>
+                </div>
+                <div>
+                    <label for="addressInput"><strong>Alamat Rumah:</strong></label>
+                    <input type="text" name="address" id="addressInput"
+                           class="form-control" <?php if ($error) echo "value='" . $_POST['address'] . "'" ?>>
+                </div>
+                <div>
+                    <label for="phoneInput"><strong>Nomor Telepon:</strong></label>
+                    <input type="text" name="phone" id="phoneInput"
+                           class="form-control" <?php if ($error) echo "value='" . $_POST['phone'] . "'" ?>>
+                </div>
+                <div>
+                    <label for="passInput"><strong>Password:</strong></label>
+                    <input type="password" name="pass" id="passInput" class="form-control"
+                           oninput="analyzePassword()">
+                    <div id="passNotif"></div>
+                    <p style="font-size: 10pt">Info: Password harus memiliki panjang minimal 8 karakter.</p>
+                </div>
+                <div>
+                    <label for="rePassInput"><strong>Konfirmasi Password:</strong></label>
+                    <input type="password" name="repass" id="rePassInput" class="form-control"
+                           onchange="checkPassword()" disabled="disabled">
+                    <div id="rePassInfo"></div>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="agreement" id="agreement" value="ok" onclick="setAgreed()">
+                        <span style="font-size: 10pt;">Saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Sign Up" name="submit" class="btnSubmit" id="submitform"
+                           disabled="disabled">
+                </div>
             </form>
         </div>
     </div>
