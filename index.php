@@ -44,7 +44,8 @@ require_once ("config.php");
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
     <li><a href="#about" class="smoothScroll">About</a></li>
-    <li style="float:right"><a href="signup.php" class="smoothScroll">Signup</a></li>
+    <li style="float:right"><a href="signup.php" class="smoothScroll">Sign up</a></li>
+    <li style="float:right"><a href="signin.php" class="smoothScroll">Sign in</a></li>
 </ul>
 
 <!-- ========== HEADER SECTION ========== -->
