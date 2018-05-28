@@ -43,7 +43,7 @@ require_once("config.php");
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
-            margin: auto;
+            margin: 25px 50px;
         }
 
         td, th
@@ -51,7 +51,7 @@ require_once("config.php");
             border: 1px solid grey;
             text-align: left;
             padding: 8px;
-            margin: auto;
+            margin: 25px 50px;
         }
 
         tr:nth-child(odd)
@@ -71,12 +71,12 @@ require_once("config.php");
             height:auto;
             border:5px solid grey;
             text-align: center;
-            margin: auto;
+            margin: 25px 50px;
         }
         h2,h3
         {
             text-align:center;
-            margin: auto;
+            margin: 25px 50px;
         }
     </style>
 </head>
