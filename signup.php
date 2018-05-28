@@ -5,7 +5,7 @@ $error = false;
 $username = $password = "";
 $username_err = "";
 
-if (isset($_POST['signup'])){
+if (isset($_POST['submit'])){
     $sql = "SELECT username FROM member WHERE username=?";
     if ($stmt = mysqli_prepare($usrconn, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -172,7 +172,7 @@ if (isset($_POST['signup'])){
                     </label>
                 </div>
                 <div>
-                    <input type="submit" value="Sign Up" name="submit" class="btnSubmit" id="submitform"
+                    <input type="submit" value="Sign Up" name="submit" class="btn btn-primary" id="submitform"
                            disabled="disabled">
                 </div>
             </form>
