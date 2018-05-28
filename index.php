@@ -8,8 +8,9 @@ require_once ("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Basic" rel="stylesheet">
     <title>Sample Shopping</title>
 
     <!-- Bootstrap core CSS -->
