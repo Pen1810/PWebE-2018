@@ -60,6 +60,8 @@ require_once("config.php");
         </div>
         <div class="col-sm-4">
             <br>
+            <br>
+            <br>
             <h3>Informasi produk</h3>
             <br>
             <div class="col-sm-1"></div>
