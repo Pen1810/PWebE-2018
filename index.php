@@ -41,7 +41,6 @@ require_once ("config.php");
 <body data-spy="scroll" data-offset="0" data-target="#theMenu">
 
 <ul>
-    <li><img src="img/JB.png" alt=""/></li>
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
     <li><a href="#about" class="smoothScroll">About</a></li>
