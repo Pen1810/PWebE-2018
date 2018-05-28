@@ -8,9 +8,7 @@ require_once("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/JB.png">
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="JB.png"/>
     <title>Sample Shopping</title>
 
     <!-- Bootstrap core CSS -->
@@ -95,19 +93,11 @@ require_once("config.php");
 <div class="Main">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">
-            <br>
-            <br>
-            <br>
+        <div class="col-sm-12">
             <br>
             <img src="img/Rinso.JPG">
         </div>
         <div class="col-sm-4">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <br>
             <h3>Informasi produk</h3>
             <br>
