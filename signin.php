@@ -89,7 +89,7 @@ if(isset($_POST['submit'])){
             <form name="signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
                   onchange="validateInput()" method="post">
                 <div>
-                    <label for="usernameInput"><strong>Username atau email:</strong></label>
+                    <label for="usernameInput"><strong>Username:</strong></label>
                     <input type="text" name="username" id="usernameInput"
                            class="form-control" <?php if ($error) echo "value='" . $_POST['username'] . "'" ?>>
                 </div>

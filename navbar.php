@@ -24,7 +24,7 @@ session_start();
     if ($_SESSION['role'] == 1) {
         echo "<li style='float:right'><a href='admin'>Admin Page</a></li>";
     }
-    elseif ($_SESSION['rule'] == 2) {
+    elseif ($_SESSION['role'] == 2) {
         echo "<li style='float:right'><a href='seller'>Seller Page</a></li>";
     }
     ?>
