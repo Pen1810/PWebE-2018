@@ -1,5 +1,10 @@
 <?php
 require_once ("config.php");
+session_start();
+if (!empty($_SESSION) && isset($_SESSION['username'])) {
+    header("location: index.php");
+}
+
 $username = $password = "";
 $error = false;
 
@@ -19,7 +24,7 @@ if(isset($_POST['submit'])){
     }
 
     if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT username, pass FROM member WHERE username = ?";
+        $sql = "SELECT username, pass, role, profpic FROM member WHERE username = ?";
 
         if($stmt = mysqli_prepare($usrconn, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -29,11 +34,13 @@ if(isset($_POST['submit'])){
                 mysqli_stmt_store_result($stmt);
 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    mysqli_stmt_bind_result($stmt, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $username, $hashed_password, $role, $profpic);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             session_start();
                             $_SESSION['username'] = $username;
+                            $_SESSION['role'] = $role;
+                            $_SESSION['profpic'] = $profpic;
                             header("location: index.php");
                         }
                         else{

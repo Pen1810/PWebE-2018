@@ -1,5 +1,6 @@
 <?php
 require_once ("config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +40,7 @@ require_once ("config.php");
 </head>
 
 <body data-spy="scroll" data-offset="0" data-target="#theMenu">
-
-<ul>
-    <li><a href="index.php" class="smoothScroll">Home</a></li>
-    <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#about" class="smoothScroll">About</a></li>
-    <li style="float:right"><a href="signup.php" class="smoothScroll">Sign up</a></li>
-    <li style="float:right"><a href="signin.php" class="smoothScroll">Sign in</a></li>
-</ul>
+<?php include ("navbar.php"); ?>
 
 <!-- ========== HEADER SECTION ========== -->
 <section id="home"></section>
@@ -109,5 +103,6 @@ require_once ("config.php");
 <script src="js/bootstrap.min.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/main.js"></script>
+<script src="js/popper.min.js"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@ require_once("config.php");
 
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
     <script src="js/Chart.js"></script>
     <!--script src="js/modernizr.custom.js"></script-->
 
@@ -40,14 +41,7 @@ require_once("config.php");
 </head>
 
 <body>
-<ul>
-    <li><a href="index.php" class="smoothScroll">Home</a></li>
-    <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#" class="smoothScroll">About</a></li>
-    <li style="float:right"><a href="signup.php" class="smoothScroll">Sign Up</a></li>
-    <li style="float:right"><a href="signin.php" class="smoothScroll">Sign in</a></li>
-
-</ul>
+<?php include ("navbar.php"); ?>
 
 <!-- Main source -->
 <div id="container" class="bounceInDown animated">

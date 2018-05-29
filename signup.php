@@ -1,5 +1,9 @@
 <?php
 require_once ("config.php");
+session_start();
+if (!empty($_SESSION) && isset($_SESSION['username'])) {
+    header("location: index.php");
+}
 
 $error = false;
 $username = $password = "";
