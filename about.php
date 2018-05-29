@@ -47,6 +47,8 @@ session_start();
 <div id="headerwrap">
     <div class="container bounceInDown animated">
         <br>
+        <h2>Sample Shopping</h2>
+        <br>
         <h4>Kami memberikan layanan belanja online yang terbaik bagi Anda</h4>
         <h4>Kualitas barang sangat terjamin</h4>
         <h4>Pelayanan MAXIMAL</h4>
