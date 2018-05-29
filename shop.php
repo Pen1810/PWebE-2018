@@ -46,59 +46,59 @@ require_once("config.php");
 <!-- Main source -->
 <div id="container" class="bounceInDown animated">
     <div class="child-1">
-        <img src="img/bwgintyper.jpg.jpg">
+        <img src="img/bwgintyper.jpg">
         <div id="info">
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="bwginr.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">BrainWasgin Black Type R</p>
     </div>
     <div class="child-1">
-        <img src="img/bwginblackse.jpg.jpg">
+        <img src="img/bwginblackse.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="bwginse.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Black SE</p>
     </div>
     <div class="child-1">
-        <img src="img/bwginblue.jpg.jpg">
+        <img src="img/bwginblue.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="bwginblue.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Blue</p>
     </div>
     <div class="child-1">
-        <img src="img/bwginstd.jpg.jpg">
+        <img src="img/bwginstd.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="bwginstd.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">BrainWashgin Green</p>
     </div>
     <div class="child-1">
-        <img src="img/brainwashstd.jpg.jpg">
+        <img src="img/brainwashstd.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="rinsobrainwashstd.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash Standard</p>
     </div>
 
     <div class="child-1">
-        <img src="img/brainwashextra.jpg.jpg">
+        <img src="img/brainwashextra.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="rinsobrainwashextra.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash EXTRA</p>
     </div>
 
     <div class="child-1">
-        <img src="img/brainwashblack.jpg.jpg">
+        <img src="img/brainwashblack.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="rinsobrainwashblack.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">Rinso BrainWash BLACK EDITION</p>
@@ -107,7 +107,7 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/oskadon.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="oskadon.php" class="tombol animated">Detail</a>
         </div>
 
         <p style="margin-top:170px">Oskadon ANTI PASRAH</p>
@@ -116,10 +116,10 @@ require_once("config.php");
     <div class="child-1">
         <img src="img/bodrex.jpg">
         <div>
-            <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
+            <a href="bodrex.php" class="tombol animated">Detail</a>
         </div>
 
-        <p style="margin-top:170px">BODREX Antibemper</p>
+        <p style="margin-top:170px">Bodrex</p>
     </div>
 </div>
 

@@ -95,7 +95,7 @@ require_once("config.php");
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
             <br>
-            <img src="img/Rinso.JPG">
+            <img src="img/brainwashextra.jpg">
         </div>
         <div class="col-sm-4">
             <br>
@@ -106,7 +106,7 @@ require_once("config.php");
                 <table>
                     <tr>
                         <td>Tipe</td>
-                        <td>Rinso Anti Mabok</td>
+                        <td>Rinso BrainWash Extra</td>
                     </tr>
                     <tr>
                         <td>Berat</td>
@@ -118,7 +118,7 @@ require_once("config.php");
                     </tr>
                     <tr>
                         <td>Kondisi</td>
-                        <td>Refurbished</td>
+                        <td>New</td>
                     </tr>
                     <tr>
                         <td>Distributor</td>
@@ -133,6 +133,9 @@ require_once("config.php");
                         <td>JN*, J&E, Haruna, Pos BrainWash</td>
                     </tr>
                 </table>
+                <br>
+                <br>
+                <h3>Jika anda ingin pencucian otak dengan konsentrat yang lebih kuat, pakailah ini. Dijamin MANTAP</h3>
             </div>
             <div class="col-sm-1"></div>
         </div>
