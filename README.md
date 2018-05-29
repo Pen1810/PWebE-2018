@@ -50,6 +50,8 @@ kategori | Not null | not set
 nama_barang | Not null | not set
 harga | Not null | not set
 stock | Not null | not set
+berat | Not null | not set
+deskripsi | Not null | not set
 itempic | Not null | <code>/img/catalogue/default.png</code>
 
 Keterangan: 

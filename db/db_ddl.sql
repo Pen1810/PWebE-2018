@@ -4,6 +4,8 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(128) NOT NULL,
   `harga` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
+  `berat` int(11) NOT NULL,
+  `deskripsi` varchar(256) NOT NULL,
   `itempic` varchar(128) NOT NULL DEFAULT '/img/catalogue/default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

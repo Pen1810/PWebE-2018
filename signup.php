@@ -1,5 +1,9 @@
 <?php
 require_once ("config.php");
+session_start();
+if (!empty($_SESSION) && isset($_SESSION['username'])) {
+    header("location: index.php");
+}
 
 $error = false;
 $username = $password = "";
@@ -27,7 +31,7 @@ if (isset($_POST['submit'])){
         if ($stmt = mysqli_prepare($usrconn, $sql)) {
             mysqli_stmt_bind_param($stmt, "ssssss", $param_username, $param_pass, $param_nama, $param_alamat, $param_telp, $param_email);
             $param_username = $username;
-            $param_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $param_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $param_nama = $_POST['name'];
             $param_alamat = $_POST['address'];
             $param_telp = $_POST['phone'];
@@ -56,11 +60,6 @@ if (isset($_POST['submit'])){
         let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
         let passOK = false;
         let rePassStat = false;
-        let agreed = false;
-
-        function setAgreed() {
-            agreed = !agreed;
-        }
 
         function analyzePassword() {
             let password = document.getElementById("passInput").value;
@@ -104,7 +103,7 @@ if (isset($_POST['submit'])){
             let email = document.forms["signup"]["email"].value.trim();
             let address = document.forms["signup"]["address"].value.trim();
             let phone = document.forms["signup"]["phone"].value.trim();
-            if (name !== "" && username !== "" && email !== "" && address !== "" && phone !== "" && rePassStat && agreed) {
+            if (name !== "" && username !== "" && email !== "" && address !== "" && phone !== "" && rePassStat) {
                 document.getElementById("submitform").removeAttribute("disabled");
             }
             else {
@@ -166,10 +165,9 @@ if (isset($_POST['submit'])){
                     <div id="rePassInfo"></div>
                 </div>
                 <div>
-                    <label>
-                        <input type="checkbox" name="agreement" id="agreement" value="ok" onclick="setAgreed()">
-                        <span style="font-size: 10pt;">Saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
-                    </label>
+                    <p>
+                        <span style="font-size: 10pt;">Dengan mengisi form ini, saya setuju dengan <a href="term_and_conditions.php">syarat dan ketentuan</a> pada e-commerce ini.</span>
+                    </p>
                 </div>
                 <div>
                     <input type="submit" value="Sign Up" name="submit" class="btn btn-primary" id="submitform"

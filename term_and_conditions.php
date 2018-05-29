@@ -12,7 +12,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Poppins|Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Basic" rel="stylesheet">
-    <title>Sample Shopping</title>
+    <title>Syarat dan Ketentuan</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -41,38 +41,31 @@ session_start();
 
 <body data-spy="scroll" data-offset="0" data-target="#theMenu">
 <?php include ("navbar.php"); ?>
-
-<!-- ========== HEADER SECTION ========== -->
-<section id="home"></section>
-<div id="headerwrap">
-    <div class="container bounceInDown animated">
-        <br>
-        <h1>Sample Shopping</h1>
-        <h2>Welcome to The Shop</h2>
-        <br>
-        <br>
-        <a href="shop.php" class="tombol animated">Start Shopping</a>
-                <div class="row">
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-lg-6 col-lg-offset-3">
-                    </div>
-                </div>
-    </div><!-- /container -->
-</div><!-- /headerwrap -->
-
-<!-- ========== WHITE SECTION ========== -->
-<div id="w">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h4><strong>WE WORK HARD TO PROVIDE YOU WITH VARIOUS HIGH QUALITY ITEMS</strong></h4>
-            </div>
-        </div>
-    </div><!-- /container -->
-</div><!-- /w -->
-
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="text-center" style="margin-top: 50px;">SYARAT DAN KETENTUAN</h4>
+    </div>
+</div>
+<div class="row">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-10">
+		<p>Selamat datang di <a href="index.php" style="text-decoration: none">Sample Shopping</a></p>
+		<p>Dengan mengakses atau menggunakan layanan situs belanja online kami, berarti kami bisa menganggap bahwa Anda telah membaca, memahami serta tunduk terhadap seluruh syarat dan ketentuan yang telah ditetapkan oleh kami. Segala bentuk pelanggaran akan ditindak tegas oleh BPH <strong>BrainWash Syndicate</strong> selaku pengelola website ini.</p>
+		<br>
+		<p>1. PENGGUNAAN LAYANAN</p>
+		<p>Kami memberikan seluruh informasi terkait pembelian barang yang disediakan oleh pihak ketiga secara gratis. Aktivitas yang dapat Anda lakukan hanya sebatas pada registrasi akun, memesan barang dan check out. Anda tidak diperkenankan untuk melakukan kegiatan kriminal seperti peretasan situs, face off website, pencurian material dan lain sebagai nya. Segala bentuk kegiatan gelap akan ditindak lanjuti.</p>
+		<br>
+		<p>2. KRITIK DAN SARAN</p>
+		<p>Kami sangat menghargai semua bentuk kritik dan saran dari Anda. Seluruh masukan terkait website atau peraturan lain yang mungkin bisa diperbaiki dapat dikirimkan ke email <strong>turanwash@gmail.com</strong> atau melalui aplikasi WhatsApp <strong>+6281234567890.</strong></p>
+		<br>
+		<p>3. TRANSAKSI</p>
+		<p>Diharapkan kepada pembeli dan penjual barang yang menggunakan layanan belanja online ini untuk bertransaksi dengan jujur. Apabila ada keluhan dari sang pembeli terkait ketidaksesuaian harga maupun barang yang dikirim, kami berhak untuk menutup akun penjual dan memberikan denda dengan nominal yang sama dengan barang yang diperjualbelikan. Segala bentuk penipuan akan ditindak dengan tegas.</p>
+		<br>
+		<p>4. UMUM</p>
+		<p>Penggunaan dan akses ke situs ini telah diatur oleh syarat dan ketentuan yang berlaku. Kami berhak untuk mengubah ketentuan yang tertera tanpa pemberitahuan khusus kepada seluruh pengguna situs ini.</p>
+	</div>	
+	<div class="col-sm-1"></div>
+</div>
 <!-- ========== FOOTER SECTION ========== -->
 <section id="contact"></section>
 <div id="f" style="background-color:#333">
