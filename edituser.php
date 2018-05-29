@@ -8,7 +8,7 @@ $uploadOk = 0;
 $name = $phone = $email = $address = $profpic = "";
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 if (isset($_POST["submit"])) {
-    if (empty($_FILES['fileToUpload'])) {
+    if (empty($_FILES['fileToUpload']['name'])) {
         $uploadOk = 1;
         $imgpath = $_SESSION['profpic'];
     }
