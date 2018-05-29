@@ -41,7 +41,11 @@ session_start();
 
 <body data-spy="scroll" data-offset="0" data-target="#theMenu">
 <?php include ("navbar.php"); ?>
-<h4><center>SYARAT DAN KETENTUAN</center></h4>
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="text-center">SYARAT DAN KETENTUAN</h4>
+    </div>
+</div>
 <div class="row">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
@@ -92,9 +96,9 @@ session_start();
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="js/custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/main.js"></script>
-<script src="js/popper.min.js"></script>
 </body>
 </html>

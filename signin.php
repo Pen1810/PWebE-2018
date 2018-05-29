@@ -16,11 +16,11 @@ if(isset($_POST['submit'])){
         $username = trim($_POST["username"]);
     }
 
-    if(empty(trim($_POST['password']))){
+    if(empty($_POST['pass'])){
         $error = true;
     }
     else{
-        $password = trim($_POST['password']);
+        $password = $_POST['pass'];
     }
 
     if(empty($username_err) && empty($password_err)){
