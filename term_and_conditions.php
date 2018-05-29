@@ -44,7 +44,7 @@ session_start();
 <h4><center>SYARAT DAN KETENTUAN</center></h4>
 <div class="row">
 	<div class="col-sm-1"></div>
-	<div class="col-sm-10"></div>
+	<div class="col-sm-10">
 		<p>Selamat datang di <a href="index.php" style="text-decoration: none">Sample Shopping</a></p>
 		<p>Dengan mengakses atau menggunakan layanan situs belanja online kami, berarti kami bisa menganggap bahwa Anda telah membaca, memahami serta tunduk terhadap seluruh syarat dan ketentuan yang telah ditetapkan oleh kami. Segala bentuk pelanggaran akan ditindak tegas oleh BPH <strong>BrainWash Syndicate</strong> selaku pengelola website ini.</p>
 		<br>
@@ -59,6 +59,7 @@ session_start();
 		<br>
 		<p>4. UMUM</p>
 		<p>Penggunaan dan akses ke situs ini telah diatur oleh syarat dan ketentuan yang berlaku. Kami berhak untuk mengubah ketentuan yang tertera tanpa pemberitahuan khusus kepada seluruh pengguna situs ini.</p>
+	</div>	
 	<div class="col-sm-1"></div>
 </div>
 <!-- ========== FOOTER SECTION ========== -->
