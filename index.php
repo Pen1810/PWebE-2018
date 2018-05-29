@@ -51,7 +51,7 @@ session_start();
         <h2>Welcome to The Shop</h2>
         <br>
         <br>
-        <a href="shop.php" class="tombol">Sign Up & Start Shopping</a>
+        <a href="shop.php" class="tombol animated">Sign Up & Start Shopping</a>
                 <div class="row">
                     <br>
                     <br>
