@@ -4,7 +4,7 @@ session_start();
 <ul>
     <li><a href="index.php" class="smoothScroll">Home</a></li>
     <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#about" class="smoothScroll">About</a></li>
+    <li><a href="about.php" class="smoothScroll">About</a></li>
         <?php
     if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
         ?>

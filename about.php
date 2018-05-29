@@ -46,19 +46,17 @@ session_start();
 <section id="home"></section>
 <div id="headerwrap">
     <div class="container bounceInDown animated">
+        <h2 style="margin-top:200px;">Sample Shopping</h2>
         <br>
-        <h1>Sample Shopping</h1>
-        <h2>Welcome to The Shop</h2>
+        <h4>Kami memberikan layanan belanja online yang terbaik bagi Anda</h4>
+        <h4>Kualitas barang sangat terjamin</h4>
+        <h4>Pelayanan MAXIMAL</h4>
+        <h4>Penjual yang terverifikasi</h4>
+        <h4>Kurir EXPRESS, pesan sekarang, besok sampai tujuan!</h4>
         <br>
+        <h4>Tunggu apalagi?</h4>
+        <h4>Belanja sekarang juga di Sample Shopping!</h4>
         <br>
-        <a href="shop.php" class="tombol animated">Start Shopping</a>
-                <div class="row">
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-lg-6 col-lg-offset-3">
-                    </div>
-                </div>
     </div><!-- /container -->
 </div><!-- /headerwrap -->
 

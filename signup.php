@@ -171,7 +171,7 @@ if (isset($_POST['submit'])){
                 </div>
                 <div>
                     <p>
-                        <span style="font-size: 10pt;">Dengan mengisi form ini, saya setuju dengan <a href="term_and_conditions.html">syarat dan ketentuan</a> pada e-commerce ini.</span>
+                        <span style="font-size: 10pt;">Dengan mengisi form ini, saya setuju dengan <a href="term_and_conditions.php">syarat dan ketentuan</a> pada e-commerce ini.</span>
                     </p>
                 </div>
                 <div>
