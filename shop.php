@@ -46,7 +46,7 @@ require_once("config.php");
 <!-- Main source -->
 <div id="container" class="bounceInDown animated">
     <div class="child-1">
-        <img src="img/1.jpg">
+        <img src="img/bwgintyper.jpg.jpg">
         <div id="info">
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -54,7 +54,7 @@ require_once("config.php");
         <p style="margin-top:170px">BrainWasgin Black Type R</p>
     </div>
     <div class="child-1">
-        <img src="img/2.jpg">
+        <img src="img/bwginblackse.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -62,7 +62,7 @@ require_once("config.php");
         <p style="margin-top:170px">BrainWashgin Black SE</p>
     </div>
     <div class="child-1">
-        <img src="img/3.jpg">
+        <img src="img/bwginblue.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -70,7 +70,7 @@ require_once("config.php");
         <p style="margin-top:170px">BrainWashgin Blue</p>
     </div>
     <div class="child-1">
-        <img src="img/4.jpg">
+        <img src="img/bwginstd.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -78,7 +78,7 @@ require_once("config.php");
         <p style="margin-top:170px">BrainWashgin Green</p>
     </div>
     <div class="child-1">
-        <img src="img/5.jpg">
+        <img src="img/brainwashstd.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -87,7 +87,7 @@ require_once("config.php");
     </div>
 
     <div class="child-1">
-        <img src="img/5.jpg">
+        <img src="img/brainwashextra.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -96,7 +96,7 @@ require_once("config.php");
     </div>
 
     <div class="child-1">
-        <img src="img/5.jpg">
+        <img src="img/brainwashblack.jpg.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -105,7 +105,7 @@ require_once("config.php");
     </div>
 
     <div class="child-1">
-        <img src="img/5.jpg">
+        <img src="img/oskadon.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
@@ -114,7 +114,7 @@ require_once("config.php");
     </div>
 
     <div class="child-1">
-        <img src="img/5.jpg">
+        <img src="img/bodrex.jpg">
         <div>
             <button onclick="showDialog()" class="bounceInUp animated">Detail</button>
         </div>
