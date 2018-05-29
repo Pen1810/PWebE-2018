@@ -31,7 +31,7 @@ if (isset($_POST['submit'])){
         if ($stmt = mysqli_prepare($usrconn, $sql)) {
             mysqli_stmt_bind_param($stmt, "ssssss", $param_username, $param_pass, $param_nama, $param_alamat, $param_telp, $param_email);
             $param_username = $username;
-            $param_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $param_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $param_nama = $_POST['name'];
             $param_alamat = $_POST['address'];
             $param_telp = $_POST['phone'];
