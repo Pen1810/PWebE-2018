@@ -100,9 +100,9 @@ session_start();
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="js/custom.js"></script>
 <script src="js/classie.js"></script>
+<script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/main.js"></script>
-<script src="js/popper.min.js"></script>
 </body>
 </html>

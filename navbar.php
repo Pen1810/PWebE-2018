@@ -10,12 +10,12 @@ session_start();
         ?>
     <li style="float:right">
         <div class="dropdown">
-            <button style="padding: 10px" data-toggle="dropdown" type="button" class="btn btn-link dropdown-toggle">
+            <button style="padding: 8px" data-toggle="dropdown" type="button" class="btn btn-link dropdown-toggle">
                 <img src="<?php echo $_SESSION['profpic']; ?>" style="height: 22px; width: auto; margin: 0">
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">item1</a>
-                <a class="dropdown-item" href="#">item2</a>
+                <a class="dropdown-item" href="edituser.php">Edit profile</a>
+                <a class="dropdown-item" href="signout.php">Sign Out</a>
             </div>
         </div>
     </li>
