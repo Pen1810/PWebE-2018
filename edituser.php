@@ -41,14 +41,15 @@ if (isset($_POST["submit"])) {
         }
     }
     if ($uploadOk == 1) {
-        $sql = "UPDATE member SET nama=?, alamat=?, telp=?, email=?, profpic=?";
+        $sql = "UPDATE member SET nama=?, alamat=?, telp=?, email=?, profpic=? WHERE username=?";
         if ($stmt = mysqli_prepare($usrconn, $sql)) {
-            mysqli_stmt_bind_param($stmt, "sssss", $param_nama, $param_alamat, $param_telp, $param_email, $param_profpic);
+            mysqli_stmt_bind_param($stmt, "ssssss", $param_nama, $param_alamat, $param_telp, $param_email, $param_profpic, $param_username);
             $param_nama = $_POST['name'];
             $param_alamat = $_POST['address'];
             $param_telp = $_POST['phone'];
             $param_email = $_POST['email'];
             $param_profpic = $imgpath;
+            $param_username = $_SESSION['username'];
             if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['profpic'] = $imgpath;
                 header("location: index.php");
