@@ -1,8 +1,12 @@
 <?php
 require_once ('config.php');
 session_start();
+if (!isset($_SESSION['username'])){
+    header("location: index.php");
+}
+
 $error_msg = "";
-$target_dir = "img/profile/";
+$target_dir = "/img/profile/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 0;
 $name = $phone = $email = $address = $profpic = "";
