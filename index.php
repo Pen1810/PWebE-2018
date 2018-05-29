@@ -49,6 +49,7 @@ session_start();
         <br>
         <h1>Sample Shopping</h1>
         <h2>Welcome to The Shop</h2>
+        <button onclick="shop.php" class="bounceInUp animated">Click Here and Start Shopping</button>
                 <div class="row">
                     <br>
                     <br>
