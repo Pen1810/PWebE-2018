@@ -13,8 +13,6 @@ if (isset($_POST["submit"])) {
         $imgpath = $_SESSION['profpic'];
     }
     else {
-        echo $_FILES["fileToUpload"]["tmp_name"];
-        echo $_FILES["fileToUpload"]["name"];
         $check = exif_imagetype($_FILES["fileToUpload"]["tmp_name"]);
         if ($check) {
             $uploadOk = 1;
@@ -38,7 +36,7 @@ if (isset($_POST["submit"])) {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $imgpath = $target_file;
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                $error_msg = "Sorry, there was an error uploading your file.";
             }
         }
     }
@@ -86,7 +84,7 @@ if ($stmt = mysqli_prepare($usrconn, $sql)) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign In</title>
+    <title>Edit Profile</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/signup.css" rel="stylesheet" type="text/css">
 </head>
@@ -94,7 +92,7 @@ if ($stmt = mysqli_prepare($usrconn, $sql)) {
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center main-title">
-            <h2>Sign-up to Sample Shopping</h2>
+            <h2>Edit Profile</h2>
         </div>
     </div>
     <?php
