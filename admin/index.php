@@ -31,6 +31,7 @@ if ($_SESSION['role'] != 1){
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/edituser.php">Edit profile</a>
+                    <a class="dropdown-item" href="/changepassword.php">Change Password</a>
                     <a class="dropdown-item" href="/signout.php">Sign Out</a>
                 </div>
             </li>

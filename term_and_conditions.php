@@ -43,7 +43,7 @@ session_start();
 <?php include ("navbar.php"); ?>
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="text-center">SYARAT DAN KETENTUAN</h4>
+        <h4 class="text-center" style="margin-top: 50px;">SYARAT DAN KETENTUAN</h4>
     </div>
 </div>
 <div class="row">

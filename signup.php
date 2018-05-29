@@ -60,11 +60,6 @@ if (isset($_POST['submit'])){
         let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
         let passOK = false;
         let rePassStat = false;
-        let agreed = false;
-
-        function setAgreed() {
-            agreed = !agreed;
-        }
 
         function analyzePassword() {
             let password = document.getElementById("passInput").value;
