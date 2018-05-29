@@ -93,7 +93,7 @@ require_once("config.php");
 <div class="Main">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <br>
             <img src="img/Rinso.JPG">
         </div>
@@ -130,7 +130,7 @@ require_once("config.php");
                     </tr>
                     <tr>
                         <td>Kurir</td>
-                        <td>JNE Ultra ZONK</td>
+                        <td>JN*, J&E, Haruna, Pos BrainWash</td>
                     </tr>
                 </table>
             </div>
