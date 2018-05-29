@@ -47,18 +47,15 @@ session_start();
 <div id="headerwrap">
     <div class="container bounceInDown animated">
         <br>
-        <h1>Sample Shopping</h1>
+        <h4>Kami memberikan layanan belanja online yang terbaik bagi Anda</h4>
+        <h4>Kualitas barang sangat terjamin</h4>
+        <h4>Pelayanan MAXIMAL</h4>
+        <h4>Penjual yang terverifikasi</h4>
+        <h4>Kurir EXPRESS, pesan sekarang, besok sampai tujuan!</h4>
         <br>
-        <div style="color: white;">
-        	<h4>Kami memberikan layanan belanja online yang terbaik bagi Anda</h4>
-	        <h4>Kualitas barang sangat terjamin</h4>
-    	    <h4>Pelayanan MAXIMAL</h4>
-        	<h4>Penjual yang terverifikasi</h4>
-        	<h4>Kurir EXPRESS, pesan sekarang, besok sampai tujuan!</h4>
-        	<br>
-        	<h4>Tunggu apalagi?</h4>
-        	<h4>Belanja sekarang juga di Sample Shopping!</h4>
-        </div>
+        <h4>Tunggu apalagi?</h4>
+        <h4>Belanja sekarang juga di Sample Shopping!</h4>
+        <br>
     </div><!-- /container -->
 </div><!-- /headerwrap -->
 
