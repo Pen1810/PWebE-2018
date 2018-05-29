@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])){
 }
 
 $error_msg = "";
-$target_dir = "/img/profile/";
+$target_dir = "img/profile/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 0;
 $name = $phone = $email = $address = $profpic = "";
@@ -52,7 +52,7 @@ if (isset($_POST["submit"])) {
             $param_alamat = $_POST['address'];
             $param_telp = $_POST['phone'];
             $param_email = $_POST['email'];
-            $param_profpic = $imgpath;
+            $param_profpic = '/' . $imgpath;
             $param_username = $_SESSION['username'];
             if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['profpic'] = $imgpath;
