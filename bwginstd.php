@@ -95,7 +95,7 @@ require_once("config.php");
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
             <br>
-            <img src="img/bwginstd.jpg.JPG">
+            <img src="img/bwginstd.jpg">
         </div>
         <div class="col-sm-4">
             <br>
