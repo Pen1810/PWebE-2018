@@ -55,7 +55,9 @@ if (isset($_POST["submit"])) {
             $param_profpic = '/' . $imgpath;
             $param_username = $_SESSION['username'];
             if (mysqli_stmt_execute($stmt)) {
-                $_SESSION['profpic'] = '/' . $imgpath;
+                if (!empty($_FILES['fileToUpload']['name']))
+                    $imgpath = '/' . $imgpath;
+                $_SESSION['profpic'] = $imgpath;
                 header("location: index.php");
             } else {
                 die("Something went wrong. Please try again later.");
