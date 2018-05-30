@@ -1,5 +1,6 @@
 <?php
-require_once("config.php");
+require_once ("config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +61,7 @@ require_once("config.php");
         {
             max-width: 100%;
             max-height: 100%;
+            msrgin-top: 100px;
         }
         .Price
         {
@@ -79,23 +81,16 @@ require_once("config.php");
     </style>
 </head>
 
-<body>
-<ul>
-    <li><a href="index.php" class="smoothScroll">Home</a></li>
-    <li><a href="shop.php" class="smoothScroll">Shop</a></li>
-    <li><a href="#" class="smoothScroll">About</a></li>
-    <li style="float:right"><a href="signup.php" class="smoothScroll">Sign Up</a></li>
-    <li style="float:right"><a href="signin.php" class="smoothScroll">Sign in</a></li>
-
-</ul>
-
+<body data-spy="scroll" data-offset="0" data-target="#theMenu">
+<?php include ("navbar.php"); ?>
+    
 <!-- Main source -->
 <div class="Main">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <br>
-            <img src="img/bwginstd.jpg.JPG">
+            <img src="img/bwginstd.jpg">
         </div>
         <div class="col-sm-4">
             <br>
