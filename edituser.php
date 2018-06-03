@@ -1,6 +1,10 @@
 <?php
 require_once ('config.php');
 session_start();
+if (!isset($_SESSION['username'])){
+    header("location: index.php");
+}
+
 $error_msg = "";
 $target_dir = "img/profile/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -48,9 +52,11 @@ if (isset($_POST["submit"])) {
             $param_alamat = $_POST['address'];
             $param_telp = $_POST['phone'];
             $param_email = $_POST['email'];
-            $param_profpic = $imgpath;
+            $param_profpic = '/' . $imgpath;
             $param_username = $_SESSION['username'];
             if (mysqli_stmt_execute($stmt)) {
+                if (!empty($_FILES['fileToUpload']['name']))
+                    $imgpath = '/' . $imgpath;
                 $_SESSION['profpic'] = $imgpath;
                 header("location: index.php");
             } else {

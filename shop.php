@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,7 @@ require_once("config.php");
     <![endif]-->
 </head>
 
-<body>
+<body data-spy="scroll" data-offset="0" data-target="#theMenu">
 <?php include ("navbar.php"); ?>
 
 <!-- Main source -->
