@@ -68,22 +68,30 @@ t_stats | Not null | <code>1</code>
 
 Keterangan: 
 
+### Halaman Utama Web
 
-## Contoh cara insert gambar
+![alt text here](img/documentation/main)
 
-![alt text here](img/documentation/hmmmmm.png)
+### Sign Up Web
 
-## Contoh simple formatting
+![alt text here](img/documentation/sign-up.png)
 
-**This is bold**
+### Sign In Web
 
-_This is italic_
+![alt text here](img/documentation/sign-in.png)
 
-Enter 2x untuk ganti paragraf
+### Halaman Utama setelah Signed in
 
-atau  
-tambahkan spasi 2x di belakang text untuk soft-break
+![alt text here](img/documentation/index)
 
-# ini heading_1
-## ini heading_2
-### dan seterusnya
+### Edit Profile
+
+![alt text here](img/documentation/edit.png)
+
+### tampilan Shop
+
+![alt text here](img/documentation/shop.png)
+
+### Tampilan detail barang
+
+![alt text here](img/documentation/detail.png)
