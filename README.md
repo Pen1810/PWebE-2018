@@ -105,3 +105,11 @@ Keterangan:
 ### Tampilan detail barang
 
 ![alt text here](img/documentation/detail.png)
+
+### Halaman Utama apabila yang masuk adalah admin
+
+![alt text here](img/documentation/indexAdmin.png)
+
+## Halaman Admin
+
+![alt text here](img/documentation/adminpage.png)
