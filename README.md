@@ -68,3 +68,22 @@ t_stats | Not null | <code>1</code>
 
 Keterangan: 
 
+
+## Contoh cara insert gambar
+
+![alt text here](img/documentation/hmmmmm.png)
+
+## Contoh simple formatting
+
+**This is bold**
+
+_This is italic_
+
+Enter 2x untuk ganti paragraf
+
+atau  
+tambahkan spasi 2x di belakang text untuk soft-break
+
+# ini heading_1
+## ini heading_2
+### dan seterusnya
