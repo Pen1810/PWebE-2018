@@ -82,11 +82,21 @@ Keterangan:
 
 ### Halaman Utama setelah Signed in
 
-![alt text here](img/documentation/index)
+![alt text here](img/documentation/index1)
 
 ### Edit Profile
 
 ![alt text here](img/documentation/edit.png)
+
+### ganti foto profil
+
+![alt text here](img/documentation/ganti-profpic1.png)
+
+![alt text here](img/documentation/ganti-profpic2.png)
+
+### setelah ganti foto profil
+
+![alt text here](img/documentation/index2v2.png)
 
 ### tampilan Shop
 
